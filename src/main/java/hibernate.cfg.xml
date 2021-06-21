@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">F8-F8-28-B6-71-F3</property>
+        <property name="hibernate.connection.url">jdbc:mysql://sv70.ifastnet.com:3306/desperta_laboratorio5</property>
+        <property name="hibernate.connection.username">desperta_laboratorio</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hbm2ddl.auto">update</property>
+		<property name="show_sql">true</property>
+		<mapping class="entidades.Usuario"/>
+    </session-factory>
+</hibernate-configuration>
