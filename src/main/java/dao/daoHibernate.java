@@ -2,16 +2,27 @@ package dao;
 
 import org.hibernate.Session;
 
+import entidades.Cliente;
 import entidades.Usuario;
 
 public class daoHibernate {
-
+	public static void Add(Cliente cliente)
+	{
+		ConfigHibernate ch = new ConfigHibernate();
+		Session session= ch.abrirConexion();
+		
+	    session.beginTransaction();
+	    session.save(cliente);
+	    
+	    session.getTransaction().commit();    
+		ch.cerrarSession();
+	}
+	
 	public static void Add(Usuario user)
 	{
 		ConfigHibernate ch = new ConfigHibernate();
 		Session session= ch.abrirConexion();
 		
-	        
 	    session.beginTransaction();
 	    session.save(user);
 	    
