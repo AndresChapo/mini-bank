@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Users")
+@Table(name="Usuario")
 public class Usuario implements Serializable{
 
 	//Implementar serializable
@@ -21,11 +21,14 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="nameUser")
+	@Column(name="nombre")
 	private String nombre;
 	
-	@Column(name="pass")
+	@Column(name="contrasenia")
 	private String contrasenia;
+
+	@Column(name="es_admin")
+	private boolean es_admin;
 	
 	//Constructor vacio
 	public Usuario()
@@ -49,7 +52,14 @@ public class Usuario implements Serializable{
 		this.contrasenia = contrasenia;
 	}
 
-	
+	public boolean isEs_admin() {
+		return es_admin;
+	}
+
+	public void setEs_admin(boolean es_admin) {
+		this.es_admin = es_admin;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -60,7 +70,8 @@ public class Usuario implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", contrasenia=" + contrasenia + "]";
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", contrasenia=" + contrasenia + ", es_admin=" + es_admin
+				+ "]";
 	}
 	
 }
