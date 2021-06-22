@@ -10,15 +10,20 @@ import dao.ConfigHibernate;
 import dao.daoHibernate;
 import entidades.Usuario;
 import entidades.Cliente;
+import entidades.Cuenta;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		Cliente cliente1 = new Cliente("11222333", "Pepe", "Argento", "1234-1234", "pepeargento@hotmail.com", 'M');
-		daoHibernate.Add(cliente1);
+		Cuenta cuenta1 = new Cuenta(1,1,"Cuenta Sueldo", 1, "123123123123123123", (float) 12.4, "2020-12-01");
+		daoHibernate.Add(cuenta1);
 		System.out.println("FIN");
 		/**
+		Cliente cliente1 = new Cliente(1,"11222333", "Pepe", "Argento", "1234-1234", "pepeargento@hotmail.com", 'M', "Argentino", "Calle falsa 123", "San Fernando", "Buenos Aires", "1988-10-12");
+		daoHibernate.Add(cliente1);
+		System.out.println("FIN");
+
 		//Agrego el primer usuario
 		Usuario usuario1 = new Usuario();
 	    usuario1.setNombre("Pepe");

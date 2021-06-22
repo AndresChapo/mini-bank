@@ -13,5 +13,6 @@
 		<property name="show_sql">true</property>
 		<mapping class="entidades.Usuario"/>
 		<mapping class="entidades.Cliente"/>
+		<mapping class="entidades.Cuenta"/>
     </session-factory>
 </hibernate-configuration>
