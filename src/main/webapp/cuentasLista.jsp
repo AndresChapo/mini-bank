@@ -41,13 +41,13 @@
 	});
 </script>
 
-</head>
 
+</head>
 <body>
+
 	 
 	<nav class="navbar navbar-expand-large navbar-light"
-		style="background-color: #e3f2fd;"> <a class="navbar-brand" 
-		href="#">The Group Five Bank  </a>
+		style="background-color: #e3f2fd;">  
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
 		aria-expanded="false" aria-label="Toggle navigation">
@@ -57,34 +57,21 @@
 		<ul class="navbar-nav">
 			<div class="row">
 
+
 				<div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
 						href="#">Home <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
-
-
-
-
-				 
-				<div class="col-md-2">
-
-					<a class="dropdown-item"
-						href="#">Cuentas</a>
-
-				</div>  
-
+ 
 				<div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
 						href="#">Salir <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
 
-
 			</div>
 		</ul>
-
-
 	</div>
 	</nav>
 	<div class="container">
@@ -94,50 +81,47 @@
 				<h3 class="display-4 text-info">Cuentas</h3>
 
 			</div>
-		</div>
-
+		</div> 
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-10" style="">
-				 
-				<div style="height: 50px"></div>
-				<table class="table" id="tablaCuentas">
-					<thead class="table-info">
-						<tr>
-							<th scope="col">N° Cuenta</th>
+				<form>
+					  
+					<div style="height: 50px"></div>
+					<table class="table" id="tablaCuentas">
+						<thead class="table-info">
+							<tr>
+								<th scope="col">N° Cuenta</th>
 								<th scope="col">Tipo de Cuenta</th>
 								<th scope="col">Nombre</th>
 								<th scope="col">Apellido</th>
-								<th scope="col">Acciones</th>
-							<th></th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
 
-						 
-						<tr>
+							<tr>
 
-							<th scope="row">1</th>
-							<td>Caja Ahorro</td>
-							<td>Nombre</td>
-							<td>Apellido</td>
+								<td>1</td>
+								<td>Caja ahorro</td>
+								<td>Nombre</td>
+								<td>Apellido</td>
+
+								<td><a class="btn btn-info"
+									href="#">Modificar</a></td>
+								<td><a class="btn btn-warning"
+									href="#">Eliminar</a></td>
+
+							</tr>
  
-							<td><a class="btn btn-info"
-								href="#">Modificar</a></td>
-							<td><a class="btn btn-danger"
-								href="#">Eliminar</a></td>
-
-						</tr>
- 
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+  
+				</form>
 			</div>
 
-		</div> 
-
+		</div>
 	</div>
 </body>
-
 </html>
