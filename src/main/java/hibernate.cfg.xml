@@ -14,5 +14,7 @@
 		<mapping class="entidades.Usuario"/>
 		<mapping class="entidades.Cliente"/>
 		<mapping class="entidades.Cuenta"/>
+		<mapping class="entidades.Movimiento"/>
+		<mapping class="entidades.Tipo_cuenta"/>
     </session-factory>
 </hibernate-configuration>

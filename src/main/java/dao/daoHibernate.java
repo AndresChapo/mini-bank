@@ -4,9 +4,33 @@ import org.hibernate.Session;
 
 import entidades.Cliente;
 import entidades.Cuenta;
+import entidades.Movimiento;
 import entidades.Usuario;
+import entidades.Tipo_cuenta;
 
 public class daoHibernate {
+	public static void Add(Tipo_cuenta tipo_cuenta)
+	{
+		ConfigHibernate ch = new ConfigHibernate();
+		Session session= ch.abrirConexion();
+		
+	    session.beginTransaction();
+	    session.save(tipo_cuenta);
+	    
+	    session.getTransaction().commit();    
+		ch.cerrarSession();
+	}
+	public static void Add(Movimiento movimiento)
+	{
+		ConfigHibernate ch = new ConfigHibernate();
+		Session session= ch.abrirConexion();
+		
+	    session.beginTransaction();
+	    session.save(movimiento);
+	    
+	    session.getTransaction().commit();    
+		ch.cerrarSession();
+	}
 	public static void Add(Cuenta cuenta)
 	{
 		ConfigHibernate ch = new ConfigHibernate();

@@ -36,6 +36,13 @@ public class Usuario implements Serializable{
 		
 	}
 
+	public Usuario(String nombre, String contrasenia, boolean es_admin) {
+		super();
+		this.nombre = nombre;
+		this.contrasenia = contrasenia;
+		this.es_admin = es_admin;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
