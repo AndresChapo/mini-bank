@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Clientes</title>
+<title>ModificarCuentas</title>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -35,19 +35,15 @@
 
 <script type="text/javascript"
 	src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/sc-2.0.3/sp-1.2.1/datatables.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#tablaClientes').DataTable();
-	});
-</script>
+
+
 
 </head>
-
 <body>
+
 	 
 	<nav class="navbar navbar-expand-large navbar-light"
-		style="background-color: #e3f2fd;"> <a class="navbar-brand" 
-		href="#">The Group Five Bank  </a>
+		style="background-color: #e3f2fd;">  
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
 		aria-expanded="false" aria-label="Toggle navigation">
@@ -57,94 +53,107 @@
 		<ul class="navbar-nav">
 			<div class="row">
 
+
 				<div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
 						href="#">Home <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
-
-
-
-
-				 
-				<div class="col-md-2">
-
-					<a class="dropdown-item"
-						href="#">Cuentas</a>
-
-				</div>  
-
+ 
 				<div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
-						href="">Salir <span class="sr-only">(current)</span>
+						href="#">Salir <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
 
-
 			</div>
 		</ul>
-
-
 	</div>
 	</nav>
 	<div class="container">
  
+		
 		<div class="row mt-2">
 			<div class="col-md-12">
-				<h3 class="display-4 text-info">Clientes</h3>
-
+				<h3 class="display-4 text-info">Modificar Cuenta</h3>
+				<div style="height: 50px"></div>
 			</div>
 		</div>
-
+		<div class="row mt-2 d-flex justify-content-center">
+			<h2>Informacion de la cuenta</h2>
+		</div>
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
-			<div class="col-md-10" style="">
-				 
-				<div style="height: 50px"></div>
-				<table class="table" id="tablaClientes">
-					<thead class="table-info">
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Nombre</th>
-							<th scope="col">Apellido</th>
-							<th scope="col">Numero de cliente</th>
-							<th scope="col">Acciones</th>
-							<th></th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
+			<div class="col-md-6" style="">
+				<form>
+					<div class="form-row">
 
-						 
-						<tr>
+						<div class="row">
 
-							<th scope="row">1</th>
-							<td>Nombre</td>
-							<td>Apellido</td>
-							<td>Dni</td>
- 
-							<td>
-							<a class="btn btn-primary" href="clientesNuevoDatosPersonales.jsp">Nueva Cuenta</a>
-							</td>
- 
-							 
- 							<td><a class="btn btn-success"
-								href="#">Ver</a></td>
-							<td><a class="btn btn-info"
-								href="#">Modificar</a></td>
-							<td><a class="btn btn-danger"
-								href="#">Eliminar</a></td>
+							<div class="col">
+								<label for="cuentascliente1">Cuenta: </label>
+							</div>
 
-						</tr>
- 
-					</tbody>
-				</table>
+							<div class="col">
+								<input type="text" readonly class="form-control-plaintext"
+									name="TXTid" id="nombre" value="1212324">
+							</div>
+
+
+							<div class="col">
+								<label >Cliente: </label>
+								 <label>Nombre cliente</label>
+								<label >Nombre apellido</label>
+							</div>
+						</div>
+
+						<div class="row">
+
+							<div class="col-12" style="height: 30px">
+								<label >Tipo Cuenta Actual: </label> 
+								<label>Cuenta corriente en pesos </label>
+							</div>
+
+
+							<div class="col-12" style="height: 30px">
+								<label for="Tipo de cuenta">Nuevo Tipo:</label> <select
+									class="form-control" id="cuentas" name=Cuentas>
+									<option value="1">Caja de ahorro pesos</option>								
+									<option value="2">Caja de ahorro USD</option>
+								</select>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="row">
+
+						<div class="col-12" style="margin-top: 50px;">
+							<label for="Tipo de cuenta">Nuevo Saldo:</label> <input
+								type="text" class="form-control" name="TXTsaldo" id="saldo"
+								aria-describedby="emailHelp" value="Ingresar saldo actual">
+
+						</div>
+
+					</div>
+
+
+					<div style="height: 30px"></div>
+
+					<input type="hidden" name="TXTid"
+						value="1" />
+
+					<div class="row d-flex justify-content-center"
+						style="position: relative; top: 30px">
+						<input type="submit" name="BtnModificar" value="Modificar">
+					</div>
+
+
+							</form>
 			</div>
 
-		</div> 
-
+		</div>
 	</div>
 </body>
-
 </html>
