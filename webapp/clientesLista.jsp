@@ -76,7 +76,7 @@
 
 				<div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
-						href="#">Salir <span class="sr-only">(current)</span>
+						href="">Salir <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
 
@@ -125,7 +125,7 @@
 							<td>Dni</td>
  
 							<td>
-							<a class="btn btn-primary" href="#">Nueva Cuenta</a>
+							<a class="btn btn-primary" href="clientesNuevoDatosPersonales.jsp">Nueva Cuenta</a>
 							</td>
  
 							 
