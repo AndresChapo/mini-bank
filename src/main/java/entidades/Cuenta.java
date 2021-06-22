@@ -16,17 +16,15 @@ public class Cuenta implements Serializable{
 	//Implementar serializable
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="id")
+	@Column(name="num_cuenta")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer num_cuenta;
 	@Column(name="id_cliente")
 	private Integer id_cliente;
 	@Column(name="tipo_cuenta")
 	private Integer tipo_cuenta;
 	@Column(name="nombre")
 	private String nombre;
-	@Column(name="numero_cuenta")
-	private Integer numero_cuenta;
 	@Column(name="cbu")
 	private String cbu;
 	@Column(name="saldo")
@@ -34,24 +32,23 @@ public class Cuenta implements Serializable{
 	@Column(name="fecha_creacion")
 	private String fecha_creacion;
 	
-	public Cuenta(Integer id_cliente, Integer tipo_cuenta, String nombre, Integer numero_cuenta, String cbu,
+	public Cuenta(Integer id_cliente, Integer tipo_cuenta, String nombre, String cbu,
 			float saldo, String fecha_creacion) {
 		super();
 		this.id_cliente = id_cliente;
 		this.tipo_cuenta = tipo_cuenta;
 		this.nombre = nombre;
-		this.numero_cuenta = numero_cuenta;
 		this.cbu = cbu;
 		this.saldo = saldo;
 		this.fecha_creacion = fecha_creacion;
 	}
 
 	public Integer getId() {
-		return id;
+		return num_cuenta;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer num_cuenta) {
+		this.num_cuenta = num_cuenta;
 	}
 
 	public Integer getId_cliente() {
@@ -76,14 +73,6 @@ public class Cuenta implements Serializable{
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public Integer getNumero_cuenta() {
-		return numero_cuenta;
-	}
-
-	public void setNumero_cuenta(Integer numero_cuenta) {
-		this.numero_cuenta = numero_cuenta;
 	}
 
 	public String getCbu() {
@@ -112,8 +101,8 @@ public class Cuenta implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Cuenta [id=" + id + ", id_cliente=" + id_cliente + ", tipo_cuenta=" + tipo_cuenta + ", nombre=" + nombre
-				+ ", numero_cuenta=" + numero_cuenta + ", cbu=" + cbu + ", saldo=" + saldo + ", fecha_creacion="
+		return "Cuenta [num_cuenta=" + num_cuenta + ", id_cliente=" + id_cliente + ", tipo_cuenta=" + tipo_cuenta + ", nombre=" + nombre
+				+ ", cbu=" + cbu + ", saldo=" + saldo + ", fecha_creacion="
 				+ fecha_creacion + "]";
 	}
 
