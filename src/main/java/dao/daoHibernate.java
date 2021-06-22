@@ -3,9 +3,21 @@ package dao;
 import org.hibernate.Session;
 
 import entidades.Cliente;
+import entidades.Cuenta;
 import entidades.Usuario;
 
 public class daoHibernate {
+	public static void Add(Cuenta cuenta)
+	{
+		ConfigHibernate ch = new ConfigHibernate();
+		Session session= ch.abrirConexion();
+		
+	    session.beginTransaction();
+	    session.save(cuenta);
+	    
+	    session.getTransaction().commit();    
+		ch.cerrarSession();
+	}
 	public static void Add(Cliente cliente)
 	{
 		ConfigHibernate ch = new ConfigHibernate();
