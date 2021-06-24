@@ -1,6 +1,6 @@
 package principal;
 
-import org.hibernate.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -19,8 +19,9 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Tipo_cuenta t_cuenta_pesos = new Tipo_cuenta("Caja de ahorro en arr");
-		Tipo_cuenta t_cuenta_dolares = new Tipo_cuenta("Caja de ahorro en usd");
+		Tipo_cuenta t_cuenta_pesos = new Tipo_cuenta("Caja de ahorro en pesos");
+		Tipo_cuenta t_cuenta_dolares = new Tipo_cuenta("Caja de ahorro en dolares");
+	
 		
 		Usuario user1 = new Usuario("Nico","Radeon24",true);
 		Usuario user2 = new Usuario("Andy","F8-F8-28-B6-71-F3",true);
@@ -122,7 +123,7 @@ public class Main {
 
 	    session.getTransaction().commit();    
 		ch.cerrarSession();
-		
+
 		System.out.println("FIN");
 
 	}
