@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="conexionHibernate" class="dao.ConfigHibernate" init-method="abrirConexion" destroy-method="cerrarSession" scope="singleton">
+	</bean>
+	
+<!-- EJEMPLOS DE BEANS
+
+		ConfigHibernate ch = new ConfigHibernate();
+		
+	<bean id="ProvinciaBsAs" class="frgp.utn.edu.ar.entidad.Provincia">
+		<property name="nombre" value="Bs. As."></property>
+	</bean>
+
+
+	<bean id="PaisArgentina" class="frgp.utn.edu.ar.entidad.Pais">
+		<property name="nombre" value="Argentina"></property>
+		<property name="listaProvincias">
+			<list>
+				<ref bean="ProvinciaBsAs"/>
+				<ref bean="ProvinciaSantaFe"/>
+				<ref bean="ProvinciaEntreRios"/>
+			</list>
+		</property>
+	</bean>
+	
+
+
+	<bean id="PersonaPepe" class="frgp.utn.edu.ar.entidad.Persona" init-method="initPersona"  destroy-method="cerrarSession" scope="singleton">
+	
+	<constructor-arg index="0" type="String" value="Pepe"></constructor-arg> 	
+		<constructor-arg index="1" type="String" value="Casas"></constructor-arg> 
+
+		<property name="dni" value="3333333"></property>
+		<property name="pais" ref="PaisArgentina"></property>	
+	</bean>
+ -->	
+</beans>

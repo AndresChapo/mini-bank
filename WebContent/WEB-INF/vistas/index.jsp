@@ -17,7 +17,7 @@
 		response.sendRedirect("login.jsp");
 	}
 %>
-
+El usuario es: 
 <%=texto%>
 
 </body>

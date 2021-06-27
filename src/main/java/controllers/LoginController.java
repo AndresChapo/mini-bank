@@ -16,8 +16,9 @@ public class LoginController {
 	}
 	
 	@RequestMapping("index.html")
-	public ModelAndView eventoRedirectLista() {
+	public ModelAndView eventoRedirectLista(String txtBoxUsuario) {
 		ModelAndView mv = new ModelAndView();
+		System.out.println(txtBoxUsuario);
 		return mv;
 	}
 
