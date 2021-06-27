@@ -7,7 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-Pagina principal
+
+<%
+	String texto="";
+	if(request.getParameter("txtBoxUsuario")!= null)
+	{
+		texto=request.getParameter("txtBoxUsuario");
+	}else{
+		response.sendRedirect("login.jsp");
+	}
+%>
+
+<%=texto%>
 
 </body>
 </html>

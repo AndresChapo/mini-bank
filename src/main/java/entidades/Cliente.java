@@ -43,7 +43,12 @@ public class Cliente implements Serializable{
 	private String provincia;
 	@Column(name="fecha_nacimiento")
 	private String fecha_nacimiento;
+	@Column(name="eliminado")
+	private boolean eliminado;
 
+	public Cliente()
+	{}
+	
 	public Cliente(int id_usuario, String dni, String nombre, String apellido, String telefono, String email, char sexo,
 			String nacionalidad, String direccion, String localidad, String provincia, String fecha_nacimiento) {
 		super();
@@ -59,10 +64,19 @@ public class Cliente implements Serializable{
 		this.localidad = localidad;
 		this.provincia = provincia;
 		this.fecha_nacimiento = fecha_nacimiento;
+		this.eliminado = false;
 	}
 
 	public Integer getId() {
 		return id;
+	}
+
+	public boolean isEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(boolean eliminado) {
+		this.eliminado = eliminado;
 	}
 
 	public void setId(Integer id) {

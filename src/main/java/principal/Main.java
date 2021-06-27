@@ -1,5 +1,6 @@
 package principal;
 
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,12 +16,23 @@ import entidades.Cuenta;
 import entidades.Movimiento;
 import entidades.Tipo_cuenta;
 
+
 public class Main {
 
+	public static String fetchPassword(Session session, String usuario) // Ejemplo de metodo para traer datos por HQL
+	{	   
+		String clave="";
+	    List<String> listaDocentes= (List<String>) session.createQuery("SELECT contrasenia FROM Usuario u where nombre='"+usuario+"'").list();
+	    for (String contrasenia : listaDocentes) {
+			System.out.println(contrasenia);
+			clave=contrasenia;
+		}
+		return clave; 
+	}
 	public static void main(String[] args) {
 
 		Tipo_cuenta t_cuenta_pesos = new Tipo_cuenta("Caja de ahorro en pesos");
-		Tipo_cuenta t_cuenta_dolares = new Tipo_cuenta("Caja de ahorro en dolares");
+		Tipo_cuenta t_cuenta_dolares = new Tipo_cuenta("Caja de ahorro en dólares");
 	
 		
 		Usuario user1 = new Usuario("Nico","Radeon24",true);
@@ -45,35 +57,34 @@ public class Main {
 		Cliente cliente9 = new Cliente(9,"43283342", "Michone", "Neuman", "3475-8075", "Asia@hotmail.com", 'F', "Rusa", "Ruiz 222", "CABA", "Buenos Aires", "1984-09-23");
 		Cliente cliente10 = new Cliente(10,"44523383", "Micaela", "Lamass", "98057-2345", "Micaela@hotmail.com", 'F', "Uruguaya", "Campello 4557", "CABA", "Buenos Aires", "1982-10-25");
 		
-		Cuenta cuenta1 = new Cuenta(1,2,"Cuenta Sueldo", "0010001100000000000001", (float) 1221.4, "2021-12-01");
-		Cuenta cuenta2 = new Cuenta(2,2,"Millones", "0010001100000000000002", (float) 150000, "2020-10-01");
-		Cuenta cuenta3 = new Cuenta(3,1,"Ahorro", "0010001100000000000003", (float) 1240000, "2020-12-15");
-		Cuenta cuenta4 = new Cuenta(4,1,"Para vacaciones", "0010001100000000000004", (float) 80000.5, "2019-12-01");
-		Cuenta cuenta5 = new Cuenta(5,2,"Ahorros", "0010001100000000000005", (float) 2345, "2020-12-12");
-		Cuenta cuenta6 = new Cuenta(6,1,"Sueldo", "0010001100000000000006", (float) 5678.9, "2021-08-01");
-		Cuenta cuenta7 = new Cuenta(7,1,"Inversiones", "0010001100000000000007", (float) 3412, "2020-10-20");
-		Cuenta cuenta8 = new Cuenta(8,2,"Ganancias", "0010001100000000000008", (float) 734.4, "2020-12-18");
-		Cuenta cuenta9 = new Cuenta(9,1,"Ingresos", "0010001100000000000009", (float) 132.4, "2020-11-01");
-		Cuenta cuenta10 = new Cuenta(10,1,"De rentas", "0010001100000000000010", (float) 40000, "2021-11-11")	;
+		Cuenta cuenta1 = new Cuenta(1,2,"Cuenta Sueldo", "0010001100000000000001", (float) 10000, "2021-12-01");
+		Cuenta cuenta2 = new Cuenta(2,2,"Millones", "0010001100000000000002", (float) 10000, "2020-10-01");
+		Cuenta cuenta3 = new Cuenta(3,1,"Ahorro", "0010001100000000000003", (float) 10000, "2020-12-15");
+		Cuenta cuenta4 = new Cuenta(4,1,"Para vacaciones", "0010001100000000000004", (float) 10000, "2019-12-01");
+		Cuenta cuenta5 = new Cuenta(5,2,"Ahorros", "0010001100000000000005", (float) 10000, "2020-12-12");
+		Cuenta cuenta6 = new Cuenta(6,1,"Sueldo", "0010001100000000000006", (float) 10000, "2021-08-01");
+		Cuenta cuenta7 = new Cuenta(7,1,"Inversiones", "0010001100000000000007", (float) 10000, "2020-10-20");
+		Cuenta cuenta8 = new Cuenta(8,2,"Ganancias", "0010001100000000000008", (float) 10000, "2020-12-18");
+		Cuenta cuenta9 = new Cuenta(9,1,"Ingresos", "0010001100000000000009", (float) 10000, "2020-11-01");
+		Cuenta cuenta10 = new Cuenta(10,1,"De rentas", "0010001100000000000010", (float) 10000, "2021-11-11");
+		Cuenta cuenta11 = new Cuenta(2,1,"Coimas", "0010001100000000000011", (float) 10000, "2021-11-12")	;
 		
 
-		Movimiento movimiento1 = new Movimiento(1,"2020-12-01", "Ahorros", (float) 24);
-		Movimiento movimiento2 = new Movimiento(2,"2021-01-01", "Pago", (float) 34);
-		Movimiento movimiento3 = new Movimiento(2,"2021-01-02", "Alquiler", (float) 678);
+		Movimiento movimiento1 = new Movimiento(1,"2020-10-01", "Ahorros", (float) 24);
+		Movimiento movimiento2 = new Movimiento(2,"2020-11-01", "Pago", (float) 34);
+		Movimiento movimiento3 = new Movimiento(2,"2020-12-02", "Alquiler", (float) 678);
 		Movimiento movimiento4 = new Movimiento(2,"2021-01-03", "Deudas", (float) 67);
-		Movimiento movimiento5 = new Movimiento(2,"2021-01-04", "Prestamo", 453.6f);
-		Movimiento movimiento6 = new Movimiento(3,"2021-05-05", "Seguro", 45);
-		Movimiento movimiento7 = new Movimiento(4,"2021-05-06", "Drogas", 454.5f);
-		Movimiento movimiento8 = new Movimiento(5,"2021-03-07", "Regalo", (float) 926);
-		Movimiento movimiento9 = new Movimiento(6,"2021-05-08", "Greenpeace", (float) 89);
+		Movimiento movimiento5 = new Movimiento(2,"2021-02-04", "Prestamo", 453.6f);
+		Movimiento movimiento6 = new Movimiento(3,"2021-03-05", "Seguro", 45);
+		Movimiento movimiento7 = new Movimiento(4,"2021-04-06", "Drogas", 454.5f);
+		Movimiento movimiento8 = new Movimiento(5,"2021-05-07", "Regalo", (float) 926);
+		Movimiento movimiento9 = new Movimiento(6,"2021-06-08", "Greenpeace", (float) 89);
 		Movimiento movimiento10 = new Movimiento(7,"2021-07-08", "Guinio Guinio", (float) 2678.9);
 
-		
 		ConfigHibernate ch = new ConfigHibernate();
 		Session session= ch.abrirConexion();
 		session.beginTransaction();
-
-	    
+		
 	    session.save(t_cuenta_pesos);
 	    session.save(t_cuenta_dolares);
 	    
@@ -87,7 +98,7 @@ public class Main {
 	    session.save(user8);
 	    session.save(user9);
 	    session.save(user10);
-
+/**
 	    session.save(cliente1);
 	    session.save(cliente2);
 	    session.save(cliente3);
@@ -122,10 +133,43 @@ public class Main {
 	    session.save(movimiento10);
 
 	    session.getTransaction().commit();    
-		ch.cerrarSession();
+	    System.out.println("FIN de INPUTS");
+	    */
 
-		System.out.println("FIN");
+	    fetchPassword(session, "Andy");
+	    
+	    //ch.cerrarSession();
 
+		/**		
+	    System.out.println("INSERTS CON DAO HIBERNATE");
+		daoHibernate.Add(t_cuenta_pesos);
+		daoHibernate.Add(t_cuenta_dolares);
+		daoHibernate.Add(user1);
+		
+		//fetchPassword();
+
+
+
+		//Leo el usuario con ID=1
+		Usuario usuario4 = daoHibernate.ReadOne(1);
+		System.out.println("Info del usuario con Id 1="+usuario4.toString());
+		
+		//Modifico el usuario con ID=2
+		
+		Usuario usuario5 = new Usuario();
+		usuario5.setId(2);
+		usuario5.setNombre("Don Juan");
+		usuario5.setContrasenia("456");
+		daoHibernate.Update(usuario5);
+
+		//Leo el usuario con ID=1
+		Usuario usuario6 = daoHibernate.ReadOne(2);
+		System.out.println("Info del usuario con Id 2="+usuario6.toString());
+				
+		//Elimino el usuario 3
+		daoHibernate.Delete(usuario3);
+		
+		**/
 	}
 	
 	

@@ -20,27 +20,33 @@ public class Usuario implements Serializable{
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 	@Column(name="nombre")
 	private String nombre;
-	
 	@Column(name="contrasenia")
 	private String contrasenia;
-
 	@Column(name="es_admin")
 	private boolean es_admin;
+	@Column(name="eliminado")
+	private boolean eliminado;
 	
 	//Constructor vacio
 	public Usuario()
-	{
-		
-	}
+	{}
 
 	public Usuario(String nombre, String contrasenia, boolean es_admin) {
 		super();
 		this.nombre = nombre;
 		this.contrasenia = contrasenia;
 		this.es_admin = es_admin;
+		this.eliminado = false;
+	}
+
+	public boolean isEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(boolean eliminado) {
+		this.eliminado = eliminado;
 	}
 
 	public String getNombre() {

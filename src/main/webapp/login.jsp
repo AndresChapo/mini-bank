@@ -56,8 +56,6 @@
 								<span class="sr-only">(current)</span>
 						</a></li>
 					</div>
-					 
-					 
 				</div>
 			</ul>
 		</div>
@@ -71,7 +69,7 @@
 		<div class="row d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-12">
-				<form>
+				<form method= "post" action="index.jsp">
 					<div class="form-row">
 						<div class="col-md-4">
 							<label>Usuario</label> <input type="text" class="form-control"
