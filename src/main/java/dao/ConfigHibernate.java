@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -170,4 +171,27 @@ public class ConfigHibernate {
 	{	   
 		return (Usuario)session.get(Usuario.class,id); 
 	}
+    
+    
+    public static ArrayList<Cliente> getListaClientes() // Ejemplo de metodo para traer datos por HQL
+	{	   
+    	
+    	List<Object[]> listDatos = session.createQuery("SELECT id_usuario, dni, nombre, apellido, telefono, email, sexo, nacionalidad, direccion, localidad, provincia, fecha_nacimiento FROM Cliente").list();
+
+    	ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+    	
+    	for (Object[] datos : listDatos) {
+
+			Cliente clientex = new Cliente((int) datos[0], (String) datos[1], (String) datos[2], (String) datos[3], (String) datos[4], (String) datos[5], (char) datos[6], (String) datos[7], (String) datos[8], (String) datos[9], (String) datos[10], (String) datos[11]);    		
+    		listaClientes.add(clientex); 
+    		
+    		System.out.println(clientex.toString());
+    	    
+    	}
+    	
+    	return listaClientes;		
+	}
+
+    
+    
 }

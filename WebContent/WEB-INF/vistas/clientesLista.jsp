@@ -95,7 +95,8 @@
 
 			</div>
 		</div>
-
+		
+	
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-10" style="">
@@ -107,21 +108,39 @@
 							<th scope="col">#</th>
 							<th scope="col">Nombre</th>
 							<th scope="col">Apellido</th>
-							<th scope="col">Numero de cliente</th>
-							<th scope="col">Acciones</th>
+							<th scope="col">Fecha nacimiento</th>
 							<th></th>
 							<th></th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
+	
+				        <c:forEach var="cliente" items="${listaClientes}">
+								<th scope="row">1</th>
+								<td>Nombre</td>
+								<td>Dni</td>
+	 
+								<td>
+								<a class="btn btn-primary" href="clientesNuevoDatosPersonales.jsp">Nueva Cuenta</a>
+								</td>
+	 
+								 
+	 							<td><a class="btn btn-success"
+									href="#">Ver</a></td>
+								<td><a class="btn btn-info"
+									href="#">Modificar</a></td>
+								<td><a class="btn btn-danger"
+									href="#">Eliminar</a></td>
 
-						 
+				        </c:forEach>
+
+						
+					    			 
 						<tr>
 
 							<th scope="row">1</th>
 							<td>Nombre</td>
-							<td>Apellido</td>
 							<td>Dni</td>
  
 							<td>

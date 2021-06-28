@@ -1,5 +1,8 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.ConfigHibernate;
+import entidades.Cliente;
 
 @Controller
 public class LoginController {
@@ -52,13 +56,21 @@ public class LoginController {
 		
 		if(claveEnBD.equals(txtBoxClave)) {
 			mv.addObject("usuarioValido", "true");
-			System.out.println("Coincide la clave!");
+			System.out.println("-----------------------");
+			//List<Cliente> listaClientes = ch.getListaClientes();
+			ArrayList<Cliente> listaClientes = ch.getListaClientes();
+			mv.addObject("listaClientes", listaClientes);
+			System.out.println("-----------------------");
+			
+			
+			mv.setViewName("clientesLista");
 		}else {
 			mv.addObject("usuarioValido", "false");
 			System.out.println("Clave incorrecta!");
+			mv.setViewName("login");
 		}
 		
-		mv.setViewName("index");
+		
 		// mv.addObject("usuarioValido", "true");
 		return mv;
 	}
