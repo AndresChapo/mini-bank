@@ -16,7 +16,7 @@
 	{
 		texto=request.getParameter("txtBoxUsuario");
 		clave=request.getParameter("txtBoxClave");
-		esValio=request.getParameter("usuarioValido");
+		//esValio=request.getParameter("usuarioValido");
 		
 	}else{
 		response.sendRedirect("login.jsp");
@@ -28,7 +28,7 @@ El usuario es:
 La clave es: 
 <%=clave%>
 </br>
-Usuario valido: 
-<%=esValio%>
+Usuario valido: ${usuarioValido} 
+
 </body>
 </html>

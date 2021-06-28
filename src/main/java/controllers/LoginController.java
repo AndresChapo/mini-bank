@@ -51,13 +51,15 @@ public class LoginController {
 		System.out.println(claveEnBD);
 		
 		if(claveEnBD.equals(txtBoxClave)) {
+			mv.addObject("usuarioValido", "true");
 			System.out.println("Coincide la clave!");
 		}else {
+			mv.addObject("usuarioValido", "false");
 			System.out.println("Clave incorrecta!");
 		}
 		
 		mv.setViewName("index");
-		mv.addObject("usuarioValido", "true");
+		// mv.addObject("usuarioValido", "true");
 		return mv;
 	}
 
