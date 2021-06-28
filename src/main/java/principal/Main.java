@@ -31,6 +31,4 @@ public class Main {
 		//((ConfigurableApplicationContext)(appContext)).close();
 	}
 	
-	
-	
 }

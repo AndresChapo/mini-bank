@@ -6,7 +6,7 @@
 
 	<bean id="conexionHibernate" class="dao.ConfigHibernate" init-method="abrirConexion" destroy-method="cerrarSession" scope="singleton">
 	</bean>
-	
+
 <!-- EJEMPLOS DE BEANS
 
 		ConfigHibernate ch = new ConfigHibernate();

@@ -165,4 +165,9 @@ public class ConfigHibernate {
 		}
 		return clave; 
 	}
+
+    public static Usuario traerUsuario(int id)
+	{	   
+		return (Usuario)session.get(Usuario.class,id); 
+	}
 }

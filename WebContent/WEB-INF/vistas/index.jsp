@@ -10,15 +10,25 @@
 
 <%
 	String texto="";
+	String clave="";
+	String esValio="";
 	if(request.getParameter("txtBoxUsuario")!= null)
 	{
 		texto=request.getParameter("txtBoxUsuario");
+		clave=request.getParameter("txtBoxClave");
+		esValio=request.getParameter("usuarioValido");
+		
 	}else{
 		response.sendRedirect("login.jsp");
 	}
 %>
 El usuario es: 
 <%=texto%>
-
+</br>
+La clave es: 
+<%=clave%>
+</br>
+Usuario valido: 
+<%=esValio%>
 </body>
 </html>

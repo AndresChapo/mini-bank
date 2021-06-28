@@ -69,7 +69,7 @@
 		<div class="row d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-12">
-				<form method= "post" action="index.html">
+				<form method= "post" action="validarUsuario.html">
 					<div class="form-row">
 						<div class="col-md-4">
 							<label>Usuario</label> <input type="text" class="form-control"
