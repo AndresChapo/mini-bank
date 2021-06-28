@@ -25,6 +25,10 @@ public class LoginController {
 		mv.setViewName("login");
 		return mv;
 	}
+	
+	
+	// Prueba git
+	
 	/**
 	@RequestMapping(value ="/eliminarUsuario.html" , method= { RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView eliminarUsuario(Integer id, String nombreU, String passU){
