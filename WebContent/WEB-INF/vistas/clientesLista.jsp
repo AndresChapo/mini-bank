@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,10 +43,12 @@
 	});
 </script>
 
+
 </head>
 
 <body>
-	 
+
+
 	<nav class="navbar navbar-expand-large navbar-light"
 		style="background-color: #e3f2fd;"> <a class="navbar-brand" 
 		href="#">The Group Five Bank  </a>
@@ -107,55 +111,32 @@
 						<tr>
 							<th scope="col">#</th>
 							<th scope="col">Nombre</th>
-							<th scope="col">Apellido</th>
+							<th scope="col">DNI</th>
 							<th scope="col">Fecha nacimiento</th>
+							<th></th>
 							<th></th>
 							<th></th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-	
-				        <c:forEach var="cliente" items="${listaClientes}">
-								<th scope="row">1</th>
-								<td>Nombre</td>
-								<td>Dni</td>
-	 
-								<td>
-								<a class="btn btn-primary" href="clientesNuevoDatosPersonales.jsp">Nueva Cuenta</a>
-								</td>
-	 
-								 
-	 							<td><a class="btn btn-success"
-									href="#">Ver</a></td>
-								<td><a class="btn btn-info"
-									href="#">Modificar</a></td>
-								<td><a class="btn btn-danger"
-									href="#">Eliminar</a></td>
-
-				        </c:forEach>
-
-						
-					    			 
-						<tr>
-
-							<th scope="row">1</th>
-							<td>Nombre</td>
-							<td>Dni</td>
- 
-							<td>
-							<a class="btn btn-primary" href="clientesNuevoDatosPersonales.jsp">Nueva Cuenta</a>
-							</td>
- 
-							 
+					
+					
+					  <c:forEach items="${listaClientes}" var="cliente">
+					    <tr>
+	  						<th scope="row">${cliente.id }</th>
+							<td>${cliente.nombre } ${cliente.apellido }</td>
+							<td>${cliente.dni }</td>
+							<td>${cliente.fecha_nacimiento }</td>
+							<td style="width: 131px;"><a class="btn btn-primary" href="clientesNuevoDatosPersonales.jsp">Nueva Cuenta</a></td>
  							<td><a class="btn btn-success"
 								href="#">Ver</a></td>
 							<td><a class="btn btn-info"
 								href="#">Modificar</a></td>
-							<td><a class="btn btn-danger"
-								href="#">Eliminar</a></td>
-
-						</tr>
+							<td><a class="btn btn-danger" href="#">Eliminar</a></td>
+					    </tr>
+					  </c:forEach>
+					
  
 					</tbody>
 				</table>

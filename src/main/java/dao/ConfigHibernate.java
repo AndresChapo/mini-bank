@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -173,10 +174,10 @@ public class ConfigHibernate {
 	}
     
     
-    public static ArrayList<Cliente> getListaClientes() // Ejemplo de metodo para traer datos por HQL
+    public static List<Cliente> getListaClientes() // Ejemplo de metodo para traer datos por HQL
 	{	   
     	
-    	List<Object[]> listDatos = session.createQuery("SELECT id_usuario, dni, nombre, apellido, telefono, email, sexo, nacionalidad, direccion, localidad, provincia, fecha_nacimiento FROM Cliente").list();
+    	/*List<Object[]> listDatos = session.createQuery("SELECT id_usuario, dni, nombre, apellido, telefono, email, sexo, nacionalidad, direccion, localidad, provincia, fecha_nacimiento FROM Cliente").list();
 
     	ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
     	
@@ -189,7 +190,20 @@ public class ConfigHibernate {
     	    
     	}
     	
-    	return listaClientes;		
+    	return listaClientes;
+    	*/
+    	
+    	Criteria cr = session.createCriteria(Cliente.class);
+    	List<Cliente> results = cr.list();
+    	
+
+    	for(Cliente cli : results) {
+    		System.out.println(cli.toString());
+    		
+     	}
+    	
+    	return results;
+    	
 	}
 
     

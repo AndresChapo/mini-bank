@@ -58,7 +58,7 @@ public class LoginController {
 			mv.addObject("usuarioValido", "true");
 			System.out.println("-----------------------");
 			//List<Cliente> listaClientes = ch.getListaClientes();
-			ArrayList<Cliente> listaClientes = ch.getListaClientes();
+			List<Cliente> listaClientes = ch.getListaClientes();
 			mv.addObject("listaClientes", listaClientes);
 			System.out.println("-----------------------");
 			
