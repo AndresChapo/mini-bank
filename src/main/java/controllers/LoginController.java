@@ -56,11 +56,13 @@ public class LoginController {
 		
 		if(claveEnBD.equals(txtBoxClave)) {
 			mv.addObject("usuarioValido", "true");
-			System.out.println("-----------------------");
-			//List<Cliente> listaClientes = ch.getListaClientes();
+			
+			// TODO: Checkear que sea admin
+			// si es admin, redirigir a lista de clientes
+			// si no es admin redirigir a lista de cuentas pertenecientes al cliente.
+			
 			List<Cliente> listaClientes = ch.getListaClientes();
 			mv.addObject("listaClientes", listaClientes);
-			System.out.println("-----------------------");
 			
 			
 			mv.setViewName("clientesLista");
