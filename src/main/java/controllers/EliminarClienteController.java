@@ -30,7 +30,7 @@ public class EliminarClienteController {
 	 
 	 
 	@RequestMapping("eliminarCliente.html")
-	public ModelAndView modificarCliente(Integer id) { 
+	public ModelAndView eliminarCliente(Integer id) { 
 		
 		Cliente c = new Cliente();
 		c.setId(id);

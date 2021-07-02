@@ -5,13 +5,18 @@ import entidades.Cliente;
 
 public class ClienteDao implements ClienteDaoInterfaz {
 	
-	private daoHibernate daoH = new daoHibernate();
+	private ConfigHibernate h = new ConfigHibernate();
 
 	
 	public void modificarCliente(Cliente cliente) {
 		
-		 daoHibernate.UpdateGenerico(cliente);
+		 h.UpdateGenerico(cliente);
 
+	}
+
+ 
+	public void eliminarCliente(Cliente cliente) {
+		 
 	}
 
 }
