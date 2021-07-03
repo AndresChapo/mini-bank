@@ -90,7 +90,8 @@
 					<div class="form-row mb-2">
 
 						<div class="col " >
-							<label for="cuenta">Cuenta:</label> <select class="form-control"
+							<label for="cuenta">Cuenta:</label> 
+							<select class="form-control"
 								id="cuenta" name=cuenta>
 								<option value="M">Caja de ahorro en pesos</option>
 								<option value="F">Caja de ahorro en dólares</option>
@@ -99,7 +100,7 @@
 						<div class="col">
 							<label for="cuenta">Saldo:</label>
 						
-							<input type="number" class="form-control" name="TXTdni" readonly
+							<input type="number" class="form-control" name="TXTsaldo" readonly
 								id="nombre" aria-describedby="emailHelp" placeholder="$25.000" value="$25.000"
 								required>
 						</div>
@@ -107,7 +108,7 @@
 					</div>
 					<div class="form-row mb-2" >
 						<div class="col " >
-							<input type="number" class="form-control" name="TXTdni"
+							<input type="number" class="form-control" name="TXTcbu"
 								id="nombre" aria-describedby="emailHelp" placeholder="Ingrese un CBU"
 								required>
 						</div>
@@ -115,7 +116,7 @@
 
 					<div class="form-row mb-2">
 						<div class="col">
-							<input type="number" class="form-control" name="TXTdni"
+							<input type="number" class="form-control" name="TXTadepositar"
 								id="nombre" aria-describedby="emailHelp" placeholder="Ingrese el importe a depositar. Ej: 2500"
 								required>
 						</div>

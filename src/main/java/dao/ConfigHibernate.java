@@ -166,6 +166,7 @@ public class ConfigHibernate {
 			System.out.println(contrasenia);
 			clave=contrasenia;
 		}
+	    // todo: revisar el ultimo  
 		return clave; 
 	}
 
@@ -177,32 +178,8 @@ public class ConfigHibernate {
     
     public static List<Cliente> getListaClientes() // Ejemplo de metodo para traer datos por HQL
 	{	   
-    	
-    	/*List<Object[]> listDatos = session.createQuery("SELECT id_usuario, dni, nombre, apellido, telefono, email, sexo, nacionalidad, direccion, localidad, provincia, fecha_nacimiento FROM Cliente").list();
-
-    	ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
-    	
-    	for (Object[] datos : listDatos) {
-
-			Cliente clientex = new Cliente((int) datos[0], (String) datos[1], (String) datos[2], (String) datos[3], (String) datos[4], (String) datos[5], (char) datos[6], (String) datos[7], (String) datos[8], (String) datos[9], (String) datos[10], (String) datos[11]);    		
-    		listaClientes.add(clientex); 
-    		
-    		System.out.println(clientex.toString());
-    	    
-    	}
-    	
-    	return listaClientes;
-    	*/
-    	
     	Criteria cr = session.createCriteria(Cliente.class);
-    	List<Cliente> results = cr.list();
-    	
-
-    	for(Cliente cli : results) {
-    		System.out.println(cli.toString());
-    		
-     	}
-    	
+    	List<Cliente> results = cr.list();    	
     	return results;
     	
 	}
@@ -223,5 +200,25 @@ public class ConfigHibernate {
 	{	   
 		return (Cliente)session.get(Cliente.class, id); 
 	}
+    
+    public Cuenta getCuentaByCBU(String cbu) {
+		 
+		String hql = "SELECT Cuenta From Cuentas WHERE cbu = :cbu";
+		Query q = session.createQuery(hql);
+		q.setParameter("cbu", cbu);
+		
+		Cuenta cuenta = (Cuenta) q.uniqueResult();
+		
+		return cuenta;
+		
+	}
+    
+    public Cuenta getCuenta(int id)
+	{	   
+		return (Cuenta)session.get(Cuenta.class, id); 
+	}
+
+    
+
     
 }

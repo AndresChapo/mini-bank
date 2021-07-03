@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dao.ConfigHibernate;
 import entidades.Cliente;
+import service.ClienteService;
 import serviceInterfaz.ClienteServiceInterfaz;
 
 @Controller
@@ -22,7 +23,7 @@ public class ModificacionClienteController {
 	
 	ModelAndView mv;
 	ConfigHibernate ch;
-	private ClienteServiceInterfaz clienteService;
+	private ClienteService clienteService;
 	
 	public ModificacionClienteController(){
 		mv = new ModelAndView();
