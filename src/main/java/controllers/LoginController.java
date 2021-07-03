@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dao.ConfigHibernate;
 import entidades.Cliente;
+import entidades.Cuenta;
+import entidades.Usuario;
 
 @Controller
 public class LoginController {
@@ -51,21 +53,30 @@ public class LoginController {
 		System.out.println(txtBoxUsuario);
 		System.out.println(txtBoxClave);
 		
-		String claveEnBD = ch.traerPassword(txtBoxUsuario);
-		System.out.println(claveEnBD);
+		Usuario usuario = ch.getUsuarioByNombreUsuario(txtBoxUsuario);
+		// System.out.println(claveEnBD);
 		
-		if(claveEnBD.equals(txtBoxClave)) {
+		if(txtBoxClave.equals(usuario.getContrasenia())) {
 			mv.addObject("usuarioValido", "true");
 			
-			// TODO: Checkear que sea admin
-			// si es admin, redirigir a lista de clientes
-			// si no es admin redirigir a lista de cuentas pertenecientes al cliente.
+			//si es admin va a la lista de clientes 
+			if(usuario.isEs_admin()) {
+				List<Cliente> listaClientes = ch.getListaClientes();
+				mv.addObject("listaClientes", listaClientes);
+				mv.setViewName("clientesLista");
+			// si no es admin va a la lista de cuentas
+			} else {
+				
+				
+				System.out.println(usuario.toString());
+				List<Cuenta> listaCuentas= ch.getListaCuentasByUsuario(usuario.getId());
+				
+				System.out.println(listaCuentas);
+				
+				mv.addObject("listaCuentas", listaCuentas);
+				mv.setViewName("cuentasLista");
+			}
 			
-			List<Cliente> listaClientes = ch.getListaClientes();
-			mv.addObject("listaClientes", listaClientes);
-			
-			
-			mv.setViewName("clientesLista");
 		}else {
 			mv.addObject("usuarioValido", "false");
 			System.out.println("Clave incorrecta!");

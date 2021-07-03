@@ -26,7 +26,7 @@ public class Main {
 
 		ConfigHibernate ch = (ConfigHibernate)appContext.getBean("conexionHibernate");
 			    
-	    ch.traerPassword("Andy");
+	    // ch.traerPassword("Andy");
 		//((ConfigurableApplicationContext)(appContext)).close();
 	}
 	

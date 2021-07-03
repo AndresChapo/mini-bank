@@ -61,7 +61,7 @@ public class ConfigHibernate {
 		Usuario user1 = new Usuario("Nico","Radeon24",true);
 		Usuario user2 = new Usuario("Andy","F8-F8-28-B6-71-F3",true);
 		Usuario user3 = new Usuario("Nahu","1234",true);
-		Usuario user4 = new Usuario("Bruno","adminadmin",true);
+		Usuario user4 = new Usuario("Bruno","adminadmin",false);
 		Usuario user5 = new Usuario("Pedro","Armenia1954",false);
 		Usuario user6 = new Usuario("Juan","L1br0sGr4t1s",false);
 		Usuario user7 = new Usuario("Carlos86","djkd9d8dje7",false);
@@ -158,16 +158,15 @@ public class ConfigHibernate {
 	    System.out.println("FIN de carga de datos de ejemplo.");
 	}
 	
-	public static String traerPassword(String usuario) // Ejemplo de metodo para traer datos por HQL
+	public static Usuario getUsuarioByNombreUsuario(String usuario) // Ejemplo de metodo para traer datos por HQL
 	{	   
-		String clave="";
 		String hql = "FROM Usuario WHERE nombre = :usuario";
 		Query q = session.createQuery(hql);
 		q.setParameter("usuario", usuario);
 		Usuario _usuario = (Usuario) q.uniqueResult();
 		System.out.println(_usuario.toString());
 		
-		return _usuario.getContrasenia(); 
+		return _usuario; 
 	}
 
     public static Usuario traerUsuario(int id)
@@ -183,6 +182,25 @@ public class ConfigHibernate {
     	return results;
     	
 	}
+    
+    
+	public static List<Cuenta> getListaCuentasByUsuario(int usuario_id) // Ejemplo de metodo para traer datos por HQL
+	{	   
+		Cliente _cliente = getClienteByUsuarioId(usuario_id);
+		
+		String hql = "FROM Cuenta WHERE id_cliente = :id_cliente";
+		Query q = session.createQuery(hql);
+		q.setParameter("id_cliente", _cliente.getId());
+		List<Cuenta> listaCuentas = q.list();    
+		
+		for (Cuenta _cue : listaCuentas ) {
+		    System.out.println(_cue.toString());
+		}
+
+		
+		return listaCuentas; 
+	}
+    
 
     public void UpdateGenerico(Object o) {
     	session.update(o);
@@ -200,6 +218,20 @@ public class ConfigHibernate {
 	{	   
 		return (Cliente)session.get(Cliente.class, id); 
 	}
+    
+    public static Cliente getClienteByUsuarioId(int id_usuario) {
+    	
+		String hql = "FROM Cliente WHERE id_usuario = :id_usuario";
+		
+		Query q = session.createQuery(hql);
+		q.setParameter("id_usuario", id_usuario);
+		
+		Cliente _cliente = (Cliente) q.uniqueResult();
+		
+		return _cliente;
+		
+	}
+
     
     public Cuenta getCuentaByCBU(String cbu) {
 		 
