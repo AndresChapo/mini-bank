@@ -91,7 +91,8 @@ public class ConfigHibernate {
 		Cuenta cuenta9 = new Cuenta(9,1,"Ingresos", "0010001100000000000009", (float) 10000, "2020-11-01");
 		Cuenta cuenta10 = new Cuenta(10,1,"De rentas", "0010001100000000000010", (float) 10000, "2021-11-11");
 		Cuenta cuenta11 = new Cuenta(2,1,"Coimas", "0010001100000000000011", (float) 10000, "2021-11-12")	;
-		
+		Cuenta cuenta12 = new Cuenta(4,1,"Para vacaciones 2", "0010001100000000000111", (float) 10000, "2019-12-01");
+		Cuenta cuenta13 = new Cuenta(4,1,"Para vacaciones 3", "0010001100000000000222", (float) 10000, "2019-12-01");
 
 		Movimiento movimiento1 = new Movimiento(1,"2020-10-01", "Ahorros", (float) 24);
 		Movimiento movimiento2 = new Movimiento(2,"2020-11-01", "Pago", (float) 34);
@@ -142,6 +143,8 @@ public class ConfigHibernate {
 	    session.save(cuenta8);
 	    session.save(cuenta9);
 	    session.save(cuenta10);
+	    session.save(cuenta12);
+	    session.save(cuenta13);
 	    
 	    session.save(movimiento1);
 	    session.save(movimiento2);
@@ -206,6 +209,11 @@ public class ConfigHibernate {
     	session.update(o);
     }
     
+    
+    public void agregarMovimiento(Movimiento o) {
+    	session.save(o);
+    }
+    
     public void eliminarCliente(Integer c) {
 		 
 		String hql = "UPDATE Cliente SET eliminado = true WHERE id = :id";
@@ -244,6 +252,26 @@ public class ConfigHibernate {
 		return cuenta;
 		
 	}
+    
+    public List<Cuenta> getListaCuentasByTipoCuentaAndClienteId(int tipo_cuenta, int cliente_id, int current_num_cuenta) {
+		 
+    	// Trae todas las cuentas que sean del cliente que tengan el mismo tipo de cuenta, y exceptua la cuenta de la que se va a hacer la transferencia
+		String hql = "FROM Cuenta WHERE id_cliente = :cliente_id AND tipo_cuenta = :tipo_cuenta AND num_cuenta != :current_cuenta_id";
+		Query q = session.createQuery(hql);
+		
+		q.setParameter("cliente_id", cliente_id);
+		q.setParameter("tipo_cuenta", tipo_cuenta);
+		q.setParameter("current_cuenta_id", current_num_cuenta);
+		System.out.println(q.getQueryString());
+		List<Cuenta> listaCuentas = q.list();    
+		
+		for (Cuenta _cue : listaCuentas ) {
+		    System.out.println(_cue.toString());
+		}
+ 		return listaCuentas;
+		
+	}
+    
     
     public Cuenta getCuenta(int id)
 	{	   

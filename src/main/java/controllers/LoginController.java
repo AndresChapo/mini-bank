@@ -58,7 +58,7 @@ public class LoginController {
 		
 		if(txtBoxClave.equals(usuario.getContrasenia())) {
 			mv.addObject("usuarioValido", "true");
-			
+			 
 			//si es admin va a la lista de clientes 
 			if(usuario.isEs_admin()) {
 				List<Cliente> listaClientes = ch.getListaClientes();
@@ -66,15 +66,10 @@ public class LoginController {
 				mv.setViewName("clientesLista");
 			// si no es admin va a la lista de cuentas
 			} else {
-				
-				
-				System.out.println(usuario.toString());
 				List<Cuenta> listaCuentas= ch.getListaCuentasByUsuario(usuario.getId());
-				
-				System.out.println(listaCuentas);
-				
 				mv.addObject("listaCuentas", listaCuentas);
 				mv.setViewName("cuentasLista");
+				
 			}
 			
 		}else {

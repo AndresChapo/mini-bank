@@ -21,13 +21,13 @@ public class MovimientoController {
 	private MovimientoService movimientoService;
 	
 	@RequestMapping(value="realizarTransferencia.html", method=RequestMethod.POST)
-	public ModelAndView realizarTransferencia(String TXTadepositar, String TXTcbu, String TXTCuentaOrigenID) {
+	public ModelAndView realizarTransferencia(String TXTadepositar, String TXTcbu, String TXTCuentaOrigenID, String detalle) {
 		
 		mv.setViewName("cuentasLista"); 
 		 
 		//Movimiento m = new Movimiento();
 		
-		movimientoService.generarMovimientos(TXTadepositar, TXTcbu, TXTCuentaOrigenID);
+		movimientoService.generarMovimientos(TXTadepositar, TXTcbu, TXTCuentaOrigenID, detalle);
 		
 		//movimientoService.realizarTransferencia();
 		 
