@@ -161,13 +161,13 @@ public class ConfigHibernate {
 	public static String traerPassword(String usuario) // Ejemplo de metodo para traer datos por HQL
 	{	   
 		String clave="";
-	    List<String> listaDocentes= (List<String>) session.createQuery("SELECT contrasenia FROM Usuario u where nombre='"+usuario+"'").list();
-	    for (String contrasenia : listaDocentes) {
-			System.out.println(contrasenia);
-			clave=contrasenia;
-		}
-	    // todo: revisar el ultimo  
-		return clave; 
+		String hql = "FROM Usuario WHERE nombre = :usuario";
+		Query q = session.createQuery(hql);
+		q.setParameter("usuario", usuario);
+		Usuario _usuario = (Usuario) q.uniqueResult();
+		System.out.println(_usuario.toString());
+		
+		return _usuario.getContrasenia(); 
 	}
 
     public static Usuario traerUsuario(int id)
@@ -203,7 +203,7 @@ public class ConfigHibernate {
     
     public Cuenta getCuentaByCBU(String cbu) {
 		 
-		String hql = "SELECT Cuenta From Cuentas WHERE cbu = :cbu";
+		String hql = "FROM Cuentas WHERE cbu = :cbu";
 		Query q = session.createQuery(hql);
 		q.setParameter("cbu", cbu);
 		
