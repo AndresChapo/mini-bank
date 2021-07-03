@@ -24,7 +24,7 @@ public class MovimientoController {
 	public ModelAndView realizarTransferencia(String TXTadepositar, String TXTcbu, String TXTCuentaOrigenID) {
 		
 		mv.setViewName("cuentasLista"); 
-		
+		 
 		//Movimiento m = new Movimiento();
 		
 		movimientoService.generarMovimientos(TXTadepositar, TXTcbu, TXTCuentaOrigenID);
