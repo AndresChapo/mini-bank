@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import dao.ConfigHibernate;
 import entidades.Cliente;
 import entidades.Usuario;
+import service.ClienteService;
 import serviceInterfaz.ClienteServiceInterfaz;
 
 @Controller
@@ -20,12 +21,13 @@ public class EliminarClienteController {
 	
 	ModelAndView mv;
 	ConfigHibernate ch;
-	private ClienteServiceInterfaz clienteService;
+	private ClienteService clienteService;
 	
 	public EliminarClienteController(){
 		mv = new ModelAndView();
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-		ch = (ConfigHibernate)appContext.getBean("conexionHibernate");
+		ch = (ConfigHibernate)appContext.getBean("conexionHibernate"); 
+		clienteService = new ClienteService();
 	}
 	 
 	 

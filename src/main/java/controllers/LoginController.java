@@ -69,7 +69,7 @@ public class LoginController {
 				List<Cuenta> listaCuentas= ch.getListaCuentasByUsuario(usuario.getId());
 				mv.addObject("listaCuentas", listaCuentas);
 				mv.setViewName("cuentasLista");
-				
+				 
 			}
 			
 		}else {

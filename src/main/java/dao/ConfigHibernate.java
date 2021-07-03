@@ -186,7 +186,19 @@ public class ConfigHibernate {
     	
 	}
     
-    
+     public static Cliente getClienteByUsuarioId(int id_usuario) {
+    	
+		String hql = "FROM Cliente WHERE id_usuario = :id_usuario";
+		
+		Query q = session.createQuery(hql);
+		q.setParameter("id_usuario", id_usuario);
+		
+		Cliente _cliente = (Cliente) q.uniqueResult();
+		
+		return _cliente;
+		
+	}
+      
 	public static List<Cuenta> getListaCuentasByUsuario(int usuario_id) // Ejemplo de metodo para traer datos por HQL
 	{	   
 		Cliente _cliente = getClienteByUsuarioId(usuario_id);
@@ -204,41 +216,12 @@ public class ConfigHibernate {
 		return listaCuentas; 
 	}
     
-
-    public void UpdateGenerico(Object o) {
-    	session.update(o);
-    }
-    
-    
+ 
     public void agregarMovimiento(Movimiento o) {
     	session.save(o);
     }
     
-    public void eliminarCliente(Integer c) {
-		 
-		String hql = "UPDATE Cliente SET eliminado = true WHERE id = :id";
-		Query q = session.createQuery(hql);
-		q.setParameter("id", c);
-		int r = q.executeUpdate();
-	}
     
-    public Cliente getCliente(int id)
-	{	   
-		return (Cliente)session.get(Cliente.class, id); 
-	}
-    
-    public static Cliente getClienteByUsuarioId(int id_usuario) {
-    	
-		String hql = "FROM Cliente WHERE id_usuario = :id_usuario";
-		
-		Query q = session.createQuery(hql);
-		q.setParameter("id_usuario", id_usuario);
-		
-		Cliente _cliente = (Cliente) q.uniqueResult();
-		
-		return _cliente;
-		
-	}
 
     
     public Cuenta getCuentaByCBU(String cbu) {
@@ -277,6 +260,8 @@ public class ConfigHibernate {
 	{	   
 		return (Cuenta)session.get(Cuenta.class, id); 
 	}
+
+	
 
     
 

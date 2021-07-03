@@ -9,5 +9,7 @@ public interface ClienteDaoInterfaz {
 	public void eliminarCliente(Cliente cliente);
 	
 	public Cliente getCliente(int id);
+	
+	//public Cliente getClienteByUsuarioId(int id_usuario);
 
 }
