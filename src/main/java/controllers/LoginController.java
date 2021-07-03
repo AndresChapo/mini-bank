@@ -14,6 +14,8 @@ import dao.ConfigHibernate;
 import entidades.Cliente;
 import entidades.Cuenta;
 import entidades.Usuario;
+import service.ClienteService;
+import service.CuentaService;
 
 @Controller
 public class LoginController {
@@ -66,10 +68,24 @@ public class LoginController {
 				mv.setViewName("clientesLista");
 			// si no es admin va a la lista de cuentas
 			} else {
-				List<Cuenta> listaCuentas= ch.getListaCuentasByUsuario(usuario.getId());
+				
+				
+				 List<Cuenta> listaCuentas= ch.getListaCuentasByUsuario(usuario.getId());
 				mv.addObject("listaCuentas", listaCuentas);
 				mv.setViewName("cuentasLista");
 				 
+
+				/* POR FAVOR NO BORRAR ESTO ES PARA CUANDO EN LA LISTA DE CLIENTES CLICKEE EN EL BOTON DE TRANSFERIR
+				 * SALUDOS: Bruno Jajajaj
+				Cuenta _cuenta = ch.getCuenta(4);
+				List<Cuenta> listaDeCuentasPropias = ch.getListaCuentasByTipoCuentaAndClienteId(_cuenta.getTipo_cuenta(), _cuenta.getId_cliente(), _cuenta.getNum_cuenta());
+				mv.addObject("listaDeCuentasPropias", listaDeCuentasPropias);
+				mv.addObject("Cuenta", _cuenta);
+				mv.setViewName("transferencia"); 
+				 */
+				
+				
+				
 			}
 			
 		}else {

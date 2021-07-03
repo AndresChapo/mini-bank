@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <html>
 <head>
 <meta charset="UTF-8">
@@ -42,8 +44,32 @@
 </script>
 
 
+
+
 </head>
 <body>
+
+<script>
+function myFunction() {
+  var checkBox = document.getElementById("myCheck");
+  var select = document.getElementById("cuentaPropia");
+  var TXTcbu = document.getElementById("TXTcbu");
+  var LBLcbu = document.getElementById("LBLcbu");
+  var LBLcuentaPropia = document.getElementById("LBLcuentaPropia");
+  
+  if (checkBox.checked == true){
+	  select.style.display = "block";
+	  LBLcuentaPropia.style.display = "block";
+	  TXTcbu.style.display = "none";
+	  LBLcbu.style.display = "none";
+  } else {
+	  select.style.display = "none";
+	  LBLcuentaPropia.style.display = "none";
+	  LBLcbu.style.display = "block";
+	  TXTcbu.style.display = "block";
+  }
+}
+</script>
 
 	 
 	<nav class="navbar navbar-expand-large navbar-light"
@@ -87,19 +113,32 @@
 			<div class="col-md-6" style="">
 			<!-- TODO REVISAR QUE ESTO SEA ASI REALMENTE */ -->  
 				<form action="ServletTransferencia" method="get">
+					
+					<div class="form-row mb-1">
+						<div class="col" >
+							<div class="form-group form-check">
+								<input type="checkbox" class="form-check-input" id="myCheck" onclick="myFunction()">
+								<label class="form-check-label" for="myCheck"> Es una cuenta propia</label>
+							</div>
+						</div>
+					</div>
+					
 					<div class="form-row mb-2">
-
-						<div class="col " >
-							<label for="cuenta">Cuenta:</label> 
-							<select class="form-control"
-								id="cuenta" name=cuenta>
-								<option value="M">Caja de ahorro en pesos</option>
-								<option value="F">Caja de ahorro en dólares</option>
+						<div class="col" >
+							<label id="LBLcuentaPropia" for="cuenta">Cuenta:</label> 
+							<select class="form-control" style="display: none;"
+								id="cuentaPropia" name=cuenta>
+								<c:forEach items="${listaDeCuentasPropias}" var="cuentaPropia">
+								  <option value="${cuentaPropia.num_cuenta}">${cuentaPropia.num_cuenta} - ${cuentaPropia.saldo}</option>
+								</c:forEach>
 							</select>
+							<label id="LBLcbu" for="cuenta">CBU al que va a depositar:</label> 
+							<input type="number" class="form-control" name="TXTcbu"
+								id="TXTcbu" aria-describedby="emailHelp" placeholder="Ingrese un CBU"
+								required>
 						</div>
 						<div class="col">
 							<label for="cuenta">Saldo:</label>
-						
 							<input type="number" class="form-control" name="TXTsaldo" readonly
 								id="nombre" aria-describedby="emailHelp" placeholder="$25.000" value="$25.000"
 								required>
@@ -108,9 +147,7 @@
 					</div>
 					<div class="form-row mb-2" >
 						<div class="col " >
-							<input type="number" class="form-control" name="TXTcbu"
-								id="nombre" aria-describedby="emailHelp" placeholder="Ingrese un CBU"
-								required>
+							
 						</div>
 					</div>
 
@@ -119,6 +156,8 @@
 							<input type="number" class="form-control" name="TXTadepositar"
 								id="nombre" aria-describedby="emailHelp" placeholder="Ingrese el importe a depositar. Ej: 2500"
 								required>
+						</div>
+						<div class="col">
 						</div>
 					</div>
 
