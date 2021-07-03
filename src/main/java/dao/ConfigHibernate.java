@@ -28,12 +28,12 @@ public class ConfigHibernate {
         configuration.configure();
         ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+        session=sessionFactory.openSession();
+		altaDatosEjemplo();
 	}
 	
 	public Session abrirConexion()
 	{
-		session=sessionFactory.openSession();
-		altaDatosEjemplo();
 		return session;
 	}
 	public Session getConexion()
@@ -62,7 +62,7 @@ public class ConfigHibernate {
 		Usuario user2 = new Usuario("Andy","F8-F8-28-B6-71-F3",true);
 		Usuario user3 = new Usuario("Nahu","1234",true);
 		Usuario user4 = new Usuario("Bruno","adminadmin",false);
-		Usuario user5 = new Usuario("Pedro","Armenia1954",false);
+		Usuario user5 = new Usuario("Pedro","Armenia1954",true);
 		Usuario user6 = new Usuario("Juan","L1br0sGr4t1s",false);
 		Usuario user7 = new Usuario("Carlos86","djkd9d8dje7",false);
 		Usuario user8 = new Usuario("AlbertoAlberto","hastaLaVictoria",false);
@@ -159,6 +159,7 @@ public class ConfigHibernate {
 
 	    session.getTransaction().commit();    
 	    System.out.println("FIN de carga de datos de ejemplo.");
+	    System.out.println("---------------------------------");
 	}
 	
 	public static Usuario getUsuarioByNombreUsuario(String usuario) // Ejemplo de metodo para traer datos por HQL

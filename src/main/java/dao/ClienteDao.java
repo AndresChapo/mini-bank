@@ -16,7 +16,7 @@ public class ClienteDao implements ClienteDaoInterfaz {
 	public ClienteDao() {
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 		ch = (ConfigHibernate)appContext.getBean("conexionHibernate");
-		session = ch.getConexion();
+		// session = ch.getConexion();
 	}
 
 	
