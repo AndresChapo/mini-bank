@@ -8,4 +8,6 @@ public interface ClienteServiceInterfaz {
 
 	public boolean eliminarCliente(Cliente cliente);
 	
+	public Cliente getCliente(int id);
+	
 }

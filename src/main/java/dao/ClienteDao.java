@@ -1,5 +1,7 @@
 package dao;
  
+import org.hibernate.Query;
+
 import daoInterfaz.ClienteDaoInterfaz;
 import entidades.Cliente;
 
@@ -10,13 +12,19 @@ public class ClienteDao implements ClienteDaoInterfaz {
 	
 	public void modificarCliente(Cliente cliente) {
 		
-		 h.UpdateGenerico(cliente);
-
+		 h.UpdateGenerico(cliente); 
 	}
 
  
 	public void eliminarCliente(Cliente cliente) {
 		 
+		h.eliminarCliente(cliente.getId());
+	}
+
+ 
+	public Cliente getCliente(int id) {
+		  
+		return h.getCliente(id);
 	}
 
 }

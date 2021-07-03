@@ -22,5 +22,10 @@ public class ClienteService implements ClienteServiceInterfaz {
 		
 		return true;
 	}
+ 
+	public Cliente getCliente(int id) {
+		 
+		return clienteDao.getCliente(id);
+	}
 
 }

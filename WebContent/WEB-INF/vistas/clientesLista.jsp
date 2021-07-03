@@ -132,7 +132,7 @@
  							<td><a class="btn btn-success"
 								href="#">Ver</a></td>
 							<td><a class="btn btn-info"
-								href="#">Modificar</a></td>
+								href="modificacionCliente.html?id=${cliente.id}">Modificar</a></td>
 							<td><a class="btn btn-danger" href="#">Eliminar</a></td>
 					    </tr>
 					  </c:forEach>

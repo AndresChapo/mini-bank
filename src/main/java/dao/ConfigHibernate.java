@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -209,5 +210,18 @@ public class ConfigHibernate {
     public void UpdateGenerico(Object o) {
     	session.update(o);
     }
+    
+    public void eliminarCliente(Integer c) {
+		 
+		String hql = "UPDATE Cliente SET eliminado = true WHERE id = :id";
+		Query q = session.createQuery(hql);
+		q.setParameter("id", c);
+		int r = q.executeUpdate();
+	}
+    
+    public Cliente getCliente(int id)
+	{	   
+		return (Cliente)session.get(Cliente.class, id); 
+	}
     
 }

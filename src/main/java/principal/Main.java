@@ -10,8 +10,7 @@ import org.hibernate.service.ServiceRegistryBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import dao.ConfigHibernate;
-import dao.daoHibernate;
+import dao.ConfigHibernate; 
 import entidades.Usuario;
 import entidades.Cliente;
 import entidades.Cuenta;
