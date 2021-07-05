@@ -20,52 +20,11 @@ import serviceInterfaz.ClienteServiceInterfaz;
 
 @Controller
 public class ModificacionClienteController {
-	
-	ModelAndView mv;
-	ConfigHibernate ch;
-	private ClienteService clienteService;
-	
-	public ModificacionClienteController(){
-		mv = new ModelAndView();
-		ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-		ch = (ConfigHibernate)appContext.getBean("conexionHibernate");
-	}
-	
-	@RequestMapping(value="modificacionCliente.html", method=RequestMethod.GET)
-	public ModelAndView eventoModificacionCliente(@RequestParam String id) { 
-		
-		mv.setViewName("clientesModificar"); 
-		
-		Cliente c = clienteService.getCliente(Integer.parseInt(id));
-		mv.addObject(c);
-		
-		return mv;
-	}
-	
-	
-	@RequestMapping(value="modificarCliente.html", method=RequestMethod.POST)
-	public ModelAndView modificarCliente(@ModelAttribute("cliente") Cliente cliente) {
-		
-		System.out.println("Modificando cliente" + cliente.getNombre()); 
-		
-		Cliente c = new Cliente();
-		 
-		clienteService.modificarCliente(c);
-		 
-		return mv;
-	}
-	  
-	/*@RequestMapping("modificarCliente.html")
-	public ModelAndView modificarCliente(String TXTnombre, String TXTapellido, String TXTdni,
-			String TXTpass, String TXTfecha, char TXTsexo, String TXTprovincia, String TXTlocalidad,
-			String TXTdomicilio, String TXTtelefono, String TXTcorreo) {
-		System.out.println("Modificando cliente" + TXTnombre); 
-		
-		Cliente c = new Cliente();
-		 
-		clienteService.modificarCliente(c);
-		 
-		return mv;
-	}*/
-
+//		ESTE CONTROLADOR SE VA A BORRAR
+//	ESTE CONTROLADOR SE VA A BORRAR
+//	ESTE CONTROLADOR SE VA A BORRAR
+//	ESTE CONTROLADOR SE VA A BORRAR
+//	ESTE CONTROLADOR SE VA A BORRAR
+//	ESTE CONTROLADOR SE VA A BORRAR
+//	ESTE CONTROLADOR SE VA A BORRAR
 }

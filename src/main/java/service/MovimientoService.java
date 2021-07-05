@@ -6,10 +6,26 @@ import serviceInterfaz.MovimientoServiceInterfaz;
 
 public class MovimientoService implements MovimientoServiceInterfaz {
 
-	private MovimientoDao movimientoDao = new MovimientoDao();
-	private CuentaService cs = new CuentaService(); 
+	private MovimientoDao movimientoDao;
+	private CuentaService cuentaService; 
 	
 	
+	public MovimientoDao getMovimientoDao() {
+		return movimientoDao;
+	}
+
+	public void setMovimientoDao(MovimientoDao movimientoDao) {
+		this.movimientoDao = movimientoDao;
+	}
+
+	public CuentaService getCuentaService() {
+		return cuentaService;
+	}
+
+	public void setCuentaService(CuentaService cuentaService) {
+		this.cuentaService = cuentaService;
+	}
+
 	public boolean sonElMismoTipoDeCuenta(Cuenta cuenta_1, Cuenta cuenta_2) {
 		boolean _esValido = false;
 		
@@ -24,7 +40,7 @@ public class MovimientoService implements MovimientoServiceInterfaz {
 	public void generarMovimientos(String TXTadepositar, String TXTcbu, String TXTCuentaOrigenID, String TXTdetalle) {
 		
 		Cuenta _cuentaOrigen  = getCuentaByCBU(TXTcbu);
-		Cuenta _cuentaDestino = cs.getCuenta(Integer.parseInt(TXTCuentaOrigenID));
+		Cuenta _cuentaDestino = cuentaService.getCuenta(Integer.parseInt(TXTCuentaOrigenID));
 		
 		// si ambas cuentas existen
 		if(_cuentaOrigen != null && _cuentaDestino != null) {

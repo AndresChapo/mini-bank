@@ -10,13 +10,27 @@ import entidades.Cliente;
 
 public class ClienteDao implements ClienteDaoInterfaz {
 	
-	private ConfigHibernate ch;
-	public static Session session;
+	private ConfigHibernate ch = null;
+	public static Session session = null;
 	
-	public ClienteDao() {
-		ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-		ch = (ConfigHibernate)appContext.getBean("conexionHibernate");
-		// session = ch.getConexion();
+ 
+	public ConfigHibernate getCh() {
+		return ch;
+	}
+
+
+	public void setCh(ConfigHibernate ch) {
+		this.ch = ch;
+	}
+
+
+	public static Session getSession() {
+		return session;
+	}
+
+
+	public static void setSession(Session session) {
+		ClienteDao.session = session;
 	}
 
 	
@@ -24,8 +38,7 @@ public class ClienteDao implements ClienteDaoInterfaz {
 		
 		this.UpdateGenerico(cliente); 
 	}
-
- 
+	
 	public void eliminarCliente(Cliente cliente) {
 		   
 			String hql = "UPDATE Cliente SET eliminado = true WHERE id = :id";

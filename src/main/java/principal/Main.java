@@ -21,13 +21,19 @@ import entidades.Tipo_cuenta;
 public class Main {
 
 	public static void main(String[] args) {
-
+/**
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 
+		ConfigHibernate ch2 = (ConfigHibernate)appContext.getBean(ConfigHibernate.class);
+		
 		ConfigHibernate ch = (ConfigHibernate)appContext.getBean("conexionHibernate");
-			    
-	    // ch.traerPassword("Andy");
+		
+		ch.abrirConexion();
+		ch2.abrirConexion();
+		// ch.traerPassword("Andy");
 		//((ConfigurableApplicationContext)(appContext)).close();
+		 * *
+		 */
 	}
 	
 }

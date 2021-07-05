@@ -4,12 +4,42 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+
+	<!-- EL CONTROLADOR ES INSTANCIADO AUTOMATICAMENTE POR EL SPRING-SERVLET --> 
+
+	<!-- INSTANCIAS DE LOS SERVICIOS PARA QUE USEN EL CONTROLADOR --> 
+	<bean id="movimientoService" class="service.MovimientoService" scope="singleton"> 
+		<property name="movimientoDao" ref="movimientoDao"></property> 
+		<property name="cuentaService" ref="cuentaService"></property> 
+	</bean>
+	
+	<bean id="cuentaService" class="service.CuentaService" scope="singleton"> 
+		<property name="cuentaDao" ref="cuentaDao"></property> 
+	</bean>
+
+	<bean id="clienteService" class="service.ClienteService" scope="singleton"> 
+		<property name="clienteDao" ref="clienteDao"></property> 
+	</bean>
+			
+	<!-- INSTANCIAS DE LOS OBJETOS DAO PARA QUE USEN LOS SERVICIOS  --> 
+	<bean id="clienteDao" class="dao.ClienteDao" scope="singleton"> 
+		<property name="ch" ref="conexionHibernate"></property> 
+	</bean>
+
+	<bean id="cuentaDao" class="dao.CuentaDao" scope="singleton"> 
+		<property name="ch" ref="conexionHibernate"></property> 
+	</bean>
+
+	<bean id="movimientoDao" class="dao.MovimientoDao" scope="singleton"> 
+		<property name="ch" ref="conexionHibernate"></property> 
+	</bean>	
+
+	<!-- INSTANCIAS DE LA DATABASE PARA QUE USEN LOS DAO  --> 
 	<bean id="conexionHibernate" class="dao.ConfigHibernate" init-method="abrirConexion" destroy-method="cerrarSession" scope="singleton">
 	</bean>
 
-<!-- EJEMPLOS DE BEANS
+<!-- OTROS EJEMPLOS DE BEANS
 
-		ConfigHibernate ch = new ConfigHibernate();
 		
 	<bean id="ProvinciaBsAs" class="frgp.utn.edu.ar.entidad.Provincia">
 		<property name="nombre" value="Bs. As."></property>

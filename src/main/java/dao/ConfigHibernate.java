@@ -20,20 +20,32 @@ import entidades.Usuario;
 public class ConfigHibernate {
 
 	private SessionFactory sessionFactory;
-	public static Session session;
-
+	public static Session session;   /////   HACER UN BEAN DEL SESSION
+	Configuration configuration;
+    ServiceRegistry serviceRegistry;
+    boolean existo;
+    
 	public ConfigHibernate()
 	{
-		Configuration configuration = new Configuration();
-        configuration.configure();
-        ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-        session=sessionFactory.openSession();
-		altaDatosEjemplo();
+		if (existo==false) {
+			Configuration configuration = new Configuration();
+	        configuration.configure();
+	        ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+	        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	        existo=true;
+		}else {
+			System.out.println("ConfigHibernate ya existe, no se lo reinstancia.");
+		}
 	}
 	
 	public Session abrirConexion()
 	{
+//		if (session == null) {
+			System.out.println("Conectando");
+			session=sessionFactory.openSession();
+			altaDatosEjemplo();
+	//	}
+
 		return session;
 	}
 	public Session getConexion()

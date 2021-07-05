@@ -6,10 +6,20 @@ import entidades.Movimiento;
 
 public class MovimientoDao {
 
-	private ConfigHibernate h = new ConfigHibernate();
+	private ConfigHibernate ch;
 	
+	public MovimientoDao() {
+		super();
+	}
 	
-	
+	public ConfigHibernate getCh() {
+		return ch;
+	}
+
+	public void setCh(ConfigHibernate ch) {
+		this.ch = ch;
+	}
+
 	public void agregarMovimiento (Integer nroCuenta, String detalle, float importe) {
 		
 		if(detalle.isEmpty()) {
@@ -21,8 +31,10 @@ public class MovimientoDao {
 		String hoy = "hoy";
 		Movimiento _m = new Movimiento(nroCuenta, hoy , detalle, importe);
 	
-		h.agregarMovimiento(_m);
+		ch.agregarMovimiento(_m);
 	}
+
+
 
 	
 }

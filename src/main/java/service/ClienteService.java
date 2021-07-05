@@ -6,9 +6,16 @@ import serviceInterfaz.ClienteServiceInterfaz;
 
 public class ClienteService implements ClienteServiceInterfaz {
 	
-	private ClienteDao clienteDao = new ClienteDao();
-
+	private ClienteDao clienteDao = null;
 	
+	public ClienteDao getClienteDao() {
+		return clienteDao;
+	}
+
+	public void setClienteDao(ClienteDao clienteDao) {
+		this.clienteDao = clienteDao;
+	}
+
 	public boolean modificarCliente(Cliente cliente) {
 
 		clienteDao.modificarCliente(cliente);
@@ -22,7 +29,8 @@ public class ClienteService implements ClienteServiceInterfaz {
 		
 		return true;
 	}
- 
+	
+
 	public Cliente getCliente(int id) {
 		 
 		return clienteDao.getCliente(id);
