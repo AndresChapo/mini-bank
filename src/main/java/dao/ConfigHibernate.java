@@ -174,16 +174,7 @@ public class ConfigHibernate {
 	    System.out.println("---------------------------------");
 	}
 	
-	public static Usuario getUsuarioByNombreUsuario(String usuario) // Ejemplo de metodo para traer datos por HQL
-	{	   
-		String hql = "FROM Usuario WHERE nombre = :usuario";
-		Query q = session.createQuery(hql);
-		q.setParameter("usuario", usuario);
-		Usuario _usuario = (Usuario) q.uniqueResult();
-		System.out.println(_usuario.toString());
-		
-		return _usuario; 
-	}
+
 
     public static Usuario traerUsuario(int id)
 	{	   

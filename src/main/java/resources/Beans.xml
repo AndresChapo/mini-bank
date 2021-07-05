@@ -21,6 +21,10 @@
 		<property name="clienteDao" ref="clienteDao"></property> 
 	</bean>
 			
+	<bean id="usuarioService" class="service.UsuarioService" scope="singleton"> 
+		<property name="usuarioDao" ref="usuarioDao"></property> 
+	</bean>
+
 	<!-- INSTANCIAS DE LOS OBJETOS DAO PARA QUE USEN LOS SERVICIOS  --> 
 	<bean id="clienteDao" class="dao.ClienteDao" scope="singleton"> 
 		<property name="ch" ref="conexionHibernate"></property> 
@@ -34,6 +38,9 @@
 		<property name="ch" ref="conexionHibernate"></property> 
 	</bean>	
 
+	<bean id="usuarioDao" class="dao.UsuarioDao" scope="singleton"> 
+		<property name="ch" ref="conexionHibernate"></property> 
+	</bean>	
 	<!-- INSTANCIAS DE LA DATABASE PARA QUE USEN LOS DAO  --> 
 	<bean id="conexionHibernate" class="dao.ConfigHibernate" init-method="abrirConexion" destroy-method="cerrarSession" scope="singleton">
 	</bean>

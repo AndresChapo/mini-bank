@@ -17,6 +17,7 @@ import entidades.Cuenta;
 import entidades.Usuario;
 import service.ClienteService;
 import service.MovimientoService;
+import service.UsuarioService;
 
 @Controller
 public class MainController {
@@ -25,6 +26,7 @@ public class MainController {
 	ClienteService clienteService;
 	ApplicationContext appContext;
 	MovimientoService movimientoService;
+	UsuarioService usuarioService;
 	
 	public MainController(){ 
 		mv = new ModelAndView();
@@ -32,6 +34,7 @@ public class MainController {
 		ch = (ConfigHibernate)appContext.getBean("conexionHibernate");
 		clienteService = (ClienteService)appContext.getBean("clienteService");
 		movimientoService = (MovimientoService)appContext.getBean("movimientoService");
+		usuarioService = (UsuarioService)appContext.getBean("usuarioService");
 	}
 
 	public Object getAppContext(String nombreBean) {
@@ -86,7 +89,8 @@ public class MainController {
 		System.out.println(txtBoxUsuario);
 		System.out.println(txtBoxClave);
 		
-		Usuario usuario = ch.getUsuarioByNombreUsuario(txtBoxUsuario);
+		//Usuario usuario = ch.getUsuarioByNombreUsuario(txtBoxUsuario);
+		Usuario usuario = (Usuario) usuarioService.getUsuarioByNombreUsuario(txtBoxUsuario);
 		// System.out.println(claveEnBD);
 		
 		if(txtBoxClave.equals(usuario.getContrasenia())) {
