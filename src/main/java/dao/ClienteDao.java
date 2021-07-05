@@ -1,5 +1,8 @@
 package dao;
  
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
@@ -10,8 +13,8 @@ import entidades.Cliente;
 
 public class ClienteDao implements ClienteDaoInterfaz {
 	
-	private ConfigHibernate ch = null;
-	public static Session session = null;
+	private static ConfigHibernate ch;
+	public static Session session;
 	
  
 	public ConfigHibernate getCh() {
@@ -58,6 +61,24 @@ public class ClienteDao implements ClienteDaoInterfaz {
 		return (Cliente)session.get(Cliente.class, id); 
 	}
     
-    
+    public static List<Cliente> getListaClientes() // Ejemplo de metodo para traer datos por HQL
+	{	   
+    	session = ch.getConexion();
+    	Criteria cr = session.createCriteria(Cliente.class);
+    	List<Cliente> results = cr.list();    	
+    	return results;
+	}
 
+    public Cliente getClienteByUsuarioId(int id_usuario) {
+    	
+		String hql = "FROM Cliente WHERE id_usuario = :id_usuario";
+		
+		Query q = session.createQuery(hql);
+		q.setParameter("id_usuario", id_usuario);
+		
+		Cliente _cliente = (Cliente) q.uniqueResult();
+		
+		return _cliente;
+		
+	}
 }

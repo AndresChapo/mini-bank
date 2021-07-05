@@ -9,9 +9,14 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.servlet.ModelAndView;
 
 import dao.ConfigHibernate; 
 import entidades.Usuario;
+import service.ClienteService;
+import service.CuentaService;
+import service.MovimientoService;
+import service.UsuarioService;
 import entidades.Cliente;
 import entidades.Cuenta;
 import entidades.Movimiento;
@@ -21,19 +26,25 @@ import entidades.Tipo_cuenta;
 public class Main {
 
 	public static void main(String[] args) {
-/**
-		ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 
-		ConfigHibernate ch2 = (ConfigHibernate)appContext.getBean(ConfigHibernate.class);
+		ApplicationContext appContext;
+//		ModelAndView mv;
+	//	ConfigHibernate ch;
+		ClienteService clienteService;
+		MovimientoService movimientoService;
+		UsuarioService usuarioService;
+		CuentaService cuentaService;
 		
-		ConfigHibernate ch = (ConfigHibernate)appContext.getBean("conexionHibernate");
+		//	mv = new ModelAndView();
+			appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
+			//ch = (ConfigHibernate)appContext.getBean("conexionHibernate");
+			clienteService = (ClienteService)appContext.getBean("clienteService");
+			movimientoService = (MovimientoService)appContext.getBean("movimientoService");
+			usuarioService = (UsuarioService)appContext.getBean("usuarioService");
+			cuentaService = (CuentaService)appContext.getBean("cuentaService");	
+
 		
-		ch.abrirConexion();
-		ch2.abrirConexion();
-		// ch.traerPassword("Andy");
-		//((ConfigurableApplicationContext)(appContext)).close();
-		 * *
-		 */
+		movimientoService.generarMovimientos("1234", "0010001100000000000004", "11", "Deposito de prueba");
 	}
 	
 }

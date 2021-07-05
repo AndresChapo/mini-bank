@@ -2,6 +2,8 @@ package dao;
 
 import java.sql.Date;
 
+import org.hibernate.Session;
+
 import entidades.Movimiento;
 
 public class MovimientoDao {
@@ -21,7 +23,7 @@ public class MovimientoDao {
 	}
 
 	public void agregarMovimiento (Integer nroCuenta, String detalle, float importe) {
-		
+    	Session session = ch.getConexion();
 		if(detalle.isEmpty()) {
 			detalle = "";
 		}
@@ -29,10 +31,9 @@ public class MovimientoDao {
 		// Date _hoy = new Date();
 		
 		String hoy = "hoy";
-		Movimiento _m = new Movimiento(nroCuenta, hoy , detalle, importe);
-	
-		ch.agregarMovimiento(_m);
-	}
+		Movimiento _movimiento = new Movimiento(nroCuenta, hoy , detalle, importe);
 
+    	session.save(_movimiento);
+    }
 	
 }

@@ -28,4 +28,10 @@ public class UsuarioDao {
 		
 		return _usuario; 
 	}
+
+	public static Usuario traerUsuario(int id)
+	{	   
+		Session session = ch.getConexion();
+		return (Usuario)session.get(Usuario.class,id); 
+	}
 }

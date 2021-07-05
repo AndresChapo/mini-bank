@@ -16,25 +16,28 @@ import entidades.Cliente;
 import entidades.Cuenta;
 import entidades.Usuario;
 import service.ClienteService;
+import service.CuentaService;
 import service.MovimientoService;
 import service.UsuarioService;
 
 @Controller
 public class MainController {
+	ApplicationContext appContext;
 	ModelAndView mv;
 	ConfigHibernate ch;
 	ClienteService clienteService;
-	ApplicationContext appContext;
 	MovimientoService movimientoService;
 	UsuarioService usuarioService;
+	CuentaService cuentaService;
 	
 	public MainController(){ 
 		mv = new ModelAndView();
 		appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-		ch = (ConfigHibernate)appContext.getBean("conexionHibernate");
+		//ch = (ConfigHibernate)appContext.getBean("conexionHibernate");
 		clienteService = (ClienteService)appContext.getBean("clienteService");
 		movimientoService = (MovimientoService)appContext.getBean("movimientoService");
 		usuarioService = (UsuarioService)appContext.getBean("usuarioService");
+		cuentaService = (CuentaService)appContext.getBean("cuentaService");
 	}
 
 	public Object getAppContext(String nombreBean) {
@@ -98,14 +101,14 @@ public class MainController {
 			 
 			//si es admin va a la lista de clientes 
 			if(usuario.isEs_admin()) {
-				List<Cliente> listaClientes = ch.getListaClientes();
+				List<Cliente> listaClientes = clienteService.getListaClientes();
 				mv.addObject("listaClientes", listaClientes);
 				mv.setViewName("clientesLista");
 			// si no es admin va a la lista de cuentas
 			} else {
 				
 				
-				 List<Cuenta> listaCuentas= ch.getListaCuentasByUsuario(usuario.getId());
+				List<Cuenta> listaCuentas= cuentaService.getListaCuentasByUsuario(usuario.getId());
 				mv.addObject("listaCuentas", listaCuentas);
 				mv.setViewName("cuentasLista");
 				 
