@@ -21,37 +21,33 @@ public class ClienteDao implements ClienteDaoInterfaz {
 		return ch;
 	}
 
-
 	public void setCh(ConfigHibernate ch) {
 		this.ch = ch;
 	}
-
 
 	public static Session getSession() {
 		return session;
 	}
 
-
 	public static void setSession(Session session) {
 		ClienteDao.session = session;
 	}
 
-	
 	public void modificarCliente(Cliente cliente) {
-		
 		this.UpdateGenerico(cliente); 
 	}
 	
 	public void eliminarCliente(Cliente cliente) {
-		   
-			String hql = "UPDATE Cliente SET eliminado = true WHERE id = :id";
-			Query q = session.createQuery(hql);
-			q.setParameter("id", cliente.getId());
-			int r = q.executeUpdate(); 
+    	session = ch.getConexion();
+		String hql = "UPDATE Cliente SET eliminado = true WHERE id = :id";
+		Query q = session.createQuery(hql);
+		q.setParameter("id", cliente.getId());
+		int r = q.executeUpdate(); 
 	}
   	
 	
 	public void UpdateGenerico(Object o) {
+    	session = ch.getConexion();
     	session.update(o);
     }
 	
@@ -70,7 +66,7 @@ public class ClienteDao implements ClienteDaoInterfaz {
 	}
 
     public Cliente getClienteByUsuarioId(int id_usuario) {
-    	
+    	session = ch.getConexion();    	
 		String hql = "FROM Cliente WHERE id_usuario = :id_usuario";
 		
 		Query q = session.createQuery(hql);
