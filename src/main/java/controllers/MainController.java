@@ -115,11 +115,6 @@ public class MainController {
 
 				/* POR FAVOR NO BORRAR ESTO ES PARA CUANDO EN LA LISTA DE CLIENTES CLICKEE EN EL BOTON DE TRANSFERIR
 				 * SALUDOS: Bruno Jajajaj
-				Cuenta _cuenta = ch.getCuenta(4);
-				List<Cuenta> listaDeCuentasPropias = ch.getListaCuentasByTipoCuentaAndClienteId(_cuenta.getTipo_cuenta(), _cuenta.getId_cliente(), _cuenta.getNum_cuenta());
-				mv.addObject("listaDeCuentasPropias", listaDeCuentasPropias);
-				mv.addObject("Cuenta", _cuenta);
-				mv.setViewName("transferencia"); 
 				 */
 				
 			}
@@ -183,6 +178,29 @@ public class MainController {
 		 
 		return mv;
 	}*/
+	
+	@RequestMapping(value="irATransferencia.do", method=RequestMethod.POST)
+	public ModelAndView irATransferencia(int id_cuenta) {
+		
+		
+		System.out.println("Cuenta ->"+id_cuenta);
+		
+		mv.clear();
+		/*Cuenta _cuenta = cuentaService.getCuenta(id_cuenta);
+		
+		if(_cuenta != null) {
+			List<Cuenta> listaDeCuentasPropias = cuentaService.getListaCuentasByTipoCuentaAndClienteId(_cuenta.getTipo_cuenta(), _cuenta.getId_cliente(), _cuenta.getNum_cuenta());
+			mv.addObject("listaDeCuentasPropias", listaDeCuentasPropias);
+			mv.addObject("Cuenta", _cuenta);
+		} else {
+			mv.addObject("Error", true);
+		}*/
+
+		mv.setViewName("transferencia");
+
+		return mv;
+	}
+
 
 	@RequestMapping(value="realizarTransferencia.html", method=RequestMethod.POST)
 	public ModelAndView realizarTransferencia(String TXTadepositar, String TXTcbu, String TXTCuentaOrigenID, String detalle) {

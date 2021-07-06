@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,27 +95,27 @@
 								<th scope="col">N° Cuenta</th>
 								<th scope="col">Tipo de Cuenta</th>
 								<th scope="col">Nombre</th>
-								<th scope="col">Apellido</th>
-								<th></th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-
-							<tr>
-
-								<td>1</td>
-								<td>Caja ahorro</td>
-								<td>Nombre</td>
-								<td>Apellido</td>
-
-								<td><a class="btn btn-info"
-									href="#">Modificar</a></td>
-								<td><a class="btn btn-warning"
-									href="#">Eliminar</a></td>
-
-							</tr>
- 
+						
+						  	<c:forEach items="${listaCuentas}" var="cuenta">
+								    <tr>
+				  						<th scope="row">${cuenta.num_cuenta }</th>
+										<td>${cuenta.tipo_cuenta }</td>
+										<td>${cuenta.nombre }</td>
+										
+										<td>
+											<form method="post" action="irATransferencia.do">
+												<input style="display: none" value="${cuenta.num_cuenta}" name="num_cuenta" >
+												<button class="btn btn-primary" type="submit">Transferir</button>
+											</form>
+										</td>
+								    </tr>
+							    
+						  	</c:forEach>
+						
 						</tbody>
 					</table>
   

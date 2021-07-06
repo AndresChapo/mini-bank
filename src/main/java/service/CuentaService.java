@@ -37,4 +37,9 @@ public class CuentaService {
 
 		return listaCuentas; 
 	}
+	
+	public static List<Cuenta> getListaCuentasByTipoCuentaAndClienteId (int tipo_cuenta, int cliente_id, int current_num_cuenta){
+		return cuentaDao.getListaCuentasByTipoCuentaAndClienteId(tipo_cuenta, cliente_id, current_num_cuenta);
+	}
+	
 }
