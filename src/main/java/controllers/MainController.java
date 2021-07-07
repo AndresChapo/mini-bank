@@ -147,21 +147,28 @@ public class MainController {
 		
 		mv.setViewName("clientesModificar"); 
 		
-		Cliente c = clienteService.getCliente(Integer.parseInt(id));
-		mv.addObject(c);
-		
+		if(id != null) {
+			System.out.println("Modificando el cliente " + id); 
+			Cliente c = clienteService.getCliente(Integer.parseInt(id));
+			mv.addObject("cliente", c);
+			System.out.println("el cliente  se llama " + c.getNombre()); 		
+		} else {
+			System.out.println("el id viene null");
+		}
+		 
 		return mv;
 	}
 	
 	
 	@RequestMapping(value="modificarCliente.html", method=RequestMethod.POST)
-	public ModelAndView modificarCliente(@ModelAttribute("cliente") Cliente cliente) {
-		
-		System.out.println("Modificando cliente" + cliente.getNombre()); 
-		
-		Cliente c = new Cliente();
+	public ModelAndView modificarCliente(@RequestParam(required=false) String TXTnombre, String TXTapellido, String TXTdni,
+			String TXTfecha, char TXTsexo, String TXTprovincia, String TXTlocalidad,
+			String TXTdomicilio, String TXTtelefono, String TXTcorreo) {
 		 
-		clienteService.modificarCliente(c);
+			System.out.println("Modificando cliente " + TXTnombre);  
+			//Cliente c = new Cliente(); 
+			//clienteService.modificarCliente(cliente);   
+		
 		 
 		return mv;
 	}

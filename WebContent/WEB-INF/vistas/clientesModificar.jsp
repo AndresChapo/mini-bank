@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@page import="entidades.Cliente"%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +44,7 @@
 </head>
 <body>
 
-	 
+ 	 
 	<nav class="navbar navbar-expand-large navbar-light"
 		style="background-color: #e3f2fd;">  
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -85,19 +88,19 @@
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-6" style="">
-				<form action="ServletUsuario" method="get">
+				<form action="modificarCliente.html" method="post">
 					<div class="form-row">
 
 						<div class="col">
 						 <label for="Nombre">Nombre:</label>
-							<input type="text" class="form-control" name="TXTnombrePersona"
-								id="nombre" aria-describedby="emailHelp" placeholder="Nombres" value="Nombre original del usuario">
+							<input type="text" class="form-control" name="TXTnombre"
+								id="nombre" aria-describedby="emailHelp" placeholder="Nombre" value="${cliente.getNombre()}">
 						</div>
 						<div class="col">
 						 <label for="Apellido">Apellido:</label>
 							<input type="text" class="form-control" name="TXTapellido"
 								id="apellido" aria-describedby="emailHelp"
-								placeholder="Apellidos" value="Apellido orignal del cliente">
+								placeholder="Apellidos" value="${cliente.getApellido()}">
 						</div>
 
 					</div>
@@ -106,30 +109,30 @@
 						<div class="col">
 						 <label for="Dni">Dni:</label>
 							<input type="text" class="form-control" name="TXTdni" id="dni"
-								aria-describedby="emailHelp" placeholder="DNI" value="Dni original del usuario">
-						</div>
-						<div class="col">
-						 <label for="cuil">Cuil:</label>
-							<input type="text" class="form-control" name="TXTcuil"
-								id="cuil" aria-describedby="emailHelp" placeholder="Cuil" value="Cuil original del usuario">
-						</div>
+								aria-describedby="emailHelp" placeholder="DNI" value="${cliente.getDni()}">
+						</div> 
+						
 						
 						<div class="col">
-						 <label for="contraseña">Contraseña:</label>
+						 <!-- <label for="contraseña">Contraseña:</label>
 							<input type="password" class="form-control" name="TXTpass"
 								id="password" aria-describedby="emailHelp" placeholder="contraseña" value="Password orignal del cliente">
+						 -->
 						</div>
+						 
+						
 					</div>
 					<div style="height:30px"></div>	
 					<div class="form-row">
 						<div class="col">
+						<label for="contraseña">Fecha de Nacimiento:</label>
 							<input type="date" class="form-control" name="TXTfecha" id="nacimiento"
-								aria-describedby="emailHelp" placeholder="DD" value="Fecha de nacimiento original del usuario">
+								aria-describedby="emailHelp" placeholder="DD" value="${cliente.getFecha_nacimiento()}">
 						</div>
 					
-						<div class="col" style="position:relative; bottom:30px">
+						<div class="col">
 							<label for="sexo">Sexo:</label>
-							<select class="form-control"  id="sexo" name=TXTsexo>
+							<select class="form-control"  id="sexo" name="TXTsexo">
 							<option value="M">Masculino</option>
 							<option value="F">Femenino</option>
 							</select>
@@ -170,48 +173,42 @@
 							</select>
 						</div>
 						<div class="col">
-							<input type="text" style="position:relative; top:30px" class="form-control" name="TXTlocalidad"
+						<label for="contraseña">Localidad:</label>
+							<input type="text" class="form-control" name="TXTlocalidad"
 								id="localidad" aria-describedby="emailHelp"
-								placeholder="localidad" value="Localidad original del usuario">
+								placeholder="localidad" value="${cliente.getLocalidad()}">
 						</div>
 
 					</div>
 					<div style="height: 30px"></div>
 					<div class="form-row">
 						<div class="col">
+						<label for="contraseña">Direccion:</label>
 							<input type="text" class="form-control" name="TXTdomicilio" id="domicilio"
-								aria-describedby="emailHelp" placeholder="Domicilio" value="Calle original del cliente">
+								aria-describedby="emailHelp" placeholder="Domicilio" value="${cliente.getDireccion()}">
 						</div>
 						
 					</div>
 					<div style="height: 30px"></div>
-					<div class="form-row">
-						<div class="col">
-							<input type="text" class="form-control" name="TXTnumero" id="numero"
-								aria-describedby="emailHelp" placeholder="Numero" value="Altura calle del usuario">
-						</div>
-						
-						<div class="col">
-							<input type="text" class="form-control" name="TXTdepto" id="depto"
-								aria-describedby="emailHelp" placeholder="Depto" value ="Depto num del usuario">
-						</div>
-						
-					</div>
+					
+
 					<div style="height: 30px"></div>
 					<div class="form-row">
 						<div class="col">
+						<label for="contraseña">Telefono:</label>
 							 <input	type="text" class="form-control" name="TXTtelefono"
 								id="telefono" aria-describedby="emailHelp"
-								placeholder="telefono" value="Telefono original del usuario">
+								placeholder="telefono" value="${cliente.getTelefono()}">
 						</div>
 					
 					</div>
 					<div style="height: 30px"></div>
 					<div class="form-row">
 						<div class="col">
+						<label for="contraseña">Email:</label>
 							 <input	type="text" class="form-control" name="TXTcorreo"
 								id="mail" aria-describedby="emailHelp"
-								placeholder="Correo electronico" value="Mail original del usuario">
+								placeholder="Correo electronico" value="${cliente.getEmail()}">
 						</div>
 					
 					</div>
