@@ -10,4 +10,8 @@ public interface ClienteServiceInterfaz {
 	
 	public Cliente getCliente(int id);
 	
+	public Cliente parametrizarCliente(String id, String nombre, String apellido, String dni,
+			String fecha, char sexo, String provincia, String localidad,
+			String domicilio, String telefono, String correo);
+	
 }

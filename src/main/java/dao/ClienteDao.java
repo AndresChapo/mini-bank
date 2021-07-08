@@ -5,8 +5,11 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.mysql.cj.xdevapi.Expression;
 
 import daoInterfaz.ClienteDaoInterfaz;
 import entidades.Cliente;
@@ -33,16 +36,27 @@ public class ClienteDao implements ClienteDaoInterfaz {
 		ClienteDao.session = session;
 	}
 
+	
 	public void modificarCliente(Cliente cliente) {
-		this.UpdateGenerico(cliente); 
+		session = ch.getConexion();
+		session.beginTransaction();
+    	session.update(cliente);
+    	session.getTransaction().commit();
 	}
 	
+	
 	public void eliminarCliente(Cliente cliente) {
+		
+		System.out.println("sasasdsada");
+		Integer id = cliente.getId();
+		session = ch.getConexion();
+		session.beginTransaction();
     	session = ch.getConexion();
 		String hql = "UPDATE Cliente SET eliminado = true WHERE id = :id";
 		Query q = session.createQuery(hql);
-		q.setParameter("id", cliente.getId());
-		int r = q.executeUpdate(); 
+		q.setParameter("id", id);
+		int r = q.executeUpdate();  
+		session.getTransaction().commit();
 	}
   	
 	
@@ -61,6 +75,7 @@ public class ClienteDao implements ClienteDaoInterfaz {
 	{	   
     	session = ch.getConexion();
     	Criteria cr = session.createCriteria(Cliente.class);
+    	cr.add(Restrictions.eq("eliminado", false));
     	List<Cliente> results = cr.list();    	
     	return results;
 	}

@@ -36,19 +36,11 @@
 	href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/sc-2.0.3/sp-1.2.1/datatables.min.css" />
 
 <script type="text/javascript"
-	src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/sc-2.0.3/sp-1.2.1/datatables.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#tablaClientes').DataTable();
-	});
-</script>
-
-
+	src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/sc-2.0.3/sp-1.2.1/datatables.min.js"></script> 
 </head>
 
 <body>
-
-
+ 
 	<nav class="navbar navbar-expand-large navbar-light"
 		style="background-color: #e3f2fd;"> <a class="navbar-brand" 
 		href="#">The Group Five Bank  </a>
@@ -66,11 +58,7 @@
 						href="#">Home <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
-
-
-
-
-				 
+ 				 
 				<div class="col-md-2">
 
 					<a class="dropdown-item"
@@ -83,12 +71,10 @@
 						href="">Salir <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
-
-
+ 
 			</div>
 		</ul>
-
-
+ 
 	</div>
 	</nav>
 	<div class="container">
@@ -104,43 +90,9 @@
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-10" style="">
-				 
+				 <h3 class="display-4 text-info">El cliente se Elimino Correctamente</h3>
 				<div style="height: 50px"></div>
-				<table class="table" id="tablaClientes">
-					<thead class="table-info">
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Nombre</th>
-							<th scope="col">DNI</th>
-							<th scope="col">Fecha nacimiento</th>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-					
-					
-					  <c:forEach items="${listaClientes}" var="cliente">
-					    <tr>
-	  						<th scope="row">${cliente.id }</th>
-							<td>${cliente.nombre } ${cliente.apellido }</td>
-							<td>${cliente.dni }</td>
-							<td>${cliente.fecha_nacimiento }</td>
-							<td style="width: 131px;"><a class="btn btn-primary" href="clientesNuevoDatosPersonales.jsp">Nueva Cuenta</a></td>
- 							<td><a class="btn btn-success"
-								href="#">Ver</a></td>
-							<td><a class="btn btn-info"
-								href="modificacionCliente.html?id=${cliente.id}">Modificar</a></td>
-							<td><a class="btn btn-danger" 
-							href="eliminarCliente.html?id=${cliente.id}">Eliminar</a></td>
-					    </tr>
-					  </c:forEach>
-					
- 
-					</tbody>
-				</table>
+				 
 			</div>
 
 		</div> 

@@ -89,6 +89,11 @@
 			style="position: relative; top: 50px">
 			<div class="col-md-6" style="">
 				<form action="modificarCliente.html" method="post">
+				
+				<input	type="hidden" class="form-control" name="TXTid"
+								id="mail" aria-describedby="emailHelp"
+								placeholder="Correo electronico" value="${cliente.getId()}">
+				
 					<div class="form-row">
 
 						<div class="col">
@@ -104,6 +109,7 @@
 						</div>
 
 					</div>
+					
 					<div style="height:30px"></div>	
 					<div class="form-row">
 						<div class="col">
@@ -113,11 +119,7 @@
 						</div> 
 						
 						
-						<div class="col">
-						 <!-- <label for="contraseña">Contraseña:</label>
-							<input type="password" class="form-control" name="TXTpass"
-								id="password" aria-describedby="emailHelp" placeholder="contraseña" value="Password orignal del cliente">
-						 -->
+						<div class="col"> 
 						</div>
 						 
 						
@@ -212,13 +214,10 @@
 						</div>
 					
 					</div>
-					
-					
-				
+				 
 					<div  class="row d-flex justify-content-center"style="position:relative; top:30px">
-					
-					
-					<input type="submit" name="BtnModificar" value= "Modificar">
+					  
+					<input type="submit" class="btn btn-primary" name="BtnModificar" value= "Modificar">
 					</div>
 				
 		

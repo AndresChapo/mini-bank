@@ -23,8 +23,7 @@ public class ClienteService implements ClienteServiceInterfaz {
 
 	public boolean modificarCliente(Cliente cliente) {
 
-		clienteDao.modificarCliente(cliente);
-		
+		clienteDao.modificarCliente(cliente); 
 		return true;
 	}
 	
@@ -51,4 +50,24 @@ public class ClienteService implements ClienteServiceInterfaz {
 		return clienteDao.getClienteByUsuarioId(id_usuario);
 		
 	}
+    
+    public Cliente parametrizarCliente(String id, String nombre, String apellido, String dni,
+			String fecha, char sexo, String provincia, String localidad,
+			String domicilio, String telefono, String correo) {
+    	
+    	Cliente c = getCliente(Integer.parseInt(id));
+    	
+    	if (nombre != null) c.setNombre(nombre);
+    	if (apellido != null) c.setApellido(apellido);
+    	if (dni != null) c.setDni(dni);
+    	if (fecha != null) c.setFecha_nacimiento(fecha);
+    	if (sexo != 0) c.setSexo(sexo);
+    	if (provincia != null) c.setProvincia(provincia);
+    	if (localidad != null) c.setLocalidad(localidad);
+    	if (domicilio != null) c.setDireccion(domicilio);
+    	if (telefono != null) c.setTelefono(telefono);
+    	if (correo != null) c.setEmail(correo);
+    	
+		return c; 
+    }
 }

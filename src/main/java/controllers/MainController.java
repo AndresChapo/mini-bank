@@ -130,14 +130,15 @@ public class MainController {
 		return mv;
 	}
 	
-	@RequestMapping("eliminarCliente.html")
-	public ModelAndView eliminarCliente(Integer id) { 
+	@RequestMapping(value="eliminarCliente.html", method=RequestMethod.GET)
+	public ModelAndView eliminarCliente(@RequestParam String id) { 
 		
 		Cliente c = new Cliente();
-		c.setId(id);
+		c.setId(Integer.parseInt(id));
 		 
 		clienteService.eliminarCliente(c);
-		 
+		
+		mv.setViewName("clienteEliminadoCorrectamente");  
 		return mv;
 	}
 	
@@ -147,11 +148,9 @@ public class MainController {
 		
 		mv.setViewName("clientesModificar"); 
 		
-		if(id != null) {
-			System.out.println("Modificando el cliente " + id); 
+		if(id != null) { 
 			Cliente c = clienteService.getCliente(Integer.parseInt(id));
-			mv.addObject("cliente", c);
-			System.out.println("el cliente  se llama " + c.getNombre()); 		
+			mv.addObject("cliente", c); 	
 		} else {
 			System.out.println("el id viene null");
 		}
@@ -161,31 +160,21 @@ public class MainController {
 	
 	
 	@RequestMapping(value="modificarCliente.html", method=RequestMethod.POST)
-	public ModelAndView modificarCliente(@RequestParam(required=false) String TXTnombre, String TXTapellido, String TXTdni,
+	public ModelAndView modificarCliente(@RequestParam(required=false) String TXTid, 
+			String TXTnombre, String TXTapellido, String TXTdni,
 			String TXTfecha, char TXTsexo, String TXTprovincia, String TXTlocalidad,
 			String TXTdomicilio, String TXTtelefono, String TXTcorreo) {
-		 
-			System.out.println("Modificando cliente " + TXTnombre);  
-			//Cliente c = new Cliente(); 
-			//clienteService.modificarCliente(cliente);   
-		
-		 
+		  	
+			Cliente c = clienteService.parametrizarCliente(TXTid, 
+					TXTnombre, TXTapellido, TXTdni, TXTfecha, TXTsexo, 
+					TXTprovincia, TXTlocalidad, TXTdomicilio, TXTtelefono, TXTcorreo);
+			
+			clienteService.modificarCliente(c);   
+		  
+			mv.setViewName("clienteModificadoCorrectamente"); 
 		return mv;
 	}
-	  
-	/*@RequestMapping("modificarCliente.html")
-	public ModelAndView modificarCliente(String TXTnombre, String TXTapellido, String TXTdni,
-			String TXTpass, String TXTfecha, char TXTsexo, String TXTprovincia, String TXTlocalidad,
-			String TXTdomicilio, String TXTtelefono, String TXTcorreo) {
-		System.out.println("Modificando cliente" + TXTnombre); 
-		
-		Cliente c = new Cliente();
-		 
-		clienteService.modificarCliente(c);
-		 
-		return mv;
-	}*/
-	
+	   
 	@RequestMapping(value="irATransferencia.do", method=RequestMethod.POST)
 	public ModelAndView irATransferencia(int id_cuenta) {
 		
