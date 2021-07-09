@@ -92,4 +92,24 @@ public class ClienteDao implements ClienteDaoInterfaz {
 		return _cliente;
 		
 	}
+    
+
+    //MODIFICACION REVOLLO INICIO
+    //ACA AGREGO UNA FUNCINO PARA QUE GUARDE UN NUEVO CLIENTE
+    
+    public void guardarNuevoCliente (Cliente clienteNuevo)
+    {
+    	session = ch.getConexion();
+		session.beginTransaction();
+    	session.save(clienteNuevo);
+    	session.getTransaction().commit();
+    	
+    	
+    }
+    
+    //MODIFICACION REVOLLO FIN
+
+    
+    
+    
 }

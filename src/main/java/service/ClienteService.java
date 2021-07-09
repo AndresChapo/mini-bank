@@ -70,4 +70,16 @@ public class ClienteService implements ClienteServiceInterfaz {
     	
 		return c; 
     }
+    
+    //INICIO MODIFICACION REVOLLO
+    //SIRVE PARA LLAMAR AL DAO Y PASARLE LOS DATOS DESDE EL CONTROLER
+    public boolean GuardarCliente(Cliente clienteNuevo)
+    {
+
+		clienteDao.guardarNuevoCliente(clienteNuevo); 
+		return true;
+	}
+    
+    //FIN MODIFICACION REVOLLO
+
 }

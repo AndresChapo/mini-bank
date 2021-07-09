@@ -34,4 +34,24 @@ public class UsuarioDao {
 		Session session = ch.getConexion();
 		return (Usuario)session.get(Usuario.class,id); 
 	}
+	
+	
+	//MODIFICACION REVOLLO INICIO
+    //ACA AGREGO UNA FUNCION PARA QUE GUARDE UN NUEVO USUARIO
+    
+    public void guardarNuevoUsuario (Usuario usuarioNuevo)
+    {
+    	Session session = ch.getConexion();
+		session.beginTransaction();
+    	session.save(usuarioNuevo);
+    	session.getTransaction().commit();
+    	
+    	
+    }
+    
+    //MODIFICACION REVOLLO FIN
+	
 }
+
+	
+

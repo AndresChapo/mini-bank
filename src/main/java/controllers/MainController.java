@@ -226,4 +226,109 @@ public class MainController {
 		return mv;
 	}
 
+	//MODIFICADO POR NAHUEL REVOLLO INICIO
+	
+	
+		//PARA IR A NUEVO USUARIO
+		
+		
+		@RequestMapping(value="NuevoClienteUsuario.html", method=RequestMethod.GET)
+		public ModelAndView pantallaNuevoClienteUsuario() { 
+			
+			mv.setViewName("clientesNuevoSesion"); 
+			
+					 
+			return mv;
+		}
+		
+		//PARA GUARDAR NUEVO USUARIO
+		@RequestMapping(value="AltaUsuario.html", method=RequestMethod.POST)
+		public ModelAndView NuevoClienteUsuario(String TXTusuario,String TXTpass,String TXTrepetirpass) 
+		{ 
+			System.out.println(TXTusuario+", "+TXTpass+", "+TXTrepetirpass);
+			
+			if(TXTpass.equals(TXTrepetirpass) )
+			{
+				
+				Usuario usuarioNuevo = new Usuario();
+				
+				usuarioNuevo.setContrasenia(TXTrepetirpass);
+				usuarioNuevo.setNombre(TXTusuario);
+				usuarioNuevo.setEliminado(false);
+				usuarioNuevo.setEs_admin(false);
+				
+				System.out.println(usuarioNuevo.getNombre());
+				
+				
+				
+				Boolean guardo = usuarioService.GuardarUsuario(usuarioNuevo);
+				
+				if(guardo)
+				{
+					System.out.println("aca llega bien");
+					
+					Usuario usuario = (Usuario) usuarioService.getUsuarioByNombreUsuario(TXTusuario);
+					
+					mv.addObject("NuevoUsuario", usuario);
+					
+					mv.setViewName("clientesNuevoDatosPersonales"); 
+					
+				}
+				
+			}
+			else 
+			{
+				System.out.println("aca llega directo al else");
+				mv.setViewName("clientesNuevoSesion"); 
+				
+			}
+			
+			return mv;
+		}
+		
+		
+		
+		
+		
+		//para guarda el cliente nuevo
+		@RequestMapping(value="ClientesDatosPersonales.html", method=RequestMethod.POST)
+		public ModelAndView altaCliente(@RequestParam(required=false) 
+				String TXTnombre, String TXTapellido, String TXTdni,String TXTnacionalidad,
+				String TXTfecha, char TXTsexo, String TXTprovincia, String TXTlocalidad,
+				String TXTdomicilio, String TXTtelefono, String TXTcorreo,String TXTidUsuario)
+		
+		{ 
+			Cliente nuevoCliente = new Cliente();
+			
+			
+			nuevoCliente.setId(Integer. parseInt (  TXTidUsuario)); 
+			nuevoCliente.setNombre(TXTnombre);		
+			nuevoCliente.setApellido(TXTapellido);
+			nuevoCliente.setDni(TXTdni);
+			nuevoCliente.setNacionalidad(TXTnacionalidad);
+			nuevoCliente.setFecha_nacimiento(TXTfecha);
+			nuevoCliente.setSexo(TXTsexo);
+			nuevoCliente.setProvincia(TXTprovincia);
+			nuevoCliente.setLocalidad(TXTlocalidad);
+			nuevoCliente.setDireccion(TXTdomicilio);
+			nuevoCliente.setTelefono(TXTtelefono);
+			nuevoCliente.setEmail(TXTcorreo);
+			nuevoCliente.setEliminado(false);
+			
+			if(clienteService.GuardarCliente(nuevoCliente))
+			{
+				
+				mv.setViewName("clienteNuevoCorrectamente"); 
+				
+				
+			}	
+			return mv;
+			
+			 
+		}
+		
+		//MODIFICADO POR NAHUEL REVOLLO FIN
+
+	
+	
 }

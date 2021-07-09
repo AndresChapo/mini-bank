@@ -22,4 +22,20 @@ public class UsuarioService {
 		Usuario _usuario = (Usuario) usuarioDao.getUsuarioByNombreUsuario(usuario); 
 		return _usuario; 
 	}
+	
+	
+	//INICIO MODIFICACION REVOLLO
+    //SIRVE PARA LLAMAR AL DAO Y PASARLE LOS DATOS DESDE EL CONTROLER
+    public boolean GuardarUsuario(Usuario usuarioNuevo)
+    {
+
+		usuarioDao.guardarNuevoUsuario(usuarioNuevo);
+		return true;
+	}
+    
+    //FIN MODIFICACION REVOLLO
+
+	
+	
+	
 }
