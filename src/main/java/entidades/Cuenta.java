@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -33,7 +34,7 @@ public class Cuenta implements Serializable{
 	@Column(name="saldo")
 	private float saldo;
 	@Column(name="fecha_creacion")
-	private String fecha_creacion;
+	private Date fecha_creacion;
 	@Column(name="eliminado")
 	private boolean eliminado;
 	
@@ -50,7 +51,7 @@ public class Cuenta implements Serializable{
 	public Cuenta()
 	{}
 	public Cuenta(Tipo_cuenta tipo_cuenta, String nombre, String cbu,
-			float saldo, String fecha_creacion, Cliente cliente) {
+			float saldo, Date fecha_creacion, Cliente cliente) {
 		super();
 		this.tipo_cuenta = tipo_cuenta;
 		this.nombre = nombre;
@@ -115,11 +116,11 @@ public class Cuenta implements Serializable{
 		this.saldo = saldo;
 	}
 
-	public String getFecha_creacion() {
+	public Date getFecha_creacion() {
 		return fecha_creacion;
 	}
 
-	public void setFecha_creacion(String fecha_creacion) {
+	public void setFecha_creacion(Date fecha_creacion) {
 		this.fecha_creacion = fecha_creacion;
 	}
 

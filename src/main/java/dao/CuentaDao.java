@@ -14,7 +14,8 @@ import entidades.Usuario;
 public class CuentaDao {
 
 	private static ConfigHibernate ch;
-	
+	public static Session session;
+
 	
 	public CuentaDao() {
 		super();
@@ -29,6 +30,14 @@ public class CuentaDao {
 
 	public void setCh(ConfigHibernate ch) {
 		this.ch = ch;
+	}
+
+	public static Session getSession() {
+		return session;
+	}
+
+	public static void setSession(Session session) {
+		ClienteDao.session = session;
 	}
 
 
@@ -82,6 +91,14 @@ public class CuentaDao {
  		return listaCuentas;
 		
 	}
+    
+	public void modificarCuenta(Cuenta cuenta) {
+		session = ch.getConexion();
+		session.beginTransaction();
+    	session.update(cuenta);
+    	session.getTransaction().commit();
+	}
+
     
 	public static boolean checkCuentaIsFromUsuarioLogueado(Usuario usuarioLogueado, int num_cuenta) // Ejemplo de metodo para traer datos por HQL
 	{	   

@@ -1,6 +1,8 @@
 package controllers;
 
 import java.math.BigInteger;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.ConfigHibernate;
+import dao.Tipo_cuentaDao;
 import entidades.Cliente;
 import entidades.Cuenta;
 import entidades.Tipo_cuenta;
@@ -409,34 +412,30 @@ public class MainController {
 	    String TXTdni, String CuentasTipo) {
 
 			Cuenta cuentaNueva = new Cuenta();
-			
-			cuentaNueva.setId_cliente(Integer.parseInt(TXTid));
+			Cliente _cliente = clienteService.getCliente(Integer.parseInt(TXTid));
+			Tipo_cuentaDao tipoCuentaDao = new Tipo_cuentaDao();
+			Tipo_cuenta tipoCuenta = tipoCuentaDao.getTipoCuenta(Integer.parseInt(CuentasTipo));
+			Date hoy = Date.valueOf(LocalDate.now());
+
 			cuentaNueva.setNombre(TXTnombre);
-			
-			cuentaNueva.setFecha_creacion("09/07/2021");
-			
-			cuentaNueva.setTipo_cuenta(Integer.parseInt(CuentasTipo));
+			cuentaNueva.setCliente(_cliente);
+			cuentaNueva.setFecha_creacion(hoy);
+			cuentaNueva.setTipo_cuenta(tipoCuenta);;
 			cuentaNueva.setEliminado(false);
-			cuentaNueva.setSaldo(10000); //POR DEFAULT TODAS EMPIEZAN CON ESE MONTO
+			// POR DEFAULT TODAS EMPIEZAN CON ESE MONTO
+			cuentaNueva.setSaldo(10000); 
 			
 			//CREO VARIABLE INT PARA INCREMENTAR EL CBU
 			
 			//Integer cbu_incrementa = (Integer.parseInt(cuentaService.ObtenerUltimoCBU()));
 			
 			BigInteger One = new BigInteger("1");
-			
 			BigInteger cbu_incrementa=new BigInteger(cuentaService.ObtenerUltimoCBU());
-			
 			cbu_incrementa.add(One);
-			
-			
 			cuentaNueva.setCbu(cbu_incrementa.toString());	
 			
-			if(cuentaService.GuardarCuenta(cuentaNueva))
-			{
-				
+			if(cuentaService.GuardarCuenta(cuentaNueva)){				
 				mv.setViewName("cuentaNuevaCorrentamente");
-				
 			}
 			
 

@@ -99,19 +99,33 @@ public class ConfigHibernate {
 		Cliente cliente10 = new Cliente("44523383", "Micaela", "Lamass", "98057-2345", "Micaela@hotmail.com", 'F', "Uruguaya", "Campello 4557", "CABA", "Buenos Aires", "1982-10-25", user10);		
 		
 		
-        Cuenta cuenta1 = new Cuenta(t_cuenta_dolares,  "Cuenta Sueldo", "0010001100000000000001", 					(float) 10000, "2021-12-01", cliente1);
-		Cuenta cuenta2 = new Cuenta(t_cuenta_dolares,  "Millones", "0010001100000000000002", 						(float) 10000, "2020-10-01", cliente2);
-		Cuenta cuenta3 = new Cuenta(t_cuenta_pesos,	   "Ahorro", "0010001100000000000003", 							(float) 10000, "2020-12-15", cliente3);
-		Cuenta cuenta4 = new Cuenta(t_cuenta_pesos,	   "Para vacaciones MDQ", "0010001100000000000004", 			(float) 10000, "2019-12-01", cliente4);
-		Cuenta cuenta5 = new Cuenta(t_cuenta_dolares,  "Ahorros", "0010001100000000000005", 						(float) 10000, "2020-12-12", cliente5);
-		Cuenta cuenta6 = new Cuenta(t_cuenta_pesos,	   "Sueldo", "0010001100000000000006", 							(float) 10000, "2021-08-01", cliente6);
-		Cuenta cuenta7 = new Cuenta(t_cuenta_pesos,	   "Inversiones", "0010001100000000000007", 					(float) 10000, "2020-10-20", cliente7);
-		Cuenta cuenta8 = new Cuenta(t_cuenta_dolares,  "Ganancias", "0010001100000000000008", 						(float) 10000, "2020-12-18", cliente8);
-		Cuenta cuenta9 = new Cuenta(t_cuenta_pesos,	   "Ingresos", "0010001100000000000009", 						(float) 10000, "2020-11-01", cliente9);
-		Cuenta cuenta10 = new Cuenta(t_cuenta_pesos,   "De rentas", "0010001100000000000010", 						(float) 10000, "2021-11-11", cliente10);
-		Cuenta cuenta11 = new Cuenta(t_cuenta_pesos,   "Coimas", "0010001100000000000011", 							(float) 10000, "2021-11-12", cliente2)	;
-		Cuenta cuenta12 = new Cuenta(t_cuenta_pesos,   "Para vacaciones Villa Gesell", "0010001100000000000111", 	(float) 10000, "2019-12-01", cliente4);
-		Cuenta cuenta13 = new Cuenta(t_cuenta_pesos,   "Para vacaciones Santa Teresita", "0010001100000000000222", 	(float) 10000, "2019-12-01", cliente4);	
+		Date date1_cuenta = Date.valueOf(LocalDate.of (2021, 12, 01));
+		Date date2_cuenta = Date.valueOf(LocalDate.of (2020, 10, 01));
+		Date date3_cuenta = Date.valueOf(LocalDate.of (2020, 12, 15));
+		Date date4_cuenta = Date.valueOf(LocalDate.of (2019, 12, 01));
+		Date date5_cuenta = Date.valueOf(LocalDate.of (2020, 12, 12));
+		Date date6_cuenta = Date.valueOf(LocalDate.of (2021, 8, 01));
+		Date date7_cuenta = Date.valueOf(LocalDate.of (2020, 10, 20));
+		Date date8_cuenta = Date.valueOf(LocalDate.of (2020, 12, 18));
+		Date date9_cuenta = Date.valueOf(LocalDate.of (2020, 11, 01));
+		Date date10_cuenta = Date.valueOf(LocalDate.of(2021, 11, 11));
+		Date date11_cuenta = Date.valueOf(LocalDate.of(2021, 11, 12));
+		Date date12_cuenta = Date.valueOf(LocalDate.of(2019, 12, 01));
+		Date date13_cuenta = Date.valueOf(LocalDate.of(2019, 12, 01));
+
+        Cuenta cuenta1 = new Cuenta(t_cuenta_dolares,  "Cuenta Sueldo", "0010001100000000000001", 					(float) 10000, date1_cuenta, cliente1);
+		Cuenta cuenta2 = new Cuenta(t_cuenta_dolares,  "Millones", "0010001100000000000002", 						(float) 10000, date2_cuenta, cliente2);
+		Cuenta cuenta3 = new Cuenta(t_cuenta_pesos,	   "Ahorro", "0010001100000000000003", 							(float) 10000, date3_cuenta, cliente3);
+		Cuenta cuenta4 = new Cuenta(t_cuenta_pesos,	   "Para vacaciones MDQ", "0010001100000000000004", 			(float) 10000, date4_cuenta, cliente4);
+		Cuenta cuenta5 = new Cuenta(t_cuenta_dolares,  "Ahorros", "0010001100000000000005", 						(float) 10000, date5_cuenta, cliente5);
+		Cuenta cuenta6 = new Cuenta(t_cuenta_pesos,	   "Sueldo", "0010001100000000000006", 							(float) 10000, date6_cuenta, cliente6);
+		Cuenta cuenta7 = new Cuenta(t_cuenta_pesos,	   "Inversiones", "0010001100000000000007", 					(float) 10000, date7_cuenta, cliente7);
+		Cuenta cuenta8 = new Cuenta(t_cuenta_dolares,  "Ganancias", "0010001100000000000008", 						(float) 10000, date8_cuenta, cliente8);
+		Cuenta cuenta9 = new Cuenta(t_cuenta_pesos,	   "Ingresos", "0010001100000000000009", 						(float) 10000, date9_cuenta, cliente9);
+		Cuenta cuenta10 = new Cuenta(t_cuenta_pesos,   "De rentas", "0010001100000000000010", 						(float) 10000, date10_cuenta, cliente10);
+		Cuenta cuenta11 = new Cuenta(t_cuenta_pesos,   "Coimas", "0010001100000000000011", 							(float) 10000, date11_cuenta, cliente2)	;
+		Cuenta cuenta12 = new Cuenta(t_cuenta_pesos,   "Para vacaciones Villa Gesell", "0010001100000000000111", 	(float) 10000, date12_cuenta, cliente4);
+		Cuenta cuenta13 = new Cuenta(t_cuenta_pesos,   "Para vacaciones Santa Teresita", "0010001100000000000222", 	(float) 10000, date13_cuenta, cliente4);	
 		
 		
 		Date date1 = Date.valueOf(LocalDate.of(2020, 11, 07));

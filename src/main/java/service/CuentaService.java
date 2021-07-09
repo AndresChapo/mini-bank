@@ -53,7 +53,12 @@ public class CuentaService {
 
 	}
 
-	
+	public boolean modificarCuenta(Cuenta cuenta) {
+
+		cuentaDao.modificarCuenta(cuenta); 
+		return true;
+	}
+
 	
 	//INICIO MODIFICACION REVOLLO
 	//SIRVE PARA LLAMAR AL DAO Y PASARLE LOS DATOS DESDE EL CONTROLER
