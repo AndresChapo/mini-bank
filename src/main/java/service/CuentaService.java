@@ -9,6 +9,7 @@ import dao.ClienteDao;
 import dao.CuentaDao;
 import entidades.Cliente;
 import entidades.Cuenta;
+import entidades.Usuario;
 
 public class CuentaService {
 	
@@ -28,10 +29,10 @@ public class CuentaService {
 		return cuentaDao.getCuenta(id);
 	}
 	
-	public static List<Cuenta> getListaCuentasByUsuario(int usuario_id)
+	public static List<Cuenta> getListaCuentasByUsuario(Usuario usuario)
 	{	   
 		ClienteDao clienteService = new ClienteDao();
-		Cliente _cliente = clienteService.getClienteByUsuarioId(usuario_id);
+		Cliente _cliente = clienteService.getClienteByUsuario(usuario);
 
 		List<Cuenta> listaCuentas = cuentaDao.getListaCuentasByCliente(_cliente.getId());
 
@@ -42,10 +43,18 @@ public class CuentaService {
 		return cuentaDao.getListaCuentasByTipoCuentaAndClienteId(tipo_cuenta, cliente_id, current_num_cuenta);
 	}
 	
+	public static boolean checkCuentaByUsuario(Usuario usuarioLogueado, int num_cuenta) {
+		return cuentaDao.checkCuentaIsFromUsuarioLogueado(usuarioLogueado, num_cuenta);
+	}
+	
+	public Cuenta getCuentaByCBU(String cbu) {
+		return cuentaDao.getCuentaByCBU(cbu);
+
+	}
+
 	
 	
-	 //INICIO MODIFICACION REVOLLO
-   
+	//INICIO MODIFICACION REVOLLO
 	//SIRVE PARA LLAMAR AL DAO Y PASARLE LOS DATOS DESDE EL CONTROLER
     public boolean GuardarCuenta(Cuenta cuentaNueva)
     {

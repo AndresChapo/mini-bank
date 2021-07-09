@@ -8,6 +8,7 @@ import org.hibernate.Session;
 
 import entidades.Cliente;
 import entidades.Cuenta;
+import entidades.Usuario;
 
 public class CuentaDao {
 
@@ -80,6 +81,29 @@ public class CuentaDao {
  		return listaCuentas;
 		
 	}
+    
+	public static boolean checkCuentaIsFromUsuarioLogueado(Usuario usuarioLogueado, int num_cuenta) // Ejemplo de metodo para traer datos por HQL
+	{	   
+		Session session = ch.getConexion();
+		String hql = " FROM Cuenta as cue INNER JOIN cue.cliente as cli INNER JOIN cli.usuario as usr WHERE cue.num_cuenta = :num_cuenta";
+		Query q = session.createQuery(hql);
+		q.setParameter("num_cuenta", num_cuenta);
+		Object[] resultado = (Object[]) q.uniqueResult();
+		boolean esCuentaDelUsuarioLogueado = false;
+		if(resultado != null) {
+			//resultado[0] es Cuenta
+			//resultado[1] es Cliente
+			//resultado[2] es Usuario
+			Usuario usr = (Usuario) resultado[2];
+			if(usr.getId() == usuarioLogueado.getId()) {
+				esCuentaDelUsuarioLogueado = true;
+			}
+		}
+		
+		return esCuentaDelUsuarioLogueado;
+		
+	}
+
     
     
     //MODIFICACION REVOLLO INICIO
