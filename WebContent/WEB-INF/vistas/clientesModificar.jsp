@@ -94,7 +94,7 @@
 								id="mail" aria-describedby="emailHelp"
 								placeholder="Correo electronico" value="${cliente.getId()}">
 				
-					<div class="form-row">
+					<div class="form-row mb-2">
 
 						<div class="col">
 						 <label for="Nombre">Nombre:</label>
@@ -110,8 +110,7 @@
 
 					</div>
 					
-					<div style="height:30px"></div>	
-					<div class="form-row">
+					<div class="form-row mb-2">
 						<div class="col">
 						 <label for="Dni">Dni:</label>
 							<input type="text" class="form-control" name="TXTdni" id="dni"
@@ -124,8 +123,7 @@
 						 
 						
 					</div>
-					<div style="height:30px"></div>	
-					<div class="form-row">
+					<div class="form-row mb-2">
 						<div class="col">
 						<label for="contraseña">Fecha de Nacimiento:</label>
 							<input type="date" class="form-control" name="TXTfecha" id="nacimiento"
@@ -140,7 +138,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="form-row">
+					<div class="form-row mb-2">
 
 						<div class="col">
 							<label for="provincia">Provincia:
@@ -182,8 +180,7 @@
 						</div>
 
 					</div>
-					<div style="height: 30px"></div>
-					<div class="form-row">
+					<div class="form-row mb-2">
 						<div class="col">
 						<label for="contraseña">Direccion:</label>
 							<input type="text" class="form-control" name="TXTdomicilio" id="domicilio"
@@ -191,11 +188,8 @@
 						</div>
 						
 					</div>
-					<div style="height: 30px"></div>
 					
-
-					<div style="height: 30px"></div>
-					<div class="form-row">
+					<div class="form-row mb-2">
 						<div class="col">
 						<label for="contraseña">Telefono:</label>
 							 <input	type="text" class="form-control" name="TXTtelefono"
@@ -204,8 +198,7 @@
 						</div>
 					
 					</div>
-					<div style="height: 30px"></div>
-					<div class="form-row">
+					<div class="form-row mb-2" >
 						<div class="col">
 						<label for="contraseña">Email:</label>
 							 <input	type="text" class="form-control" name="TXTcorreo"

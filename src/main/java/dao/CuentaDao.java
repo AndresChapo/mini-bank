@@ -8,11 +8,14 @@ import org.hibernate.Session;
 
 import entidades.Cliente;
 import entidades.Cuenta;
+import entidades.Tipo_cuenta;
+import entidades.Usuario;
 
 public class CuentaDao {
 
 	private static ConfigHibernate ch;
-	
+	public static Session session;
+
 	
 	public CuentaDao() {
 		super();
@@ -28,6 +31,15 @@ public class CuentaDao {
 	public void setCh(ConfigHibernate ch) {
 		this.ch = ch;
 	}
+	
+	public static Session getSession() {
+		return session;
+	}
+
+	public static void setSession(Session session) {
+		ClienteDao.session = session;
+	}
+
 
 
 	public Cuenta getCuenta(int id) {
@@ -50,9 +62,17 @@ public class CuentaDao {
 		return listaCuentas; 
 	}
 	
+	public void modificarCuenta(Cuenta cuenta) {
+		session = ch.getConexion();
+		session.beginTransaction();
+    	session.update(cuenta);
+    	session.getTransaction().commit();
+	}
+
+	
     public Cuenta getCuentaByCBU(String cbu) {
 		Session session = ch.getConexion();		 
-		String hql = "FROM Cuentas WHERE cbu = :cbu";
+		String hql = "FROM Cuenta WHERE cbu = :cbu";
 		Query q = session.createQuery(hql);
 		q.setParameter("cbu", cbu);
 		
@@ -62,7 +82,7 @@ public class CuentaDao {
 		
 	}
     
-    public List<Cuenta> getListaCuentasByTipoCuentaAndClienteId(int tipo_cuenta, int cliente_id, int current_num_cuenta) {
+    public List<Cuenta> getListaCuentasByTipoCuentaAndClienteId(Tipo_cuenta tipo_cuenta, Cliente cliente_id, int current_num_cuenta) {
 		Session session = ch.getConexion();
     	// Trae todas las cuentas que sean del cliente que tengan el mismo tipo de cuenta, y exceptua la cuenta de la que se va a hacer la transferencia
 		String hql = "FROM Cuenta WHERE id_cliente = :cliente_id AND tipo_cuenta = :tipo_cuenta AND num_cuenta != :current_cuenta_id";
@@ -80,4 +100,29 @@ public class CuentaDao {
  		return listaCuentas;
 		
 	}
+    
+    
+	public static boolean checkCuentaIsFromUsuarioLogueado(Usuario usuarioLogueado, int num_cuenta) // Ejemplo de metodo para traer datos por HQL
+	{	   
+		Session session = ch.getConexion();
+		String hql = " FROM Cuenta as cue INNER JOIN cue.cliente as cli INNER JOIN cli.usuario as usr WHERE cue.num_cuenta = :num_cuenta";
+		Query q = session.createQuery(hql);
+		q.setParameter("num_cuenta", num_cuenta);
+		Object[] resultado = (Object[]) q.uniqueResult();
+		boolean esCuentaDelUsuarioLogueado = false;
+		if(resultado != null) {
+			//resultado[0] es Cuenta
+			//resultado[1] es Cliente
+			//resultado[2] es Usuario
+			Usuario usr = (Usuario) resultado[2];
+			if(usr.getId() == usuarioLogueado.getId()) {
+				esCuentaDelUsuarioLogueado = true;
+			}
+		}
+		
+		return esCuentaDelUsuarioLogueado;
+		
+	}
+
+    
 }

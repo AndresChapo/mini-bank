@@ -2,11 +2,15 @@ package entidades;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,8 +23,6 @@ public class Cliente implements Serializable{
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="id_usuario")
-	private int id_usuario;
 	@Column(name="dni")
 	private String dni;
 	@Column(name="nombre")
@@ -45,14 +47,17 @@ public class Cliente implements Serializable{
 	private String fecha_nacimiento;
 	@Column(name="eliminado")
 	private boolean eliminado;
+	
+	@OneToOne(cascade= {CascadeType.ALL})
+	@JoinColumn(name="usuario")
+	private Usuario usuario; 
 
 	public Cliente()
 	{}
 	
-	public Cliente(int id_usuario, String dni, String nombre, String apellido, String telefono, String email, char sexo,
-			String nacionalidad, String direccion, String localidad, String provincia, String fecha_nacimiento) {
+	public Cliente(String dni, String nombre, String apellido, String telefono, String email, char sexo,
+			String nacionalidad, String direccion, String localidad, String provincia, String fecha_nacimiento, Usuario usuario) {
 		super();
-		this.id_usuario = id_usuario;
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -65,8 +70,18 @@ public class Cliente implements Serializable{
 		this.provincia = provincia;
 		this.fecha_nacimiento = fecha_nacimiento;
 		this.eliminado = false;
+		this.usuario = usuario;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	
 	public Integer getId() {
 		return id;
 	}
@@ -83,13 +98,6 @@ public class Cliente implements Serializable{
 		this.id = id;
 	}
 
-	public int getId_usuario() {
-		return id_usuario;
-	}
-
-	public void setId_usuario(int id_usuario) {
-		this.id_usuario = id_usuario;
-	}
 
 	public String getDni() {
 		return dni;
@@ -181,7 +189,7 @@ public class Cliente implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", id_usuario=" + id_usuario + ", dni=" + dni + ", nombre=" + nombre
+		return "Cliente [id=" + id + ", dni=" + dni + ", nombre=" + nombre
 				+ ", apellido=" + apellido + ", telefono=" + telefono + ", email=" + email + ", sexo=" + sexo
 				+ ", nacionalidad=" + nacionalidad + ", direccion=" + direccion + ", localidad=" + localidad
 				+ ", provincia=" + provincia + ", fecha_nacimiento=" + fecha_nacimiento + "]";

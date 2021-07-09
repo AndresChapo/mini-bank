@@ -1,12 +1,17 @@
 package entidades;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 	
 @Entity
@@ -18,18 +23,23 @@ public class Movimiento implements Serializable{
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="num_cuenta")
-	private Integer num_cuenta;
+	/*@Column(name="num_cuenta")
+	private Integer num_cuenta;*/
 	@Column(name="fecha")
-	private String fecha;
+	private Date fecha;
 	@Column(name="detalle")
 	private String detalle;
 	@Column(name="importe")
 	private float importe;
 	
-	public Movimiento(Integer num_cuenta, String fecha, String detalle, float importe) {
+	@ManyToOne(cascade= {CascadeType.ALL})
+	@JoinColumn(name="num_cuenta")
+	private Cuenta cuenta;
+
+	
+	public Movimiento(Cuenta cuenta, Date fecha, String detalle, float importe) {
 		super();
-		this.num_cuenta = num_cuenta;
+		this.cuenta = cuenta;
 		this.fecha = fecha;
 		this.detalle = detalle;
 		this.importe = importe;
@@ -43,19 +53,27 @@ public class Movimiento implements Serializable{
 		this.id = id;
 	}
 
-	public Integer getNum_cuenta() {
+	/*public Integer getNum_cuenta() {
 		return num_cuenta;
 	}
 
 	public void setNum_cuenta(Integer num_cuenta) {
 		this.num_cuenta = num_cuenta;
 	}
-
-	public String getFecha() {
+*/
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
+	public Cuenta getCliente() {
+		return cuenta;
+	}
+
+	public void setCliente(Cuenta cuenta) {
+		this.cuenta = cuenta;
+	}
+
+	public void Date(Date fecha) {
 		this.fecha = fecha;
 	}
 
@@ -77,8 +95,10 @@ public class Movimiento implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Movimiento [id=" + id + ", num_cuenta=" + num_cuenta + ", fecha=" + fecha + ", detalle=" + detalle
-				+ ", importe=" + importe + "]";
+		return "Movimiento [id=" + id + ", fecha=" + fecha + ", detalle=" + detalle + ", importe=" + importe
+				+ ", cuenta=" + cuenta + "]";
 	}
+
+
 	
 }

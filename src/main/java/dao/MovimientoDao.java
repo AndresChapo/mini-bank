@@ -1,9 +1,11 @@
 package dao;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import org.hibernate.Session;
 
+import entidades.Cuenta;
 import entidades.Movimiento;
 
 public class MovimientoDao {
@@ -22,18 +24,20 @@ public class MovimientoDao {
 		this.ch = ch;
 	}
 
-	public void agregarMovimiento (Integer nroCuenta, String detalle, float importe) {
+	public void agregarMovimiento (Cuenta cuenta, String detalle, float importe) {
     	Session session = ch.getConexion();
 		if(detalle.isEmpty()) {
 			detalle = "";
 		}
-		//TODO: Cambiar por date.
-		// Date _hoy = new Date();
 		
-		String hoy = "hoy";
-		Movimiento _movimiento = new Movimiento(nroCuenta, hoy , detalle, importe);
+		Date hoy = Date.valueOf(LocalDate.now());
 
-    	session.save(_movimiento);
+		Movimiento _movimiento = new Movimiento(cuenta, hoy , detalle, importe);
+		session.beginTransaction();
+		session.save(_movimiento);
+    	session.getTransaction().commit();
+
+    	
     }
 	
 }

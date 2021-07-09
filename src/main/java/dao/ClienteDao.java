@@ -13,6 +13,7 @@ import com.mysql.cj.xdevapi.Expression;
 
 import daoInterfaz.ClienteDaoInterfaz;
 import entidades.Cliente;
+import entidades.Usuario;
 
 public class ClienteDao implements ClienteDaoInterfaz {
 	
@@ -80,12 +81,12 @@ public class ClienteDao implements ClienteDaoInterfaz {
     	return results;
 	}
 
-    public Cliente getClienteByUsuarioId(int id_usuario) {
+    public Cliente getClienteByUsuario(Usuario usuario) {
     	session = ch.getConexion();    	
-		String hql = "FROM Cliente WHERE id_usuario = :id_usuario";
+		String hql = "FROM Cliente WHERE usuario = :usuario";
 		
 		Query q = session.createQuery(hql);
-		q.setParameter("id_usuario", id_usuario);
+		q.setParameter("usuario", usuario);
 		
 		Cliente _cliente = (Cliente) q.uniqueResult();
 		

@@ -14,10 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 import dao.ConfigHibernate;
 import entidades.Cliente;
 import entidades.Cuenta;
+import entidades.Tipo_cuenta;
+import entidades.Transferencia;
 import entidades.Usuario;
 import service.ClienteService;
 import service.CuentaService;
 import service.MovimientoService;
+import service.TransferenciaService;
 import service.UsuarioService;
 
 @Controller
@@ -29,6 +32,7 @@ public class MainController {
 	MovimientoService movimientoService;
 	UsuarioService usuarioService;
 	CuentaService cuentaService;
+	TransferenciaService transferenciaService;
 	
 	public MainController(){ 
 		mv = new ModelAndView();
@@ -38,6 +42,8 @@ public class MainController {
 		movimientoService = (MovimientoService)appContext.getBean("movimientoService");
 		usuarioService = (UsuarioService)appContext.getBean("usuarioService");
 		cuentaService = (CuentaService)appContext.getBean("cuentaService");
+		transferenciaService = (TransferenciaService)appContext.getBean("transferenciaService");
+		
 	}
 
 	public Object getAppContext(String nombreBean) {
@@ -99,6 +105,8 @@ public class MainController {
 		if(txtBoxClave.equals(usuario.getContrasenia())) {
 			mv.addObject("usuarioValido", "true");
 			 
+			usuarioService.setUsuarioLogueado(usuario);
+			
 			//si es admin va a la lista de clientes 
 			if(usuario.isEs_admin()) {
 				List<Cliente> listaClientes = clienteService.getListaClientes();
@@ -107,16 +115,11 @@ public class MainController {
 			// si no es admin va a la lista de cuentas
 			} else {
 				
-				
-				List<Cuenta> listaCuentas= cuentaService.getListaCuentasByUsuario(usuario.getId());
+				List<Cuenta> listaCuentas= cuentaService.getListaCuentasByUsuario(usuario);
 				mv.addObject("listaCuentas", listaCuentas);
 				mv.setViewName("cuentasLista");
 				 
 
-				/* POR FAVOR NO BORRAR ESTO ES PARA CUANDO EN LA LISTA DE CLIENTES CLICKEE EN EL BOTON DE TRANSFERIR
-				 * SALUDOS: Bruno Jajajaj
-				 */
-				
 			}
 			
 		}else {
@@ -175,22 +178,30 @@ public class MainController {
 		return mv;
 	}
 	   
-	@RequestMapping(value="irATransferencia.do", method=RequestMethod.POST)
-	public ModelAndView irATransferencia(int id_cuenta) {
+	@RequestMapping(value="irATransferencia.html", method=RequestMethod.GET)
+	public ModelAndView irATransferencia(int num_cuenta) {
 		
-		
-		System.out.println("Cuenta ->"+id_cuenta);
-		
-		mv.clear();
-		/*Cuenta _cuenta = cuentaService.getCuenta(id_cuenta);
+		Usuario _usr = usuarioService.getUsuarioLogueado();
+		Cuenta _cuenta = cuentaService.getCuenta(num_cuenta);
 		
 		if(_cuenta != null) {
-			List<Cuenta> listaDeCuentasPropias = cuentaService.getListaCuentasByTipoCuentaAndClienteId(_cuenta.getTipo_cuenta(), _cuenta.getId_cliente(), _cuenta.getNum_cuenta());
-			mv.addObject("listaDeCuentasPropias", listaDeCuentasPropias);
-			mv.addObject("Cuenta", _cuenta);
+			
+			Cliente cliente = _cuenta.getCliente();
+			Tipo_cuenta tipo_cuenta = _cuenta.getTipo_cuenta();
+			
+			List<Cuenta> listaDeCuentasPropias = cuentaService.getListaCuentasByTipoCuentaAndCliente(tipo_cuenta , cliente , _cuenta.getNum_cuenta());
+			boolean esUnaCuentaDelUsuario = cuentaService.checkCuentaByUsuario(_usr, num_cuenta);
+			  
+			if(esUnaCuentaDelUsuario == true) {
+				mv.addObject("listaDeCuentasPropias", listaDeCuentasPropias);
+				mv.addObject("CuentaActual", _cuenta);
+			} else {
+				mv.addObject("Error", true);
+			}
+			
 		} else {
 			mv.addObject("Error", true);
-		}*/
+		}
 
 		mv.setViewName("transferencia");
 
@@ -199,16 +210,51 @@ public class MainController {
 
 
 	@RequestMapping(value="realizarTransferencia.html", method=RequestMethod.POST)
-	public ModelAndView realizarTransferencia(String TXTadepositar, String TXTcbu, String TXTCuentaOrigenID, String detalle) {
+	public ModelAndView realizarTransferencia(String esPropia,int cuenta, String TXTcbu, String TXTsaldo, String TXTadepositar, String TXTdetalle, int cuentaOrigen) {
 		
 		mv.setViewName("cuentasLista"); 
-		 
-		//Movimiento m = new Movimiento();
 		
-		movimientoService.generarMovimientos(TXTadepositar, TXTcbu, TXTCuentaOrigenID, detalle);
 		
-		//movimientoService.realizarTransferencia();
+		if(esPropia == null) {
+			movimientoService.generarMovimientos(TXTadepositar, TXTcbu, cuentaOrigen, TXTdetalle);
+		} else {
+			movimientoService.generarMovimientoEnPropiaCuenta(TXTadepositar, cuentaOrigen, cuenta, TXTdetalle);			
+		}
 		 
 		return mv;
 	}
+	
+	@RequestMapping(value="irAMovimientos.html", method=RequestMethod.GET)
+	public ModelAndView irAMovimientos(int num_cuenta) {
+		
+		Usuario _usr = usuarioService.getUsuarioLogueado();
+		Cuenta _cuenta = cuentaService.getCuenta(num_cuenta);
+		
+		if(_cuenta != null) {
+			
+			List<Transferencia> listaDeTransferencias = transferenciaService.getListaDeTransferenciasByCuenta(_cuenta);
+			boolean esUnaCuentaDelUsuario = cuentaService.checkCuentaByUsuario(_usr, num_cuenta);
+			
+			for (Transferencia transferencia : listaDeTransferencias ) {
+				if(transferencia.getCuenta_origen().getNum_cuenta() == _cuenta.getNum_cuenta()) {
+					System.out.println("Enviado");
+				}
+			}
+
+			
+			if(esUnaCuentaDelUsuario == true) {
+				mv.addObject("listaDeTransferencias", listaDeTransferencias);
+				mv.addObject("CuentaActual", _cuenta);
+			} else {
+				mv.addObject("Error", true);
+			}
+		}
+		
+		mv.setViewName("movimientosLista"); 
+		
+		
+		 
+		return mv;
+	}
+
 }

@@ -57,16 +57,19 @@ function myFunction() {
   var LBLcbu = document.getElementById("LBLcbu");
   var LBLcuentaPropia = document.getElementById("LBLcuentaPropia");
   
+  
   if (checkBox.checked == true){
 	  select.style.display = "block";
 	  LBLcuentaPropia.style.display = "block";
 	  TXTcbu.style.display = "none";
 	  LBLcbu.style.display = "none";
+      TXTcbu.setAttribute("required")
   } else {
 	  select.style.display = "none";
 	  LBLcuentaPropia.style.display = "none";
 	  LBLcbu.style.display = "block";
 	  TXTcbu.style.display = "block";
+	  TXTcbu.removeAttribute("required"); 
   }
 }
 </script>
@@ -112,12 +115,12 @@ function myFunction() {
 			style="position: relative; top: 50px">
 			<div class="col-md-6" style="">
 			<!-- TODO REVISAR QUE ESTO SEA ASI REALMENTE */ -->  
-				<form action="ServletTransferencia" method="get">
+				<form action="realizarTransferencia.html" method="POST">
 					
 					<div class="form-row mb-1">
 						<div class="col" >
 							<div class="form-group form-check">
-								<input type="checkbox" class="form-check-input" id="myCheck" onclick="myFunction()">
+								<input type="checkbox" name="esPropia" class="form-check-input" id="myCheck" onclick="myFunction()">
 								<label class="form-check-label" for="myCheck"> Es una cuenta propia</label>
 							</div>
 						</div>
@@ -126,49 +129,48 @@ function myFunction() {
 					<div class="form-row mb-2">
 						<div class="col" >
 							<label id="LBLcuentaPropia" for="cuenta">Cuenta:</label> 
+							<input type="text" value="${CuentaActual.num_cuenta }" name="cuentaOrigen" style="display:none">
 							<select class="form-control" style="display: none;"
 								id="cuentaPropia" name=cuenta>
 								<c:forEach items="${listaDeCuentasPropias}" var="cuentaPropia">
-								  <option value="${cuentaPropia.num_cuenta}">${cuentaPropia.num_cuenta} - ${cuentaPropia.saldo}</option>
+								  <option value="${cuentaPropia.num_cuenta}">${cuentaPropia.nombre} - ${cuentaPropia.saldo}</option>
 								</c:forEach>
 							</select>
 							<label id="LBLcbu" for="cuenta">CBU al que va a depositar:</label> 
 							<input type="number" class="form-control" name="TXTcbu"
 								id="TXTcbu" aria-describedby="emailHelp" placeholder="Ingrese un CBU"
-								required>
+							>
 						</div>
 						<div class="col">
 							<label for="cuenta">Saldo:</label>
-							<input type="number" class="form-control" name="TXTsaldo" readonly
-								id="nombre" aria-describedby="emailHelp" placeholder="$25.000" value="$25.000"
-								required>
+							<input type="text" class="form-control" name="TXTsaldo" readonly
+								id="saldo" aria-describedby="saldoHelp" value="${CuentaActual.saldo }" required>
 						</div>
 						
-					</div>
-					<div class="form-row mb-2" >
-						<div class="col " >
-							
-						</div>
 					</div>
 
 					<div class="form-row mb-2">
 						<div class="col">
 							<input type="number" class="form-control" name="TXTadepositar"
 								id="nombre" aria-describedby="emailHelp" placeholder="Ingrese el importe a depositar. Ej: 2500"
-								required>
-						</div>
-						<div class="col">
+								required="">
 						</div>
 					</div>
+					
+					<div class="form-row mb-2">
+						<div class="col">
+							<input type="text" class="form-control" name="TXTdetalle"
+								id="nombre" aria-describedby="emailHelp" placeholder="Ingrese el detalle de la transferencia (opcional)"
+								required>
+						</div>
+					</div>
+					
 
 					
 
 					<div class="row d-flex justify-content-center"
 						style="position: relative; top: 30px">
-
-
-
-						<a class="btn btn-primary" href="clientesNuevoDireccion.jsp">Depósitar</a>
+						<button type="submit" class="btn btn-primary">Depósitar</button>
 					</div>
 
 					
