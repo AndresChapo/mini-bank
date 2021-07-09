@@ -135,7 +135,7 @@
 								<td>${cliente.fecha_nacimiento }</td>
 
 								<td style="width: 131px;"><a class="btn btn-primary"
-									href="clientesNuevoDatosPersonales.jsp">Nueva Cuenta</a></td>
+									href="NuevoCuenta.html?id=${cliente.id}">Nueva Cuenta</a></td>
 
 								<td><a class="btn btn-success" 
 								    href="verCliente.html?id=${cliente.id}">Ver</a></td>

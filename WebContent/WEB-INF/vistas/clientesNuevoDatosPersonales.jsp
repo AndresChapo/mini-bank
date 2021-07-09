@@ -123,7 +123,7 @@
 						 <label for="Apellido">Nacionalidad:</label>
 							<input type="text" class="form-control" name="TXTnacionalidad"
 								id="apellido" aria-describedby="emailHelp"
-								placeholder="Apellidos" >
+								placeholder="Nacionalidad" >
 						</div>
 						
 						<div class="col"> 
@@ -225,7 +225,8 @@
 					<div  class="row d-flex justify-content-center"style="position:relative; top:30px">
 					  
 					<input type="submit" class="btn btn-primary" name="BtnGuardar" value= "Guardar">
-					<input type="submit" class="btn btn-danger" name="BtnCancelar" value= "Cancelar">
+					
+					<a href="listadoClientes.html" class="btn btn-danger">Cancelar</a>
 					</div>
 				
 		

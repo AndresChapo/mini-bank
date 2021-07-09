@@ -47,39 +47,58 @@
 
 	 
 	<nav class="navbar navbar-expand-large navbar-light"
-		style="background-color: #e3f2fd;">  
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-		data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-		aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarNavDropdown">
-		<ul class="navbar-nav">
-			<div class="row">
+		style="background-color: #e3f2fd;">
+		<a class="navbar-brand" href="#">The Group Five Bank </a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+				<div class="row">
+
+					<div class="col-md-2">
+						<li class="nav-item active"><a class="nav-link" href="#">Home
+								<span class="sr-only">(current)</span>
+						</a></li>
+					</div>
 
 
-				<div class="col-md-2">
+                  <div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
-						href="#">Home <span class="sr-only">(current)</span>
+						href="NuevoClienteUsuario.html">Nuevo Cliente <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
- 
-				<div class="col-md-2">
-					<li class="nav-item active"><a class="nav-link"
-						href="#">Salir <span class="sr-only">(current)</span>
-					</a></li>
-				</div>
 
-			</div>
-		</ul>
-	</div>
+
+
+
+					<div class="col-md-2">
+
+						<a class="dropdown-item" href="#">Cuentas</a>
+
+					</div>
+
+					<div class="col-md-2">
+						<li class="nav-item active"><a class="nav-link" href="">Salir
+								<span class="sr-only">(current)</span>
+						</a></li>
+					</div>
+
+
+				</div>
+			</ul>
+
+
+		</div>
 	</nav>
 	<div class="container">
 	
 	
 		<div class="row mt-2">
 			<div class="col-md-12">
-				<h3 class="display-4 text-info">Asignar cuenta</h3>
+				<h3 class="display-4 text-info">Asignar Nueva cuenta</h3>
 				<div style="height:50px"></div>	
 			</div>
 		</div>
@@ -89,20 +108,29 @@
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-6" style="">
-				<form>
+			
+			
+				<form  action="AltaCuenta.html" method="post">
+					
+		<!-- ESTO SOLO SIRVE PARA QUE VIAJE EL ID CLIENTE YPONER HACER EL SAVE(MODIFICADO POR REVOLLO) -->
+					<input	type="hidden" class="form-control" name="TXTid"
+								id="mail" aria-describedby="emailHelp"
+								placeholder="Correo electronico" value="${cliente_cuenta.getId()}">
+					
 					<div class="form-row">
+				
 
 						<div class="col">
 							<label for="LblNombre">Nombre:</label>
 							<input readonly class="form-control-plaintext" type="text" name="TXTnombre"
 								id="nombre" aria-describedby="emailHelp" 
-								value="Nombre del usuario">
+								value="${cliente_cuenta.getNombre()}">
 						</div>
 						<div class="col">
 							<label for="LblApellido">Apellido:</label>
 							<input type="text" readonly class="form-control-plaintext" name="TXTapellido"
 								id="apellido" aria-describedby="emailHelp"
-								value="Apellido del usuario">
+								value="${cliente_cuenta.getApellido()}">
 						</div>
 
 					</div>
@@ -112,15 +140,15 @@
 							<label for="LblDni">Dni:</label>
 							<input type="text" readonly class="form-control-plaintext" name="TXTdni" id="dni"
 								aria-describedby="emailHelp"
-								value="Dni del usuario">
+								value="${cliente_cuenta.getDni()}">
 						</div>
-						<div class="col">
-							<label for="LblCuit">Cuit:</label>
-							<input type="text" readonly class="form-control-plaintext" name="TXTcuil"
-								id="cuil" aria-describedby="emailHelp"
-								value="Cuit del usurioa">
-						</div>
-						
+										<div class="col">
+							<label for="Tipo de cuenta">Tipo de cuenta:</label>
+							<select class="form-control"  id="cuentas" name=CuentasTipo>
+							<option value="1">Caja de ahorro pesos</option>
+							<option value="2">Caja de ahorro USD</option>
+							</select>
+						</div>		
 						
 					</div>
 					<div style="height:30px"></div>	
@@ -128,22 +156,18 @@
 						<div class="col">
 							<label for="LblMontoInicial">Monto Inicial: $10000</label>
 						</div>
-						<div class="col">
-							<label for="Tipo de cuenta">Tipo de cuenta:</label>
-							<select class="form-control"  id="cuentas" name=Cuentas>
-							<option value="1">Caja de ahorro pesos</option>
-							<option value="3">Caja de ahorro USD</option>
-							</select>
-						</div>
+						
 					</div>
 					
 					
 					
 					<div  class="row d-flex justify-content-center"style="position:relative; top:30px">
-					<input type="submit" name="BtnNuevaCuenta" value="Crear Cuenta">
-					</div>
-						
-			
+					
+					
+					<input type="submit" class="btn btn-success" name="BtnConfirmar" value= "Confirmar">
+					
+					
+					</div>	
 					
 
 				</form>

@@ -128,7 +128,9 @@
 						
 						
 					<input type="submit" class="btn btn-primary" name="BtnGuardar" value= "Guardar">
-					<input type="submit" class="btn btn-danger" name="BtnCancelar" value= "Cancelar">
+					
+
+					<a href="listadoClientes.html" class="btn btn-danger">Cancelar</a>
 					
 					</div>
 

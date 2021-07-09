@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Clientes Nuevos </title>
+<title>Cuenta Nueva Confirmada</title>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -81,7 +81,7 @@
  
 		<div class="row mt-2">
 			<div class="col-md-12">
-				<h3 class="display-4 text-info">Clientes</h3>
+				<h3 class="display-4 text-info">Clientes - Cuenta Nueva</h3>
 
 			</div>
 		</div>
@@ -90,17 +90,17 @@
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-10" style="">
-				 <h3 class="display-4 text-info">El cliente se Creo Correctamente</h3>
+				 <h3 class="display-4 text-info">La cuenta se creo Correctamente</h3>
 				<div style="height: 50px"></div>
 				 
 			</div>
-			
-			<div class="row mt-2 d-flex justify-content-center"
+
+		</div> 
+		
+		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			 
 				 <a href="listadoClientes.html" class="btn btn-primary">Volver al Listado</a> 
-
-		</div> 
 
 		</div> 
 
