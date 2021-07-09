@@ -9,6 +9,7 @@ import dao.ClienteDao;
 import dao.CuentaDao;
 import entidades.Cliente;
 import entidades.Cuenta;
+import entidades.Tipo_cuenta;
 import entidades.Usuario;
 
 public class CuentaService {
@@ -32,19 +33,15 @@ public class CuentaService {
 	public static List<Cuenta> getListaCuentasByUsuario(Usuario usuario)
 	{	   
 		ClienteDao clienteService = new ClienteDao();
-<<<<<<< HEAD
 		Cliente _cliente = clienteService.getClienteByUsuario(usuario);
-=======
-		Cliente _cliente = clienteService.getClienteByUsuario(usuario_id);
->>>>>>> stash
 
 		List<Cuenta> listaCuentas = cuentaDao.getListaCuentasByCliente(_cliente.getId());
 
 		return listaCuentas; 
 	}
 	
-	public static List<Cuenta> getListaCuentasByTipoCuentaAndClienteId (int tipo_cuenta, int cliente_id, int current_num_cuenta){
-		return cuentaDao.getListaCuentasByTipoCuentaAndClienteId(tipo_cuenta, cliente_id, current_num_cuenta);
+	public static List<Cuenta> getListaCuentasByTipoCuentaAndCliente (Tipo_cuenta tipo_cuenta, Cliente cliente, int current_num_cuenta){
+		return cuentaDao.getListaCuentasByTipoCuentaAndCliente(tipo_cuenta, cliente, current_num_cuenta);
 	}
 	
 	public static boolean checkCuentaByUsuario(Usuario usuarioLogueado, int num_cuenta) {

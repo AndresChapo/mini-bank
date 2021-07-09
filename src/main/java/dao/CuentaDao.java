@@ -8,6 +8,7 @@ import org.hibernate.Session;
 
 import entidades.Cliente;
 import entidades.Cuenta;
+import entidades.Tipo_cuenta;
 import entidades.Usuario;
 
 public class CuentaDao {
@@ -63,7 +64,7 @@ public class CuentaDao {
 		
 	}
     
-    public List<Cuenta> getListaCuentasByTipoCuentaAndClienteId(int tipo_cuenta, int cliente_id, int current_num_cuenta) {
+    public List<Cuenta> getListaCuentasByTipoCuentaAndCliente(Tipo_cuenta tipo_cuenta, Cliente cliente_id, int current_num_cuenta) {
 		Session session = ch.getConexion();
     	// Trae todas las cuentas que sean del cliente que tengan el mismo tipo de cuenta, y exceptua la cuenta de la que se va a hacer la transferencia
 		String hql = "FROM Cuenta WHERE id_cliente = :cliente_id AND tipo_cuenta = :tipo_cuenta AND num_cuenta != :current_cuenta_id";

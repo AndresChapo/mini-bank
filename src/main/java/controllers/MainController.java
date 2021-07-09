@@ -17,10 +17,7 @@ import dao.ConfigHibernate;
 import entidades.Cliente;
 import entidades.Cuenta;
 import entidades.Tipo_cuenta;
-<<<<<<< HEAD
-=======
 import entidades.Transferencia;
->>>>>>> stash
 import entidades.Usuario;
 import service.ClienteService;
 import service.CuentaService;
@@ -115,7 +112,7 @@ public class MainController {
 				// si no es admin va a la lista de cuentas
 			} else {
 
-				List<Cuenta> listaCuentas = cuentaService.getListaCuentasByUsuario(usuario.getId());
+				List<Cuenta> listaCuentas = cuentaService.getListaCuentasByUsuario(usuario);
 				mv.addObject("listaCuentas", listaCuentas);
 				mv.setViewName("cuentasLista");
 
