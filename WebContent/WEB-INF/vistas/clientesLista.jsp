@@ -68,6 +68,12 @@
 					</div>
 
 
+                  <div class="col-md-2">
+					<li class="nav-item active"><a class="nav-link"
+						href="NuevoClienteUsuario.html">Nuevo Cliente <span class="sr-only">(current)</span>
+					</a></li>
+				</div>
+
 
 
 

@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>clienteNuevoSesion</title>
+<title>Clientes Nuevos </title>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -34,20 +36,14 @@
 	href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/sc-2.0.3/sp-1.2.1/datatables.min.css" />
 
 <script type="text/javascript"
-	src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/sc-2.0.3/sp-1.2.1/datatables.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#tablaCuentas').DataTable();
-	});
-</script>
-
-
+	src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/sc-2.0.3/sp-1.2.1/datatables.min.js"></script> 
 </head>
-<body>
 
-	 
+<body>
+ 
 	<nav class="navbar navbar-expand-large navbar-light"
-		style="background-color: #e3f2fd;">  
+		style="background-color: #e3f2fd;"> <a class="navbar-brand" 
+		href="#">The Group Five Bank  </a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
 		aria-expanded="false" aria-label="Toggle navigation">
@@ -57,88 +53,51 @@
 		<ul class="navbar-nav">
 			<div class="row">
 
-
 				<div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
 						href="#">Home <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
- 
+ 				 
+				<div class="col-md-2">
+
+					<a class="dropdown-item"
+						href="#">Cuentas</a>
+
+				</div>  
+
 				<div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
-						href="#">Salir <span class="sr-only">(current)</span>
+						href="">Salir <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
-
+ 
 			</div>
 		</ul>
+ 
 	</div>
 	</nav>
 	<div class="container">
-	
-	<div class="row mt-2">
+ 
+		<div class="row mt-2">
 			<div class="col-md-12">
-				<h3 class="display-4 text-info">Alta cliente</h3>
-				<div style="height: 50px"></div>
+				<h3 class="display-4 text-info">Clientes</h3>
+
 			</div>
 		</div>
-		<div class="row mt-2 d-flex justify-content-center">
-			<h2>Datos de sesion</h2>
-		</div>
+		
+	
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
-			<div class="col-md-6" style="">
-			
-			
-				<form action="AltaUsuario.html" method="post">
-				
-				
-				
-					<div class="form-row">
-						<div class="col">
-							<input type="text" class="form-control" name="TXTusuario" id="usuario"
-								aria-describedby="emailHelp" placeholder="Nombre de usuario" required>
-						</div>
-						
-					</div>
-					<div style="height: 30px"></div>
-					<div class="form-row">
-						<div class="col">
-							 <input	type="password" class="form-control" name="TXTpass"
-								id="pass" aria-describedby="emailHelp"placeholder="Contraseña" required>
-								<small id="passHelp" class="form-text text-muted">El usuario deberá cambiarla en su primir inicio de sesion.</small>
-						</div>
-					
-					</div>
-					<div style="height: 30px"></div>
-					<div class="form-row">
-						<div class="col">
-							 <input	type="password" class="form-control" name="TXTrepetirpass"
-								id="repetirpass" aria-describedby="emailHelp"	placeholder="Repetir contraseña" required>
-						</div>
-					
-					</div>
-					
-					
-					
-					<div class="row d-flex justify-content-center"
-						style="position: relative; top: 30px">		
-								
-						
-						
-						
-					<input type="submit" class="btn btn-primary" name="BtnGuardar" value= "Guardar">
-					<input type="submit" class="btn btn-danger" name="BtnCancelar" value= "Cancelar">
-					
-					</div>
-
-			
-				</form>
+			<div class="col-md-10" style="">
+				 <h3 class="display-4 text-info">El cliente se Creo Correctamente</h3>
+				<div style="height: 50px"></div>
+				 
 			</div>
 
-		</div>
-	
-	</div>
+		</div> 
 
+	</div>
 </body>
+
 </html>
