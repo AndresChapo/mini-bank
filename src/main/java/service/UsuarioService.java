@@ -9,6 +9,7 @@ import entidades.Usuario;
 public class UsuarioService {
 
 	static UsuarioDao usuarioDao;
+	static Usuario usuarioLogueado;
 
 	public UsuarioDao getUsuarioDao() {
 		return usuarioDao;
@@ -17,6 +18,15 @@ public class UsuarioService {
 	public void setUsuarioDao(UsuarioDao usuarioDao) {
 		this.usuarioDao = usuarioDao;
 	}
+	
+	public static Usuario getUsuarioLogueado() {
+		return usuarioLogueado;
+	}
+
+	public static void setUsuarioLogueado(Usuario usuarioLogueado) {
+		UsuarioService.usuarioLogueado = usuarioLogueado;
+	}
+
 	public static Usuario getUsuarioByNombreUsuario(String usuario) // Ejemplo de metodo para traer datos por HQL
 	{	   
 		Usuario _usuario = (Usuario) usuarioDao.getUsuarioByNombreUsuario(usuario); 

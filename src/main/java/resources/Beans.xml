@@ -6,11 +6,15 @@
 
 
 	<!-- EL CONTROLADOR ES INSTANCIADO AUTOMATICAMENTE POR EL SPRING-SERVLET --> 
+	<bean id="conexionHibernate" class="dao.ConfigHibernate" init-method="abrirConexion" destroy-method="cerrarSession" scope="singleton">
+	</bean>
+	
 
 	<!-- INSTANCIAS DE LOS SERVICIOS PARA QUE USEN EL CONTROLADOR --> 
 	<bean id="movimientoService" class="service.MovimientoService" scope="singleton"> 
 		<property name="movimientoDao" ref="movimientoDao"></property> 
 		<property name="cuentaService" ref="cuentaService"></property> 
+		<property name="transferenciaService" ref="transferenciaService"></property> 
 	</bean>
 	
 	<bean id="cuentaService" class="service.CuentaService" scope="singleton"> 
@@ -23,7 +27,14 @@
 			
 	<bean id="usuarioService" class="service.UsuarioService" scope="singleton"> 
 		<property name="usuarioDao" ref="usuarioDao"></property> 
+		<property name="usuarioLogueado" ref="usuarioLogueado"></property> 
 	</bean>
+	
+	<bean id="transferenciaService" class="service.TransferenciaService" scope="singleton"> 
+		<property name="transferenciaDao" ref="transferenciaDao"></property> 
+	</bean>
+	
+	
 
 	<!-- INSTANCIAS DE LOS OBJETOS DAO PARA QUE USEN LOS SERVICIOS  --> 
 	<bean id="clienteDao" class="dao.ClienteDao" scope="singleton"> 
@@ -41,9 +52,17 @@
 	<bean id="usuarioDao" class="dao.UsuarioDao" scope="singleton"> 
 		<property name="ch" ref="conexionHibernate"></property> 
 	</bean>	
+	
+	<bean id="transferenciaDao" class="dao.TransferenciaDao" scope="singleton"> 
+		<property name="ch" ref="conexionHibernate"></property> 
+	</bean>	
+	
+	
+	
+	<bean id="usuarioLogueado" class="entidades.Usuario" scope="singleton"></bean>	
+	
+	
 	<!-- INSTANCIAS DE LA DATABASE PARA QUE USEN LOS DAO  --> 
-	<bean id="conexionHibernate" class="dao.ConfigHibernate" init-method="abrirConexion" destroy-method="cerrarSession" scope="singleton">
-	</bean>
 
 <!-- OTROS EJEMPLOS DE BEANS
 

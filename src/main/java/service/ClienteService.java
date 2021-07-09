@@ -7,6 +7,7 @@ import org.hibernate.Query;
 
 import dao.ClienteDao; 
 import entidades.Cliente;
+import entidades.Usuario;
 import serviceInterfaz.ClienteServiceInterfaz;
 
 public class ClienteService implements ClienteServiceInterfaz {
@@ -45,9 +46,9 @@ public class ClienteService implements ClienteServiceInterfaz {
     	return clienteDao.getListaClientes();
 	}
     
-    public static Cliente getClienteByUsuarioId(int id_usuario) {
+    public static Cliente getClienteByUsuario(Usuario usuario) {
   
-		return clienteDao.getClienteByUsuarioId(id_usuario);
+		return clienteDao.getClienteByUsuario(usuario);
 		
 	}
     

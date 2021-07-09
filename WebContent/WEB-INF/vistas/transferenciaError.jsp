@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="entidades.Cuenta"%>    
-    <%@page import="entidades.Transferencia"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Movimientos</title>
+<title>Error</title>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -38,20 +36,14 @@
 	href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/sc-2.0.3/sp-1.2.1/datatables.min.css" />
 
 <script type="text/javascript"
-	src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/sc-2.0.3/sp-1.2.1/datatables.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#tablaMovimientos').DataTable();
-	});
-</script>
-
-
+	src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/sc-2.0.3/sp-1.2.1/datatables.min.js"></script> 
 </head>
-<body>
 
-	 
+<body>
+ 
 	<nav class="navbar navbar-expand-large navbar-light"
-		style="background-color: #e3f2fd;">  
+		style="background-color: #e3f2fd;"> <a class="navbar-brand" 
+		href="#">The Group Five Bank  </a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
 		aria-expanded="false" aria-label="Toggle navigation">
@@ -61,76 +53,49 @@
 		<ul class="navbar-nav">
 			<div class="row">
 
-
 				<div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
 						href="#">Home <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
- 
+ 				 
+				<div class="col-md-2">
+
+					<a class="dropdown-item"
+						href="#">Cuentas</a>
+
+				</div>  
+
 				<div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
-						href="#">Salir <span class="sr-only">(current)</span>
+						href="">Salir <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
-
+ 
 			</div>
 		</ul>
+ 
 	</div>
 	</nav>
 	<div class="container">
  
 		<div class="row mt-2">
 			<div class="col-md-12">
-				<h3 class="display-4 text-info">Movimientos</h3>
+				<h3 class="display-4 text-info">Transferencia</h3>
 
 			</div>
-		</div> 
+		</div>
+		
+	
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-10" style="">
-				<form>
-					  
-					<div style="height: 50px"></div>
-					<table class="table" id="tablaMovimientos">
-						<thead class="table-info">
-							<tr>
-								<th scope="col">Accion</th>
-								<th scope="col">Importe</th>
-								<th scope="col">A la cuenta</th>
-								<th scope="col">Fecha</th>
-							</tr>
-						</thead>
-						<tbody>
-						
-					      
-							<c:set var = "nroCuentaActual" scope = "session" value = "${CuentaActual.getNum_cuenta()}"/>
-						  	<c:forEach items="${listaDeTransferencias}" var="transferencia">
-						  		<c:set var = "nroCuentaOrigen" scope = "session" value = "${transferencia.getCuenta_origen().getNum_cuenta()}"/>	
-								<tr>
-									<c:choose>
-										<c:when test= "${nroCuentaActual == nroCuentaOrigen}">
-											<td>Enviado</td>
-										</c:when>
-										<c:otherwise>
-											<td>Recibido</td>
-										</c:otherwise>
-									</c:choose>
-										<td>$ ${ transferencia.getImporte() }</td>
-										<td>${ transferencia.getCuenta_destino().getCliente().getNombre() } ${ transferencia.getCuenta_destino().getCliente().getApellido() } ${ transferencia.getCuenta_destino().getCbu() }</td>
-										<td>${ transferencia.getFecha() }</td>
-									
-										
-								</tr>
-		  					</c:forEach>
-							
-						</tbody>
-					</table>
-  
-				</form>
+				 <h3 class="display-4 text-error">${ Error }</h3>
+				<div style="height: 50px"></div>
 			</div>
+		</div> 
 
-		</div>
 	</div>
 </body>
+
 </html>
