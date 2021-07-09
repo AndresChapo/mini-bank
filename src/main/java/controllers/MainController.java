@@ -17,6 +17,10 @@ import dao.ConfigHibernate;
 import entidades.Cliente;
 import entidades.Cuenta;
 import entidades.Tipo_cuenta;
+<<<<<<< HEAD
+=======
+import entidades.Transferencia;
+>>>>>>> stash
 import entidades.Usuario;
 import service.ClienteService;
 import service.CuentaService;

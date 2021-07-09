@@ -32,7 +32,11 @@ public class CuentaService {
 	public static List<Cuenta> getListaCuentasByUsuario(Usuario usuario)
 	{	   
 		ClienteDao clienteService = new ClienteDao();
+<<<<<<< HEAD
 		Cliente _cliente = clienteService.getClienteByUsuario(usuario);
+=======
+		Cliente _cliente = clienteService.getClienteByUsuario(usuario_id);
+>>>>>>> stash
 
 		List<Cuenta> listaCuentas = cuentaDao.getListaCuentasByCliente(_cliente.getId());
 
