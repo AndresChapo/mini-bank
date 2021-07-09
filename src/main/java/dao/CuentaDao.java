@@ -27,7 +27,6 @@ public class CuentaDao {
 		return ch;
 	}
 
-
 	public void setCh(ConfigHibernate ch) {
 		this.ch = ch;
 	}
@@ -63,7 +62,7 @@ public class CuentaDao {
 	
     public Cuenta getCuentaByCBU(String cbu) {
 		Session session = ch.getConexion();		 
-		String hql = "FROM Cuentas WHERE cbu = :cbu";
+		String hql = "FROM Cuenta WHERE cbu = :cbu";
 		Query q = session.createQuery(hql);
 		q.setParameter("cbu", cbu);
 		
@@ -76,18 +75,13 @@ public class CuentaDao {
     public List<Cuenta> getListaCuentasByTipoCuentaAndCliente(Tipo_cuenta tipo_cuenta, Cliente cliente_id, int current_num_cuenta) {
 		Session session = ch.getConexion();
     	// Trae todas las cuentas que sean del cliente que tengan el mismo tipo de cuenta, y exceptua la cuenta de la que se va a hacer la transferencia
-		String hql = "FROM Cuenta WHERE id_cliente = :cliente_id AND tipo_cuenta = :tipo_cuenta AND num_cuenta != :current_cuenta_id";
+		String hql = "FROM Cuenta WHERE id_cliente = :cliente_id AND tipo_cuenta = :tipo_cuenta AND num_cuenta != :current_num_cuenta";
 		Query q = session.createQuery(hql);
-		
 		q.setParameter("cliente_id", cliente_id);
 		q.setParameter("tipo_cuenta", tipo_cuenta);
-		q.setParameter("current_cuenta_id", current_num_cuenta);
-		System.out.println(q.getQueryString());
+		q.setParameter("current_num_cuenta", current_num_cuenta);
 		List<Cuenta> listaCuentas = q.list();    
 		
-		for (Cuenta _cue : listaCuentas ) {
-		    System.out.println(_cue.toString());
-		}
  		return listaCuentas;
 		
 	}
@@ -134,25 +128,17 @@ public class CuentaDao {
 		session.beginTransaction();
     	session.save(cuentaNueva);
     	session.getTransaction().commit();
-    	
-    	
     }
     
     //AGREGO FUNCION PARA TRAER EL ULTIMO CBU EN LA BASE
     
     public String obtenerUltimoCBU() {
-		
     	Session session = ch.getConexion();		 
 		String hql = "SELECT c.cbu FROM Cuenta c ORDER BY c.num_cuenta DESC";
 		Query q = session.createQuery(hql);
 		q.setMaxResults(1);
-		
-		
-		
 		String Cbu =  (String)q.uniqueResult();
-		
 		return Cbu;
-		
 	}
     
     //MODIFICACION REVOLLO FIN

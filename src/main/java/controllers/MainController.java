@@ -81,8 +81,6 @@ public class MainController {
 		return mv;
 	}
 
-	// fdas
-
 	/**
 	 * @RequestMapping(value ="/eliminarUsuario.html" , method= { RequestMethod.GET,
 	 *                       RequestMethod.POST}) public ModelAndView
@@ -100,12 +98,12 @@ public class MainController {
 		System.out.println(txtBoxUsuario);
 		System.out.println(txtBoxClave);
 
-		// Usuario usuario = ch.getUsuarioByNombreUsuario(txtBoxUsuario);
 		Usuario usuario = (Usuario) usuarioService.getUsuarioByNombreUsuario(txtBoxUsuario);
-		// System.out.println(claveEnBD);
 
 		if (txtBoxClave.equals(usuario.getContrasenia())) {
 			mv.addObject("usuarioValido", "true");
+
+			usuarioService.setUsuarioLogueado(usuario);
 
 			// si es admin va a la lista de clientes
 			if (usuario.isEs_admin()) {
@@ -119,11 +117,6 @@ public class MainController {
 				mv.addObject("listaCuentas", listaCuentas);
 				mv.setViewName("cuentasLista");
 
-				/*
-				 * POR FAVOR NO BORRAR ESTO ES PARA CUANDO EN LA LISTA DE CLIENTES CLICKEE EN EL
-				 * BOTON DE TRANSFERIR SALUDOS: Bruno Jajajaj
-				 */
-
 			}
 
 		} else {
@@ -132,7 +125,6 @@ public class MainController {
 			mv.setViewName("login");
 		}
 
-		// mv.addObject("usuarioValido", "true");
 		return mv;
 	}
 
@@ -151,22 +143,22 @@ public class MainController {
 	@RequestMapping(value = "modificacionCliente.html", method = RequestMethod.GET)
 	public ModelAndView eventoModificacionCliente(@RequestParam String id) {
 
-		mv.setViewName("clientesModificar");
-
 		if (id != null) {
 			Cliente c = clienteService.getCliente(Integer.parseInt(id));
 			mv.addObject("cliente", c);
 		} else {
 			System.out.println("el id viene null");
 		}
+		
+		mv.setViewName("clientesModificar");
 
 		return mv;
 	}
 
 	@RequestMapping(value = "modificarCliente.html", method = RequestMethod.POST)
 	public ModelAndView modificarCliente(@RequestParam(required = false) String TXTid, String TXTnombre,
-			String TXTapellido, String TXTdni, String TXTfecha, char TXTsexo, String TXTprovincia, String TXTlocalidad,
-			String TXTdomicilio, String TXTtelefono, String TXTcorreo) {
+		String TXTapellido, String TXTdni, String TXTfecha, char TXTsexo, String TXTprovincia, String TXTlocalidad,
+		String TXTdomicilio, String TXTtelefono, String TXTcorreo) {
 
 		Cliente c = clienteService.parametrizarCliente(TXTid, TXTnombre, TXTapellido, TXTdni, TXTfecha, TXTsexo,
 				TXTprovincia, TXTlocalidad, TXTdomicilio, TXTtelefono, TXTcorreo);
@@ -190,10 +182,11 @@ public class MainController {
 			
 			List<Cuenta> listaDeCuentasPropias = cuentaService.getListaCuentasByTipoCuentaAndCliente(tipo_cuenta , cliente , _cuenta.getNum_cuenta());
 			boolean esUnaCuentaDelUsuario = cuentaService.checkCuentaByUsuario(_usr, num_cuenta);
-			  
+			  System.out.println("esUnaCuentaDelUsuario" + esUnaCuentaDelUsuario);
 			if(esUnaCuentaDelUsuario == true) {
 				mv.addObject("listaDeCuentasPropias", listaDeCuentasPropias);
 				mv.addObject("CuentaActual", _cuenta);
+				mv.setViewName("transferencia");
 			} else {
 				mv.addObject("Error", true);
 			}
@@ -202,7 +195,7 @@ public class MainController {
 			mv.addObject("Error", true);
 		}
 
-		mv.setViewName("transferencia");
+		
 
 		return mv;
 	}
