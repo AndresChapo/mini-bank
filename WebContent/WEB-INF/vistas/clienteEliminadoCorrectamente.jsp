@@ -90,10 +90,18 @@
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-10" style="">
+			
 				 <h3 class="display-4 text-info">El cliente se Elimino Correctamente</h3>
 				<div style="height: 50px"></div>
 				 
 			</div>
+
+		</div> 
+		
+		<div class="row mt-2 d-flex justify-content-center"
+			style="position: relative; top: 50px">
+			 
+				 <a href="listadoClientes.html" class="btn btn-primary">Volver al Listado</a> 
 
 		</div> 
 

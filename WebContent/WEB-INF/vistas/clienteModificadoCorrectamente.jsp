@@ -96,6 +96,13 @@
 			</div>
 
 		</div> 
+		
+		<div class="row mt-2 d-flex justify-content-center"
+			style="position: relative; top: 50px">
+			 
+				 <a href="listadoClientes.html" class="btn btn-primary">Volver al Listado</a> 
+
+		</div> 
 
 	</div>
 </body>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,61 +50,60 @@
 
 
 	<nav class="navbar navbar-expand-large navbar-light"
-		style="background-color: #e3f2fd;"> <a class="navbar-brand" 
-		href="#">The Group Five Bank  </a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-		data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-		aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarNavDropdown">
-		<ul class="navbar-nav">
-			<div class="row">
+		style="background-color: #e3f2fd;">
+		<a class="navbar-brand" href="#">The Group Five Bank </a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+				<div class="row">
 
-				<div class="col-md-2">
-					<li class="nav-item active"><a class="nav-link"
-						href="#">Home <span class="sr-only">(current)</span>
-					</a></li>
+					<div class="col-md-2">
+						<li class="nav-item active"><a class="nav-link" href="#">Home
+								<span class="sr-only">(current)</span>
+						</a></li>
+					</div>
+
+
+
+
+
+					<div class="col-md-2">
+
+						<a class="dropdown-item" href="#">Cuentas</a>
+
+					</div>
+
+					<div class="col-md-2">
+						<li class="nav-item active"><a class="nav-link" href="">Salir
+								<span class="sr-only">(current)</span>
+						</a></li>
+					</div>
+
+
 				</div>
+			</ul>
 
 
-
-
-				 
-				<div class="col-md-2">
-
-					<a class="dropdown-item"
-						href="#">Cuentas</a>
-
-				</div>  
-
-				<div class="col-md-2">
-					<li class="nav-item active"><a class="nav-link"
-						href="">Salir <span class="sr-only">(current)</span>
-					</a></li>
-				</div>
-
-
-			</div>
-		</ul>
-
-
-	</div>
+		</div>
 	</nav>
 	<div class="container">
- 
+
 		<div class="row mt-2">
 			<div class="col-md-12">
 				<h3 class="display-4 text-info">Clientes</h3>
 
 			</div>
 		</div>
-		
-	
+
+
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-10" style="">
-				 
+
 				<div style="height: 50px"></div>
 				<table class="table" id="tablaClientes">
 					<thead class="table-info">
@@ -120,30 +119,36 @@
 						</tr>
 					</thead>
 					<tbody>
-					
-					
-					  <c:forEach items="${listaClientes}" var="cliente">
-					    <tr>
-	  						<th scope="row">${cliente.id }</th>
-							<td>${cliente.nombre } ${cliente.apellido }</td>
-							<td>${cliente.dni }</td>
-							<td>${cliente.fecha_nacimiento }</td>
-							<td style="width: 131px;"><a class="btn btn-primary" href="clientesNuevoDatosPersonales.jsp">Nueva Cuenta</a></td>
- 							<td><a class="btn btn-success"
-								href="#">Ver</a></td>
-							<td><a class="btn btn-info"
-								href="modificacionCliente.html?id=${cliente.id}">Modificar</a></td>
-							<td><a class="btn btn-danger" 
-							href="eliminarCliente.html?id=${cliente.id}">Eliminar</a></td>
-					    </tr>
-					  </c:forEach>
-					
- 
+
+
+						<c:forEach items="${listaClientes}" var="cliente">
+							<tr>
+								<th scope="row">${cliente.id }</th>
+								<td>${cliente.nombre }${cliente.apellido }</td>
+								<td>${cliente.dni }</td>
+								<td>${cliente.fecha_nacimiento }</td>
+
+								<td style="width: 131px;"><a class="btn btn-primary"
+									href="clientesNuevoDatosPersonales.jsp">Nueva Cuenta</a></td>
+
+								<td><a class="btn btn-success" 
+								    href="verCliente.html?id=${cliente.id}">Ver</a></td>
+
+								<td><a class="btn btn-info"
+									href="modificacionCliente.html?id=${cliente.id}">Modificar</a></td>
+
+								<td><a class="btn btn-danger"
+									href="eliminarCliente.html?id=${cliente.id}">Eliminar</a></td>
+
+							</tr>
+						</c:forEach>
+
+
 					</tbody>
 				</table>
 			</div>
 
-		</div> 
+		</div>
 
 	</div>
 </body>

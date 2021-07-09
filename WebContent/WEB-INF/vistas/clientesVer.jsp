@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ModificarClientess</title>
+<title>Detalle Cliente</title>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -78,36 +78,29 @@
 	
 	<div class="row mt-2">
 			<div class="col-md-12">
-				<h3 class="display-4 text-info">Modificar cliente</h3>
+				<h3 class="display-4 text-info">Detalle Cliente</h3>
 				<div style="height:50px"></div>	
 			</div>
 		</div>
-		<div class="row mt-2 d-flex justify-content-center">
-		<h2>Modificar Datos Personales</h2>
-		</div>
+		 
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-6" style="">
-				<form action="modificarCliente.html" method="post">
-				
-				<input	type="hidden" class="form-control" name="TXTid"
-								id="mail" aria-describedby="emailHelp"
-								placeholder="Correo electronico" value="${cliente.getId()}">
-				
+				  
 					<div class="form-row">
 
 						<div class="col">
 						 <label for="Nombre">Nombre:</label>
 							<input type="text" class="form-control" name="TXTnombre"
 								id="nombre" aria-describedby="emailHelp" placeholder="Nombre" value="${cliente.getNombre()}"
-								required="Ingrese Nombre">
+								readonly>
 						</div>
 						<div class="col">
 						 <label for="Apellido">Apellido:</label>
 							<input type="text" class="form-control" name="TXTapellido"
 								id="apellido" aria-describedby="emailHelp"
 								placeholder="Apellidos" value="${cliente.getApellido()}"
-								required="Ingrese Apellido">
+								readonly>
 						</div>
 
 					</div>
@@ -118,7 +111,7 @@
 						 <label for="Dni">Dni:</label>
 							<input type="text" class="form-control" name="TXTdni" id="dni"
 								aria-describedby="emailHelp" placeholder="DNI" value="${cliente.getDni()}"
-								required="Ingrese Dni">
+								readonly>
 						</div> 
 						
 						
@@ -133,57 +126,31 @@
 						<label for="contraseña">Fecha de Nacimiento:</label>
 							<input type="date" class="form-control" name="TXTfecha" id="nacimiento"
 								aria-describedby="emailHelp" placeholder="DD" value="${cliente.getFecha_nacimiento()}"
-								required="Ingrese Fecha de Nacimiento">
+								readonly>
 						</div>
 					
 						<div class="col">
 							<label for="sexo">Sexo:</label>
-							<select class="form-control"  id="sexo" name="TXTsexo">
-							<option value="M">Masculino</option>
-							<option value="F">Femenino</option>
-							</select>
+							<input type="text" class="form-control" name="TXTsexo"
+								id="sexo" aria-describedby="emailHelp" value="${cliente.getSexo()}"
+								readonly>
 						</div>
 					</div>
 					<div class="form-row">
 
 						<div class="col">
-							<label for="provincia">Provincia:
-							</label> <select class="form-control"
-								id="provincia" name=TXTprovincia>
-								<option value="CABA">CABA</option>
-								<option value="Buenos Aires">Buenos Aires</option>
-								<option value="Catamarca">Catamarca</option>
-								<option value="Chaco">Chaco</option>
-								<option value="Chubut">Chubut</option>
-								<option value="Cordoba">Cordoba</option>
-								<option value="Corrientes">Corrientes</option>
-								<option value="Entre rios">Entre rios</option>
-								<option value="Formosa">Formosa</option>
-								<option value="Jujuy">Jujuy</option>
-								<option value="La Pampa">La Pampa</option>
-								<option value="La rioja">La rioja</option>
-								<option value="Mendoza">Mendoza</option>
-								<option value="Misiones">Misiones</option>
-								<option value="Neuquen">Neuquen</option>
-								<option value="Rio Negro">Rio Negro</option>
-								<option value="Salta">Salta</option>
-								<option value="San Juan">San Juan</option>
-								<option value="San Luis">San Luis</option>
-								<option value="Santa fe">Santa fe</option>
-								<option value="Santiago del estero">Santiago del estero</option>
-								<option value="Tierra del fuego">Tierra del fuego</option>
-								<option value="Tucuman">Tucuman</option>
-							
-								
-								
-							</select>
+							<label for="provincia">Provincia:</label>
+							<input type="text" class="form-control" name="TXTprovincia"
+								id="provincia" aria-describedby="emailHelp" value="${cliente.getProvincia()}"
+								readonly>
+ 
 						</div>
 						<div class="col">
 						<label for="contraseña">Localidad:</label>
 							<input type="text" class="form-control" name="TXTlocalidad"
 								id="localidad" aria-describedby="emailHelp"
-								placeholder="localidad" value="${cliente.getLocalidad()}"
-								required="Ingrese Localidad">
+								value="${cliente.getLocalidad()}"
+								readonly>
 						</div>
 
 					</div>
@@ -192,8 +159,8 @@
 						<div class="col">
 						<label for="contraseña">Direccion:</label>
 							<input type="text" class="form-control" name="TXTdomicilio" id="domicilio"
-								aria-describedby="emailHelp" placeholder="Domicilio" value="${cliente.getDireccion()}"
-								required="Ingrese Direccion">
+								aria-describedby="emailHelp" value="${cliente.getDireccion()}"
+								readonly>
 						</div>
 						
 					</div>
@@ -206,8 +173,8 @@
 						<label for="contraseña">Telefono:</label>
 							 <input	type="text" class="form-control" name="TXTtelefono"
 								id="telefono" aria-describedby="emailHelp"
-								placeholder="telefono" value="${cliente.getTelefono()}"
-								required="Ingrese Telefono">
+								value="${cliente.getTelefono()}"
+								readonly>
 						</div>
 					
 					</div>
@@ -217,20 +184,18 @@
 						<label for="contraseña">Email:</label>
 							 <input	type="text" class="form-control" name="TXTcorreo"
 								id="mail" aria-describedby="emailHelp"
-								placeholder="Correo electronico" value="${cliente.getEmail()}"
-								required="Ingrese Email">
+								value="${cliente.getEmail()}"
+								readonly>
 						</div>
 					
 					</div>
 				 
 					<div  class="row d-flex justify-content-center"style="position:relative; top:30px">
-					  
-					<input type="submit" class="btn btn-primary" name="BtnModificar" value= "Modificar">
+					   
+				 <a href="listadoClientes.html" class="btn btn-primary">Volver al Listado</a>  
 					</div>
 				
-		
-
-				</form>
+		 
 			</div>
 
 		</div>
