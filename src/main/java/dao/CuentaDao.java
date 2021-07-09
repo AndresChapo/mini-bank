@@ -80,4 +80,38 @@ public class CuentaDao {
  		return listaCuentas;
 		
 	}
+    
+    
+    //MODIFICACION REVOLLO INICIO
+    
+    //AGREGO FUNCION PARA CREAR UNA CUENTA NUEVA
+    
+    public void guardarNuevaCuenta (Cuenta cuentaNueva)
+    {
+    	Session session = ch.getConexion();
+		session.beginTransaction();
+    	session.save(cuentaNueva);
+    	session.getTransaction().commit();
+    	
+    	
+    }
+    
+    //AGREGO FUNCION PARA TRAER EL ULTIMO CBU EN LA BASE
+    
+    public String obtenerUltimoCBU() {
+		
+    	Session session = ch.getConexion();		 
+		String hql = "SELECT c.cbu FROM Cuenta c ORDER BY c.num_cuenta DESC";
+		Query q = session.createQuery(hql);
+		q.setMaxResults(1);
+		
+		
+		
+		String Cbu =  (String)q.uniqueResult();
+		
+		return Cbu;
+		
+	}
+    
+    //MODIFICACION REVOLLO FIN
 }

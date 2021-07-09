@@ -19,17 +19,17 @@ public class Cuenta implements Serializable{
 	@Column(name="num_cuenta")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer num_cuenta;
-	@Column(name="id_cliente")
+	@Column(name="id_cliente") //YA LO TENGO
 	private Integer id_cliente;
 	@Column(name="tipo_cuenta")
-	private Integer tipo_cuenta;
+	private Integer tipo_cuenta; //YA LO TENGO
 	@Column(name="nombre")
-	private String nombre;
+	private String nombre;//YA LO TENGO
 	@Column(name="cbu")
 	private String cbu;
 	@Column(name="saldo")
 	private float saldo;
-	@Column(name="fecha_creacion")
+	@Column(name="fecha_creacion")//YA LOTENGO
 	private String fecha_creacion;
 	@Column(name="eliminado")
 	private boolean eliminado;

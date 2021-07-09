@@ -42,4 +42,27 @@ public class CuentaService {
 		return cuentaDao.getListaCuentasByTipoCuentaAndClienteId(tipo_cuenta, cliente_id, current_num_cuenta);
 	}
 	
+	
+	
+	 //INICIO MODIFICACION REVOLLO
+   
+	//SIRVE PARA LLAMAR AL DAO Y PASARLE LOS DATOS DESDE EL CONTROLER
+    public boolean GuardarCuenta(Cuenta cuentaNueva)
+    {
+
+		cuentaDao.guardarNuevaCuenta(cuentaNueva);
+		return true;
+	}
+    
+    //SIRVE PARA TRAER EL ULTIMO CBU EN LA BASE
+    
+    public String ObtenerUltimoCBU()
+    {
+
+		return  cuentaDao.obtenerUltimoCBU();
+	}
+    
+    //FIN MODIFICACION REVOLLO
+	
+	
 }

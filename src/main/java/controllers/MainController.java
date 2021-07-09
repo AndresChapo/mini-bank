@@ -1,5 +1,7 @@
 package controllers;
 
+import java.math.BigInteger;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -242,6 +244,7 @@ public class MainController {
 		}
 		
 		//PARA GUARDAR NUEVO USUARIO
+		
 		@RequestMapping(value="AltaUsuario.html", method=RequestMethod.POST)
 		public ModelAndView NuevoClienteUsuario(String TXTusuario,String TXTpass,String TXTrepetirpass) 
 		{ 
@@ -290,7 +293,8 @@ public class MainController {
 		
 		
 		
-		//para guarda el cliente nuevo
+		//PARA GUARDAR NUEVO CLIENTE
+		
 		@RequestMapping(value="ClientesDatosPersonales.html", method=RequestMethod.POST)
 		public ModelAndView altaCliente(@RequestParam(required=false) 
 				String TXTnombre, String TXTapellido, String TXTdni,String TXTnacionalidad,
@@ -326,6 +330,70 @@ public class MainController {
 			
 			 
 		}
+		
+		
+		//PARA IR A NUEVA CUENTA
+		
+			
+		
+		@RequestMapping(value = "NuevoCuenta.html", method = RequestMethod.GET)
+		public ModelAndView pantallaNuevoCuenta(@RequestParam String id) {
+
+			Cliente cliente_cuenta = new Cliente();
+			cliente_cuenta = clienteService.getCliente(Integer.parseInt(id));
+			mv.addObject("cliente_cuenta", cliente_cuenta);
+		
+
+			mv.setViewName("cuentasnueva");
+			return mv;
+		}
+		
+		
+		//PARA ASIGNAR UNA NUEVA CUENTA A UN CLIENTE
+		
+	
+		
+		
+		@RequestMapping(value = "AltaCuenta.html", method = RequestMethod.POST)
+		public ModelAndView altaCuenta(@RequestParam(required = false) 
+		String TXTid, String TXTnombre,
+	    String TXTdni, String CuentasTipo) {
+
+			Cuenta cuentaNueva = new Cuenta();
+			
+			cuentaNueva.setId_cliente(Integer.parseInt(TXTid));
+			cuentaNueva.setNombre(TXTnombre);
+			
+			cuentaNueva.setFecha_creacion("09/07/2021");
+			
+			cuentaNueva.setTipo_cuenta(Integer.parseInt(CuentasTipo));
+			cuentaNueva.setEliminado(false);
+			cuentaNueva.setSaldo(10000); //POR DEFAULT TODAS EMPIEZAN CON ESE MONTO
+			
+			//CREO VARIABLE INT PARA INCREMENTAR EL CBU
+			
+			//Integer cbu_incrementa = (Integer.parseInt(cuentaService.ObtenerUltimoCBU()));
+			
+			BigInteger One = new BigInteger("1");
+			
+			BigInteger cbu_incrementa=new BigInteger(cuentaService.ObtenerUltimoCBU());
+			
+			cbu_incrementa.add(One);
+			
+			
+			cuentaNueva.setCbu(cbu_incrementa.toString());	
+			
+			if(cuentaService.GuardarCuenta(cuentaNueva))
+			{
+				
+				mv.setViewName("cuentaNuevaCorrentamente");
+				
+			}
+			
+
+			return mv;
+		}
+		
 		
 		//MODIFICADO POR NAHUEL REVOLLO FIN
 
