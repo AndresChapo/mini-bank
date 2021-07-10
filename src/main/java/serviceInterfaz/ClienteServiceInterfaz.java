@@ -14,4 +14,8 @@ public interface ClienteServiceInterfaz {
 			String fecha, char sexo, String provincia, String localidad,
 			String domicilio, String telefono, String correo);
 	
+	public boolean validarCliente(String id, String nombre, String apellido, String dni,
+			String fecha, char sexo, String provincia, String localidad,
+			String domicilio, String telefono, String correo);
+	
 }

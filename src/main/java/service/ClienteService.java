@@ -72,6 +72,24 @@ public class ClienteService implements ClienteServiceInterfaz {
 		return c; 
     }
     
+    public boolean validarCliente(String id, String nombre, String apellido, String dni,
+			String fecha, char sexo, String provincia, String localidad,
+			String domicilio, String telefono, String correo) {
+    	  
+    	if (nombre == null) return false;
+    	if (apellido == null) return false;
+    	if (dni == null) return false;
+    	if (fecha == null) return false;
+    	if (sexo == 0) return false;
+    	if (provincia == null) return false;
+    	if (localidad == null) return false;
+    	if (domicilio == null) return false;
+    	if (telefono == null) return false;
+    	if (correo == null) return false;
+    	
+		return true; 
+    }
+    
     //INICIO MODIFICACION REVOLLO
     //SIRVE PARA LLAMAR AL DAO Y PASARLE LOS DATOS DESDE EL CONTROLER
     public boolean GuardarCliente(Cliente clienteNuevo)

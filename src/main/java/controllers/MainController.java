@@ -252,13 +252,19 @@ public class MainController {
 	public ModelAndView modificarCliente(@RequestParam(required = false) String TXTid, String TXTnombre,
 		String TXTapellido, String TXTdni, String TXTfecha, char TXTsexo, String TXTprovincia, String TXTlocalidad,
 		String TXTdomicilio, String TXTtelefono, String TXTcorreo) {
+		
+		if(clienteService.validarCliente(TXTid, TXTnombre, TXTapellido, TXTdni, TXTfecha, TXTsexo,
+				TXTprovincia, TXTlocalidad, TXTdomicilio, TXTtelefono, TXTcorreo)) {
 
 		Cliente c = clienteService.parametrizarCliente(TXTid, TXTnombre, TXTapellido, TXTdni, TXTfecha, TXTsexo,
 				TXTprovincia, TXTlocalidad, TXTdomicilio, TXTtelefono, TXTcorreo);
 
 		clienteService.modificarCliente(c);
-
 		mv.setViewName("clienteModificadoCorrectamente");
+		} else {
+			mv.setViewName("ErrorEnDatos");
+		}
+ 
 		return mv;
 	}
 
