@@ -91,6 +91,13 @@ public class MainController {
 		mv.setViewName("login");
 		return mv;
 	}
+	
+	@RequestMapping("prueba.html")
+	public ModelAndView prueba_admin() {
+		mv.setViewName("prueba_admin");
+		return mv;
+	}
+	
 	/**
 	 * @RequestMapping(value ="/eliminarUsuario.html" , method= { RequestMethod.GET,
 	 *                       RequestMethod.POST}) public ModelAndView
