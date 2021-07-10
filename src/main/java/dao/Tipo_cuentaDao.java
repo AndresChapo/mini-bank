@@ -2,10 +2,11 @@ package dao;
 
 import org.hibernate.Session;
 
+import daoInterfaz.Tipo_cuentaDaoInterfaz;
 import entidades.Cuenta;
 import entidades.Tipo_cuenta;
 
-public class Tipo_cuentaDao {
+public class Tipo_cuentaDao implements Tipo_cuentaDaoInterfaz {
 
 	private ConfigHibernate ch;
 
@@ -22,6 +23,7 @@ public class Tipo_cuentaDao {
 		this.ch = ch;
 	}
 	
+	@Override
 	public Tipo_cuenta getTipoCuenta(int id) {
 		Session session = ch.getConexion();		  
 		return (Tipo_cuenta)session.get(Tipo_cuenta.class, id);

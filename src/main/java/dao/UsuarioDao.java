@@ -3,9 +3,10 @@ package dao;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import daoInterfaz.UsuarioDaoInterfaz;
 import entidades.Usuario;
 
-public class UsuarioDao {
+public class UsuarioDao implements UsuarioDaoInterfaz {
 
 	private static ConfigHibernate ch;
 	
@@ -17,7 +18,7 @@ public class UsuarioDao {
 		this.ch = ch;
 	}
 
-	public static Usuario getUsuarioByNombreUsuario(String usuario) // Ejemplo de metodo para traer datos por HQL
+	public Usuario getUsuarioByNombreUsuario(String usuario) // Ejemplo de metodo para traer datos por HQL
 	{	   
 		String hql = "FROM Usuario WHERE nombre = :usuario";
 		Session session = ch.getConexion();
@@ -27,8 +28,9 @@ public class UsuarioDao {
 		
 		return _usuario; 
 	}
-
-	public static Usuario traerUsuario(int id)
+	
+	@Override
+	public Usuario traerUsuario(int id)
 	{	   
 		Session session = ch.getConexion();
 		return (Usuario)session.get(Usuario.class,id); 
@@ -37,7 +39,7 @@ public class UsuarioDao {
 	
 	//MODIFICACION REVOLLO INICIO
     //ACA AGREGO UNA FUNCION PARA QUE GUARDE UN NUEVO USUARIO
-    
+	@Override
     public void guardarNuevoUsuario (Usuario usuarioNuevo)
     {
     	Session session = ch.getConexion();
