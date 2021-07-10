@@ -203,16 +203,20 @@ public class MainController {
 
 	@RequestMapping(value="realizarTransferencia.html", method=RequestMethod.POST)
 	public ModelAndView realizarTransferencia(String esPropia,int cuenta, String TXTcbu, String TXTsaldo, String TXTadepositar, String TXTdetalle, int cuentaOrigen) {
-		
-		mv.setViewName("cuentasLista"); 
-		
+		String status = "";
 		
 		if(esPropia == null) {
-			movimientoService.generarMovimientos(TXTadepositar, TXTcbu, cuentaOrigen, TXTdetalle);
+			status = movimientoService.generarMovimientos(TXTadepositar, TXTcbu, cuentaOrigen, TXTdetalle);
 		} else {
-			movimientoService.generarMovimientoEnPropiaCuenta(TXTadepositar, cuentaOrigen, cuenta, TXTdetalle);			
+			status = movimientoService.generarMovimientoEnPropiaCuenta(TXTadepositar, cuentaOrigen, cuenta, TXTdetalle);			
 		}
-		 
+		
+		if(status.equals("OK")) {
+			mv.setViewName("cuentasLista");	
+		}else {
+			mv.setViewName("transferenciaError");			
+		}
+		
 		return mv;
 	}
 	

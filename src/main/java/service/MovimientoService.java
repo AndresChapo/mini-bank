@@ -48,8 +48,8 @@ public class MovimientoService implements MovimientoServiceInterfaz {
 		
 	}
 
-	public void generarMovimientos(String TXTadepositar, String TXTcbu, int TXTCuentaOrigenID, String TXTdetalle) {
-		
+	public String generarMovimientos(String TXTadepositar, String TXTcbu, int TXTCuentaOrigenID, String TXTdetalle) {
+		String status = "OK";
 		System.out.println(TXTadepositar);
 		System.out.println(TXTcbu);
 		System.out.println(TXTCuentaOrigenID);
@@ -87,23 +87,33 @@ public class MovimientoService implements MovimientoServiceInterfaz {
 						
 					} else {
 						// TODO  lanzar un error porque esta tratando de transferir mas de lo que tiene.
+						System.out.println("error porque esta tratando de transferir mas de lo que tiene");
+						status = "Error porque esta tratando de transferir mas de lo que tiene";
 					}
 					
 				} else {
 					// TODO  lanzar un error porque quiere transferir un numero negativo.
+					System.out.println("error porque quiere transferir un numero negativo");
+					status = "error porque quiere transferir un numero negativo";
 				}
 			} else {
 				// TODO  lanzar error no son el mismo tipo de cuenta.
+				System.out.println("error no son el mismo tipo de cuenta");
+				status = "error no son el mismo tipo de cuenta";
 			}
 			
 		} else {
 			// TODO  lanzar error no existe la cuenta con el cbu ingresado (probablemente)
 			// tambien puede suceder y hay que checkear que el id de la cuenta que estaba tambien esté
+			System.out.println("error no existe la cuenta con el cbu ingresado");
+			status = "error no existe la cuenta con el cbu ingresado";
 		}
+		return status;
 		
 	}
 	
-	public void generarMovimientoEnPropiaCuenta (String TXTadepositar, int cuentaOrigen, int cuentaPropiaDestino, String TXTdetalle) {
+	public String generarMovimientoEnPropiaCuenta (String TXTadepositar, int cuentaOrigen, int cuentaPropiaDestino, String TXTdetalle) {
+		String status = "OK";
 		Cuenta _cuentaOrigen  = cuentaService.getCuenta(cuentaOrigen);
 		Cuenta _cuentaDestino = cuentaService.getCuenta(cuentaPropiaDestino);
 
@@ -128,24 +138,28 @@ public class MovimientoService implements MovimientoServiceInterfaz {
 						
 					} else {
 						// TODO  lanzar un error porque esta tratando de transferir mas de lo que tiene.
-
-					} 
+						System.out.println("error porque esta tratando de transferir mas de lo que tiene");
+						status = "Error porque esta tratando de transferir mas de lo que tiene";
+					}
+					
 				} else {
 					// TODO  lanzar un error porque quiere transferir un numero negativo.
-
+					System.out.println("error porque quiere transferir un numero negativo");
+					status = "error porque quiere transferir un numero negativo";
 				}
-
 			} else {
 				// TODO  lanzar error no son el mismo tipo de cuenta.
-
+				System.out.println("error no son el mismo tipo de cuenta");
+				status = "error no son el mismo tipo de cuenta";
 			}
+			
 		} else {
 			// TODO  lanzar error no existe la cuenta con el cbu ingresado (probablemente)
 			// tambien puede suceder y hay que checkear que el id de la cuenta que estaba tambien esté
-
+			System.out.println("error no existe la cuenta con el cbu ingresado");
+			status = "error no existe la cuenta con el cbu ingresado";
 		}
-
-		
+		return status;
 	}
 	
 	

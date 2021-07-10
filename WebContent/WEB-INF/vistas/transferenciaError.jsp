@@ -55,7 +55,7 @@
 
 				<div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
-						href="#">Home <span class="sr-only">(current)</span>
+						href="/">Home <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
  				 
@@ -90,7 +90,7 @@
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-10" style="">
-				 <h3 class="display-4 text-error">${ Error }</h3>
+				 <h3 class="display-4 text-error">Error en los datos de la transferencia</h3> <!-- ${ Error } -->
 				<div style="height: 50px"></div>
 			</div>
 		</div> 
