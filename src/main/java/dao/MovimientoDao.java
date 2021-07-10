@@ -5,10 +5,11 @@ import java.time.LocalDate;
 
 import org.hibernate.Session;
 
+import daoInterfaz.MovimientoDaoInterfaz;
 import entidades.Cuenta;
 import entidades.Movimiento;
 
-public class MovimientoDao {
+public class MovimientoDao implements MovimientoDaoInterfaz{
 
 	private ConfigHibernate ch;
 	private Movimiento movimiento;
@@ -32,7 +33,8 @@ public class MovimientoDao {
 	public void setCh(ConfigHibernate ch) {
 		this.ch = ch;
 	}
-
+	
+	@Override
 	public void agregarMovimiento (Cuenta cuenta, String detalle, float importe) {
     	Session session = ch.getConexion();
 		if(detalle.isEmpty()) {
@@ -52,5 +54,23 @@ public class MovimientoDao {
 
     	
     }
+
+	@Override
+	public void modificarMovimiento(Movimiento movimiento) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminarMovimiento(Movimiento movimiento) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Movimiento traerMovimiento(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

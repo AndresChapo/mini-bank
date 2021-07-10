@@ -7,11 +7,12 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import daoInterfaz.TransferenciaDaoInterfaz;
 import entidades.Cuenta;
 import entidades.Movimiento;
 import entidades.Transferencia;
 
-public class TransferenciaDao {
+public class TransferenciaDao implements TransferenciaDaoInterfaz{
 
 	private static ConfigHibernate ch;
 	private Transferencia transferencia;
@@ -37,7 +38,8 @@ public class TransferenciaDao {
 		this.transferencia = transferencia;
 	}
 
-	public void agregarTransferencia (Cuenta cuenta_origen, Cuenta cuenta_destino, float importe, String detalle) {
+	@Override
+	public void agregarTransferencia(Cuenta cuenta_origen, Cuenta cuenta_destino, float importe, String detalle) {
     	Session session = ch.getConexion();
 		if(detalle.isEmpty()) {
 			detalle = "";
@@ -69,6 +71,24 @@ public class TransferenciaDao {
 		}
 
 		return listaTransferencias; 
+	}
+
+	@Override
+	public void modificarTransferencia(Transferencia transferencia) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminarTransferencia(Transferencia transferencia) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Transferencia traerTransferencia(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -425,12 +425,12 @@ public class MainController {
 			//CREO VARIABLE INT PARA INCREMENTAR EL CBU
 			
 			//Integer cbu_incrementa = (Integer.parseInt(cuentaService.ObtenerUltimoCBU()));
-			
+			System.out.println(cuentaService.ObtenerUltimoCBU());
 			BigInteger One = new BigInteger("1");
 			BigInteger cbu_incrementa=new BigInteger(cuentaService.ObtenerUltimoCBU());
-			cbu_incrementa.add(One);
-			cuentaNueva.setCbu(cbu_incrementa.toString());	
-			
+			cbu_incrementa = cbu_incrementa.add(One);
+			cuentaNueva.setCbu("00" + cbu_incrementa.toString());	
+			System.out.println(cbu_incrementa);
 			if(cuentaService.GuardarCuenta(cuentaNueva)){				
 				mv.setViewName("cuentaNuevaCorrentamente");
 			}
