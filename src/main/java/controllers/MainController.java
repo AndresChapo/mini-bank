@@ -80,12 +80,17 @@ public class MainController {
 		this.ch = ch;
 	}
 
-	@RequestMapping("redirectLogin.html")
+	@RequestMapping("redirectLogin.html")  // DEPRECATED
 	public ModelAndView eventoRedirectLogin() {
 		mv.setViewName("login");
 		return mv;
 	}
 
+	@RequestMapping("index.html")
+	public ModelAndView index() {
+		mv.setViewName("login");
+		return mv;
+	}
 	/**
 	 * @RequestMapping(value ="/eliminarUsuario.html" , method= { RequestMethod.GET,
 	 *                       RequestMethod.POST}) public ModelAndView
@@ -120,7 +125,7 @@ public class MainController {
 				} else {
 	
 					List<Cuenta> listaCuentas = cuentaService.getListaCuentasByUsuario(usuario);
-					mv.addObject("listaCuentas", listaCuentas);
+					//mv.addObject("listaCuentas", listaCuentas);
 					mv.addObject("listaCuentas", listaCuentas);
 					mv.addObject("usuarioLogueado", usuario);
 					mv.setViewName("cuentasLista");
@@ -129,10 +134,10 @@ public class MainController {
 			} else {
 				mv.addObject("usuarioValido", "false");
 				System.out.println("Clave incorrecta!");
-				mv.setViewName("login");
+				mv.setViewName("usuarioInvalido");
 			}
 		} else {
-			mv.setViewName("login");
+			mv.setViewName("usuarioInvalido");
 		}
 
 		return mv;
@@ -187,7 +192,7 @@ public class MainController {
 		if(status.equals("OK")) {
 			mv.setViewName("cuentasLista");	
 		}else {
-			mv.setViewName("transferenciaError");			
+			mv.setViewName("ErrorEnDatos");			
 		}
 		
 		return mv;
@@ -234,12 +239,12 @@ public class MainController {
 		if (id != null) {
 			Cliente c = clienteService.getCliente(Integer.parseInt(id));
 			mv.addObject("cliente", c);
+			mv.setViewName("clientesModificar");
 		} else {
 			System.out.println("el id viene null");
+			mv.setViewName("ErrorEnDatos");
 		}
 		
-		mv.setViewName("clientesModificar");
-
 		return mv;
 	}
 
@@ -276,18 +281,17 @@ public class MainController {
 	@RequestMapping(value = "verCliente.html", method = RequestMethod.GET)
 	public ModelAndView eventoVerCliente(@RequestParam String id) {
 
-		mv.setViewName("clientesVer");
-
 		if (id != null) {
+			mv.setViewName("clientesVer");
 			Cliente c = clienteService.getCliente(Integer.parseInt(id));
 			mv.addObject("cliente", c);
-		}  
+		}else{
+			mv.setViewName("ErrorEnDatos");
+		}
 
 		return mv;
 	}
 	
-	
-
 
 	//MODIFICADO POR NAHUEL REVOLLO INICIO
 		//PARA IR A NUEVO USUARIO
@@ -354,6 +358,8 @@ public class MainController {
 			
 			if(clienteService.GuardarCliente(nuevoCliente))			{
 				mv.setViewName("clienteNuevoCorrectamente"); 
+			}else {
+				mv.setViewName("ErrorEnDatos");
 			}
 			
 			return mv;
@@ -404,17 +410,14 @@ public class MainController {
 			
 			BigInteger One = new BigInteger("1");
 			BigInteger cbu_incrementa=new BigInteger(cuentaService.ObtenerUltimoCBU());
-			cbu_incrementa.add(One);
-			cuentaNueva.setCbu(cbu_incrementa.toString());	
-			
-			
-			
+			cbu_incrementa = cbu_incrementa.add(One);
+			cuentaNueva.setCbu("00" + cbu_incrementa.toString());
 			
 			if(cuentaService.GuardarCuenta(cuentaNueva)){				
 				mv.setViewName("cuentaNuevaCorrentamente");
+			}else {
+				mv.setViewName("ErrorEnDatos");
 			}
-			
-
 			return mv;
 		}
 		
@@ -459,8 +462,9 @@ public class MainController {
 
 			if( cuentaService.modificarCuenta(cuentaModificar) ){
 				mv.setViewName("cuentaModificadaCorrectamente");
+			}else {
+				mv.setViewName("ErrorEnDatos");
 			}
-
 			return mv;
 		}
 		

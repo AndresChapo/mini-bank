@@ -81,7 +81,7 @@
  
 		<div class="row mt-2">
 			<div class="col-md-12">
-				<h3 class="display-4 text-info">Transferencia</h3>
+				<h3 class="display-4 text-info">Error</h3>
 
 			</div>
 		</div>
@@ -90,7 +90,7 @@
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-10" style="">
-				 <h3 class="display-4 text-error">Error en los datos de la transferencia</h3> <!-- ${ Error } -->
+				 <h3 class="display-4 text-error">Hay un error en los datos ingresados</h3> <!-- ${ Error } -->
 				<div style="height: 50px"></div>
 			</div>
 		</div> 
