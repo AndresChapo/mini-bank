@@ -120,6 +120,8 @@ public class MainController {
 
 				List<Cuenta> listaCuentas = cuentaService.getListaCuentasByUsuario(usuario);
 				mv.addObject("listaCuentas", listaCuentas);
+				mv.addObject("listaCuentas", listaCuentas);
+				mv.addObject("usuarioLogueado", usuario);
 				mv.setViewName("cuentasLista");
 
 			}
@@ -132,6 +134,7 @@ public class MainController {
 
 		return mv;
 	}
+	
 
 	@RequestMapping(value = "eliminarCliente.html", method = RequestMethod.GET)
 	public ModelAndView eliminarCliente(@RequestParam String id) {
@@ -281,6 +284,20 @@ public class MainController {
 
 		return mv;
 	}
+	
+	
+	@RequestMapping(value = "verCuentas.html", method = RequestMethod.GET)
+	public ModelAndView eventoVerCuentas(@RequestParam int id_cliente) {
+
+		List<Cuenta> listaCuentas = cuentaService.getListaCuentasByCliente(id_cliente);
+		Usuario _usr = usuarioService.getUsuarioLogueado();
+
+		mv.addObject("listaCuentas", listaCuentas);
+		mv.addObject("usuarioLogueado", _usr);
+		mv.setViewName("cuentasLista");
+		return mv;
+	}
+
 
 	//MODIFICADO POR NAHUEL REVOLLO INICIO
 	

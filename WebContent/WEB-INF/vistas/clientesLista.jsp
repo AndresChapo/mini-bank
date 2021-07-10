@@ -122,6 +122,7 @@
 							<th></th>
 							<th></th>
 							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -139,6 +140,9 @@
 
 								<td><a class="btn btn-success" 
 								    href="verCliente.html?id=${cliente.id}">Ver</a></td>
+
+								<td><a class="btn btn-success" 
+								    href="verCuentas.html?id_cliente=${cliente.id}">Ver cuentas</a></td>
 
 								<td><a class="btn btn-info"
 									href="modificacionCliente.html?id=${cliente.id}">Modificar</a></td>
