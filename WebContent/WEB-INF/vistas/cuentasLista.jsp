@@ -111,7 +111,7 @@
 									<td><a class="btn btn-info"	href="irAMovimientos.html?num_cuenta=${cuenta.num_cuenta }">Ver movimientos</a></td>
 							    </tr>
 						  	</c:forEach>
-						</tbody>
+						</tbody>   
 					</table>
   
 				</form>
