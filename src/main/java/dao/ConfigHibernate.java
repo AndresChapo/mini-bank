@@ -74,7 +74,7 @@ public class ConfigHibernate {
 	{
 		
 		Tipo_cuenta t_cuenta_pesos = new Tipo_cuenta("Caja de ahorro en pesos");
-		Tipo_cuenta t_cuenta_dolares = new Tipo_cuenta("Caja de ahorro en d�lares");
+		Tipo_cuenta t_cuenta_dolares = new Tipo_cuenta("Caja de ahorro en dolares");
 	
 		Usuario user1 = new Usuario("Nico","Radeon24",true);
 		Usuario user2 = new Usuario("Andy","F8-F8-28-B6-71-F3",true);

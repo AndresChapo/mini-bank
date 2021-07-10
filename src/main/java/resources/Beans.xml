@@ -10,7 +10,8 @@
 	<!-- INSTANCIAS DE LAS ENTIDADES --> 
 	<bean id="usuarioLogueado" class="entidades.Usuario" scope="singleton"></bean>
 	<bean id="movimientoBean" class="entidades.Movimiento" scope="prototype"></bean>
-		
+	<bean id="transferenciaBean" class="entidades.Transferencia" scope="prototype"></bean>
+	
 	<!-- INSTANCIAS DE LA DATABASE PARA QUE USEN LOS DAO  --> 
 	<bean id="conexionHibernate" class="dao.ConfigHibernate" init-method="abrirConexion" destroy-method="cerrarSession" scope="singleton">
 	</bean>
@@ -32,9 +33,14 @@
 	<bean id="usuarioDao" class="dao.UsuarioDao" scope="singleton"> 
 		<property name="ch" ref="conexionHibernate"></property> 
 	</bean>	
-	
-	<bean id="transferenciaDao" class="dao.TransferenciaDao" scope="singleton"> 
+
+	<bean id="tipo_cuentaDao" class="dao.Tipo_cuentaDao" scope="singleton"> 
 		<property name="ch" ref="conexionHibernate"></property> 
+	</bean>	
+		
+	<bean id="transferenciaDao" class="dao.TransferenciaDao" scope="singleton"> 
+		<property name="ch" ref="conexionHibernate"></property>
+		<property name="transferencia" ref="transferenciaBean"></property> 
 	</bean>	
 	
 	<!-- INSTANCIAS DE LOS SERVICIOS PARA QUE USEN EL CONTROLADOR --> 

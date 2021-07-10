@@ -46,7 +46,6 @@ public class MovimientoDao {
 		movimiento.setImporte(importe);
 		movimiento.setFecha(hoy);
 		
-		//Movimiento _movimiento = new Movimiento(cuenta, hoy , detalle, importe);
 		session.beginTransaction();
 		session.save(movimiento);
     	session.getTransaction().commit();

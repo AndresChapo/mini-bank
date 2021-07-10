@@ -14,13 +14,27 @@ import entidades.Transferencia;
 public class TransferenciaDao {
 
 	private static ConfigHibernate ch;
+	private Transferencia transferencia;
 	
+	public TransferenciaDao() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public ConfigHibernate getCh() {
 		return ch;
 	}
 
 	public void setCh(ConfigHibernate ch) {
 		this.ch = ch;
+	}
+
+	public Transferencia getTransferencia() {
+		return transferencia;
+	}
+
+	public void setTransferencia(Transferencia transferencia) {
+		this.transferencia = transferencia;
 	}
 
 	public void agregarTransferencia (Cuenta cuenta_origen, Cuenta cuenta_destino, float importe, String detalle) {
@@ -31,9 +45,14 @@ public class TransferenciaDao {
 		
 		Date hoy = Date.valueOf(LocalDate.now());
 
-		Transferencia _transferencia = new Transferencia(detalle, importe, hoy, cuenta_origen, cuenta_destino);
+		transferencia.setImporte(importe);
+		transferencia.setDetalle(detalle);
+		transferencia.setCuenta_destino(cuenta_destino);
+		transferencia.setCuenta_origen(cuenta_origen);
+		transferencia.setFecha(hoy);
+		
 		session.beginTransaction();
-		session.save(_transferencia);
+		session.save(transferencia);
     	session.getTransaction().commit();
 
 	}

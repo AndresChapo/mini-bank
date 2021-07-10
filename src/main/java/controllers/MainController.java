@@ -38,6 +38,7 @@ public class MainController {
 	UsuarioService usuarioService;
 	CuentaService cuentaService;
 	TransferenciaService transferenciaService;
+	Tipo_cuentaDao tipo_cuentaDao;
 
 	public MainController() {
 		mv = new ModelAndView();
@@ -48,7 +49,7 @@ public class MainController {
 		usuarioService = (UsuarioService) appContext.getBean("usuarioService");
 		cuentaService = (CuentaService) appContext.getBean("cuentaService");
 		transferenciaService = (TransferenciaService)appContext.getBean("transferenciaService");
-
+		tipo_cuentaDao = (Tipo_cuentaDao)appContext.getBean("tipo_cuentaDao");
 	}
 
 	public Object getAppContext(String nombreBean) {
@@ -410,8 +411,7 @@ public class MainController {
 
 			Cuenta cuentaNueva = new Cuenta();
 			Cliente _cliente = clienteService.getCliente(Integer.parseInt(TXTid));
-			Tipo_cuentaDao tipoCuentaDao = new Tipo_cuentaDao();
-			Tipo_cuenta tipoCuenta = tipoCuentaDao.getTipoCuenta(Integer.parseInt(CuentasTipo));
+			Tipo_cuenta tipoCuenta = tipo_cuentaDao.getTipoCuenta(Integer.parseInt(CuentasTipo));
 			Date hoy = Date.valueOf(LocalDate.now());
 
 			cuentaNueva.setNombre(TXTnombre);
