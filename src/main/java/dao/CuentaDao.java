@@ -6,12 +6,13 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import daoInterfaz.CuentaDaoInterfaz;
 import entidades.Cliente;
 import entidades.Cuenta;
 import entidades.Tipo_cuenta;
 import entidades.Usuario;
 
-public class CuentaDao {
+public class CuentaDao implements CuentaDaoInterfaz{
 
 	private static ConfigHibernate ch;
 	public static Session session;
@@ -39,7 +40,7 @@ public class CuentaDao {
 		ClienteDao.session = session;
 	}
 
-
+	@Override
 	public Cuenta getCuenta(int id) {
 		Session session = ch.getConexion();		  
 		return (Cuenta)session.get(Cuenta.class, id);
@@ -85,7 +86,8 @@ public class CuentaDao {
  		return listaCuentas;
 		
 	}
-    
+
+    @Override
 	public void modificarCuenta(Cuenta cuenta) {
 		session = ch.getConexion();
 		session.beginTransaction();
@@ -121,7 +123,7 @@ public class CuentaDao {
     //MODIFICACION REVOLLO INICIO
     
     //AGREGO FUNCION PARA CREAR UNA CUENTA NUEVA
-    
+	@Override
     public void guardarNuevaCuenta (Cuenta cuentaNueva)
     {
     	Session session = ch.getConexion();
@@ -140,6 +142,13 @@ public class CuentaDao {
 		String Cbu =  (String)q.uniqueResult();
 		return Cbu;
 	}
-    
     //MODIFICACION REVOLLO FIN
+
+	@Override
+	public void eliminarCuenta(Cuenta cuenta) {
+		// TODO Auto-generated method stub
+		
+	}
+    
+
 }

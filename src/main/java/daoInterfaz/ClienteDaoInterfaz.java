@@ -10,6 +10,6 @@ public interface ClienteDaoInterfaz {
 	
 	public Cliente getCliente(int id);
 	
-	//public Cliente getClienteByUsuarioId(int id_usuario);
+    public void guardarNuevoCliente (Cliente clienteNuevo);
 
 }

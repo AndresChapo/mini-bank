@@ -36,8 +36,8 @@ public class ClienteDao implements ClienteDaoInterfaz {
 	public static void setSession(Session session) {
 		ClienteDao.session = session;
 	}
-
-	
+ 
+	@Override
 	public void modificarCliente(Cliente cliente) {
 		session = ch.getConexion();
 		session.beginTransaction();
@@ -45,7 +45,7 @@ public class ClienteDao implements ClienteDaoInterfaz {
     	session.getTransaction().commit();
 	}
 	
-	
+	@Override
 	public void eliminarCliente(Cliente cliente) {
 		
 		System.out.println("sasasdsada");
@@ -66,7 +66,7 @@ public class ClienteDao implements ClienteDaoInterfaz {
     	session.update(o);
     }
 	
-
+	@Override
     public Cliente getCliente(int id)
 	{	   
 		return (Cliente)session.get(Cliente.class, id); 
@@ -97,15 +97,13 @@ public class ClienteDao implements ClienteDaoInterfaz {
 
     //MODIFICACION REVOLLO INICIO
     //ACA AGREGO UNA FUNCINO PARA QUE GUARDE UN NUEVO CLIENTE
-    
+	@Override  
     public void guardarNuevoCliente (Cliente clienteNuevo)
     {
     	session = ch.getConexion();
 		session.beginTransaction();
     	session.save(clienteNuevo);
-    	session.getTransaction().commit();
-    	
-    	
+    	session.getTransaction().commit();    	
     }
     
     //MODIFICACION REVOLLO FIN
