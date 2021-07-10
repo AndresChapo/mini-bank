@@ -54,6 +54,11 @@
 		<property name="cuentaDao" ref="cuentaDao"></property> 
 	</bean>
 
+	<bean id="tipo_cuentaService" class="service.Tipo_cuentaService" scope="singleton"> 
+		<property name="tipo_cuentaDao" ref="tipo_cuentaDao"></property> 
+	</bean>
+
+
 	<bean id="clienteService" class="service.ClienteService" scope="singleton"> 
 		<property name="clienteDao" ref="clienteDao"></property> 
 	</bean>

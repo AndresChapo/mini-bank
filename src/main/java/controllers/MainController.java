@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.SystemPropertyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +26,7 @@ import entidades.Usuario;
 import service.ClienteService;
 import service.CuentaService;
 import service.MovimientoService;
+import service.Tipo_cuentaService;
 import service.TransferenciaService;
 import service.UsuarioService;
 
@@ -39,6 +41,7 @@ public class MainController {
 	CuentaService cuentaService;
 	TransferenciaService transferenciaService;
 	Tipo_cuentaDao tipo_cuentaDao;
+	Tipo_cuentaService tipo_cuentaService;
 
 	public MainController() {
 		mv = new ModelAndView();
@@ -49,6 +52,7 @@ public class MainController {
 		usuarioService = (UsuarioService) appContext.getBean("usuarioService");
 		cuentaService = (CuentaService) appContext.getBean("cuentaService");
 		transferenciaService = (TransferenciaService)appContext.getBean("transferenciaService");
+		tipo_cuentaService = (Tipo_cuentaService)appContext.getBean("tipo_cuentaService");
 		tipo_cuentaDao = (Tipo_cuentaDao)appContext.getBean("tipo_cuentaDao");
 	}
 
@@ -486,31 +490,25 @@ public class MainController {
 			
 			@RequestMapping(value = "FormularioModificarCuenta.html", method = RequestMethod.POST)
 			public ModelAndView modificarCuenta(@RequestParam(required = false)
-			String CuentasTipo,Float TXTsaldo, String TXTid, String lblNombre ) {
+			int CuentasTipo,Float TXTsaldo, int TXTnum_cuenta, String TXTNombre ) {
 
 				
-				Cuenta cuentaModificar =  new Cuenta();
-				Tipo_cuenta tcuenta = new Tipo_cuenta();
+				// Cuenta cuentaModificar =  new Cuenta();
+				Tipo_cuenta t_cuenta = tipo_cuentaService.getTipoCuenta(CuentasTipo);
+				Cuenta cuentaModificar = cuentaService.getCuenta(TXTnum_cuenta);
 				
-				tcuenta.setId(Integer.parseInt(CuentasTipo));
-				
-				Cuenta cuentaOriginal = cuentaService.getCuenta(Integer.parseInt(TXTid));
-				
-				cuentaModificar.setNum_cuenta(Integer.parseInt(TXTid));
-				cuentaModificar.setNombre(lblNombre);
-				cuentaModificar.setFecha_creacion(cuentaOriginal.getFecha_creacion());
-				cuentaModificar.setEliminado(false);
+				//cuentaModificar.setNum_cuenta(TXTnum_cuenta);
+				cuentaModificar.setNombre(TXTNombre);
+				// cuentaModificar.setFecha_creacion(cuentaOriginal.getFecha_creacion());
+				// cuentaModificar.setEliminado(false);
 				cuentaModificar.setSaldo(TXTsaldo);
-				cuentaModificar.setTipo_cuenta(	tcuenta);
-				cuentaModificar.setCliente(cuentaOriginal.getCliente());
-				cuentaModificar.setCbu(cuentaOriginal.getCbu());
+				cuentaModificar.setTipo_cuenta(	t_cuenta);
+				// cuentaModificar.setCliente(cuentaOriginal.getCliente());
+				// cuentaModificar.setCbu(cuentaOriginal.getCbu());
 				
 
-				if(cuentaService.modificarCuenta(cuentaModificar))
-				{
-					
+				if( cuentaService.modificarCuenta(cuentaModificar) ){
 					mv.setViewName("cuentaModificadaCorrectamente");
-					
 				}
 
 				return mv;

@@ -96,18 +96,14 @@
 
 							<div class="col">
 								<label for="cuentascliente1">Cuenta: </label>
-							</div>
-
-							<div class="col">
 								<input type="text" readonly class="form-control-plaintext"
-									name="TXTid" id="nombre" value="1212324">
+									name="TXTnum_cuenta" id="nombre" value=${cuentaModificar.getNum_cuenta() }>
 							</div>
 
 
 							<div class="col">
-								<label >Nombre Cuenta: </label>
-								 <label name= "lblNombre" >${cuentaModificar.getNombre()}</label>
-								
+								<label st>Nombre Cuenta: </label>
+								 <input readonly name="TXTNombre" value="${cuentaModificar.getNombre()}">
 							</div>
 						</div>
 
@@ -115,7 +111,7 @@
 
 							<div class="col-12" style="height: 30px">
 								<label >Tipo Cuenta Actual: </label> 
-								<label name="lblTipoCuenta">${cuentaModificar.getTipo_cuenta().getDescripcion()} </label>
+								<input readonly name="TXTTipoCuenta" value="${cuentaModificar.getTipo_cuenta().getDescripcion()}">
 							</div>
 
 
