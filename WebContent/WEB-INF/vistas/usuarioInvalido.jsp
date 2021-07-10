@@ -43,7 +43,7 @@
  
 	<nav class="navbar navbar-expand-large navbar-light"
 		style="background-color: #e3f2fd;"> <a class="navbar-brand" 
-		href="#">The Group Five Bank  </a>
+		href="#">The Group Five Bank</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
 		aria-expanded="false" aria-label="Toggle navigation">

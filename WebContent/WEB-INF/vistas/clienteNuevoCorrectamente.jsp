@@ -62,13 +62,13 @@
 				<div class="col-md-2">
 
 					<a class="dropdown-item"
-						href="#">Cuentas</a>
+						href="index.html">Cuentas</a>
 
 				</div>  
 
 				<div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
-						href="">Salir <span class="sr-only">(current)</span>
+						href="irALogin.html">Salir <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
  

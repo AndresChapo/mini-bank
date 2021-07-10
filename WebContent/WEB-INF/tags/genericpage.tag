@@ -66,7 +66,7 @@
 					</div>
 		
 						<div class="col-md-2">
-							<li class="nav-item active"><a class="nav-link" href="index.html">Salir
+							<li class="nav-item active"><a class="nav-link" href="irALogin.html">Salir
 									<span class="sr-only">(current)</span>
 							</a></li>
 						</div>

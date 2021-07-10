@@ -89,13 +89,13 @@ function myFunction() {
 
 				<div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
-						href="#">Home <span class="sr-only">(current)</span>
+						href="index.html">Home <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
  
 				<div class="col-md-2">
 					<li class="nav-item active"><a class="nav-link"
-						href="#">Salir <span class="sr-only">(current)</span>
+						href="irALogin.html">Salir <span class="sr-only">(current)</span>
 					</a></li>
 				</div>
 

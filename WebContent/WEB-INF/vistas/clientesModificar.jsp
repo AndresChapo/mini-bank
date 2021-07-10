@@ -58,7 +58,7 @@
 				<div class="row">
 
 					<div class="col-md-2">
-						<li class="nav-item active"><a class="nav-link" href="#">Home
+						<li class="nav-item active"><a class="nav-link" href="index.html">Home
 								<span class="sr-only">(current)</span>
 						</a></li>
 					</div>
@@ -80,7 +80,7 @@
 					</div>
 
 					<div class="col-md-2">
-						<li class="nav-item active"><a class="nav-link" href="">Salir
+						<li class="nav-item active"><a class="nav-link" href="irALogin.html">Salir
 								<span class="sr-only">(current)</span>
 						</a></li>
 					</div>
