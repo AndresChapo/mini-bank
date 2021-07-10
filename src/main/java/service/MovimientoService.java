@@ -117,16 +117,19 @@ public class MovimientoService implements MovimientoServiceInterfaz {
 		Cuenta _cuentaOrigen  = cuentaService.getCuenta(cuentaOrigen);
 		Cuenta _cuentaDestino = cuentaService.getCuenta(cuentaPropiaDestino);
 
+		System.out.println("Entro.");
 		if(_cuentaOrigen != null && _cuentaDestino != null) {
-			
+			System.out.println("Entro1.");
 			if( sonElMismoTipoDeCuenta(_cuentaOrigen,_cuentaDestino ) ) {
+				System.out.println("Entro2.");
 				float aDepositar = Float.parseFloat(TXTadepositar);
 				if(aDepositar > 0) {
+					System.out.println("Entro3.");
 					float saldoNuevoCuentaOrigen  = (_cuentaOrigen.getSaldo() - aDepositar);
 					float saldoNuevoCuentaDestino = (_cuentaDestino.getSaldo() + aDepositar);
 					
 					if(saldoNuevoCuentaOrigen > 0) {
-						//TODO : IMPORTANTE ver como guardar estos objetos
+						System.out.println("Entro4.");
 						_cuentaOrigen.setSaldo(saldoNuevoCuentaOrigen);
 						_cuentaDestino.setSaldo(saldoNuevoCuentaDestino);
 						

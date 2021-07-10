@@ -122,7 +122,7 @@
 
 						<div class="col">
 							<label for="LblNombre">Nombre:</label>
-							<input readonly class="form-control-plaintext" type="text" name="TXTnombre"
+							<input readonly class="form-control-plaintext" type="text" name="TXTnombrea"
 								id="nombre" aria-describedby="emailHelp" 
 								value="${cliente_cuenta.getNombre()}">
 						</div>
@@ -142,6 +142,8 @@
 								aria-describedby="emailHelp"
 								value="${cliente_cuenta.getDni()}">
 						</div>
+						
+						
 										<div class="col">
 							<label for="Tipo de cuenta">Tipo de cuenta:</label>
 							<select class="form-control"  id="cuentas" name=CuentasTipo>
@@ -152,6 +154,17 @@
 						
 					</div>
 					<div style="height:30px"></div>	
+					
+					<div class="form-row">
+						<div class="col">
+							<label for="txtnom">Nombre:</label>
+							<input class="form-control" type="text" name="TXTNombreCuenta" id="txtnom" placeholder="Ingrese un nombre a la cuenta" required>
+						</div>
+						
+					</div>
+					
+							<div style="height:30px"></div>	
+					
 					<div class="form-row">
 						<div class="col">
 							<label for="LblMontoInicial">Monto Inicial: $10000</label>

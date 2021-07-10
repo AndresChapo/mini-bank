@@ -24,7 +24,6 @@ public class UsuarioDao {
 		Query q = session.createQuery(hql);
 		q.setParameter("usuario", usuario);
 		Usuario _usuario = (Usuario) q.uniqueResult();
-		System.out.println(_usuario.toString());
 		
 		return _usuario; 
 	}

@@ -92,7 +92,7 @@
 				
 					<div class="form-row">
 
-						<div class="row">
+						<div class="row mb-2">
 												
 
 							<div class="col">
@@ -110,13 +110,13 @@
 
 						<div class="row">
 
-							<div class="col-12" style="height: 30px">
+							<div class="col" style="height: 30px">
 								<label >Tipo Cuenta Actual: </label> 
 								<input readonly name="TXTTipoCuenta" class="form-control" value="${cuentaModificar.getTipo_cuenta().getDescripcion()}">
 							</div>
 
 
-							<div class="col-12" style="height: 30px">
+							<div class="col" style="height: 30px">
 								<label for="Tipo de cuenta">Nuevo Tipo:</label> <select
 									class="form-control" id="cuentas" name=CuentasTipo>
 									<option value="1">Caja de ahorro pesos</option>								
@@ -130,7 +130,7 @@
 
 					<div class="row">
 
-						<div class="col-12" style="margin-top: 50px;">
+						<div class="col" style="margin-top: 50px;">
 							<label for="Tipo de cuenta">Nuevo Saldo:</label> <input
 								type="number" class="form-control" name="TXTsaldo" id="saldo"
 								aria-describedby="emailHelp" value="${cuentaModificar.getSaldo()}" required>
@@ -145,7 +145,7 @@
 					<input type="hidden" name="TXTid"
 						value="${cuentaModificar.num_cuenta}" />
 
-					<div class="row d-flex justify-content-center"
+					<div class="row mb-2 d-flex justify-content-center"
 						style="position: relative; top: 30px">
 						<input type="submit" class="btn btn-primary" name="BtnModificar" value= "Modificar">
 					</div>

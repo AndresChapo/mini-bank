@@ -108,7 +108,7 @@
 
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
-			<div class="col-md-10" style="">
+			<div class="col-md-12" style="">
 
 				<div style="height: 50px"></div>
 				<table class="table" id="tablaClientes">
@@ -131,7 +131,7 @@
 						<c:forEach items="${listaClientes}" var="cliente">
 							<tr>
 								<th scope="row">${cliente.id }</th>
-								<td>${cliente.nombre }${cliente.apellido }</td>
+								<td>${cliente.nombre } ${cliente.apellido }</td>
 								<td>${cliente.dni }</td>
 								<td>${cliente.fecha_nacimiento }</td>
 

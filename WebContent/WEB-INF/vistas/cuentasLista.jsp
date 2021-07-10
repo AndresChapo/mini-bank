@@ -85,7 +85,7 @@
 		</div> 
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
-			<div class="col-md-10" style="">
+			<div class="col-md-12" style="">
 				<form>
 					  
 					<div style="height: 50px"></div>
@@ -96,7 +96,14 @@
 								<th scope="col">Tipo de Cuenta</th>
 								<th scope="col">Nombre</th>
 								<th scope="col">Saldo</th>
-								<th></th>
+								<c:choose>
+									<c:when test= "${usuarioLogueado.isEs_admin() == false}">
+										<th></th>
+									</c:when>
+									<c:otherwise>
+									</c:otherwise>
+								</c:choose>
+								
 								<th></th>
 								<c:choose>
 									<c:when test= "${usuarioLogueado.isEs_admin()}">
@@ -115,9 +122,16 @@
 			  						<th scope="row">${cuenta.num_cuenta }</th>
 									<td>${cuenta.tipo_cuenta.getDescripcion() }</td>
 									<td>${cuenta.nombre }</td>
-									<td>${cuenta.saldo}</td>
-									<td><a class="btn btn-info"	href="irATransferencia.html?num_cuenta=${cuenta.num_cuenta}">Transferir</a></td>
-									<td><a class="btn btn-info"	href="irAMovimientos.html?num_cuenta=${cuenta.num_cuenta }">Ver movimientos</a></td>
+									<td>$ ${cuenta.saldo}</td>
+									<c:choose>
+										<c:when test= "${usuarioLogueado.isEs_admin() == false}">
+											<td><a class="btn btn-info"	href="irATransferencia.html?num_cuenta=${cuenta.num_cuenta}">Transferir</a></td>
+										</c:when>
+										<c:otherwise>
+										</c:otherwise>
+									</c:choose>
+									
+									<td><a class="btn btn-success"	href="irAMovimientos.html?num_cuenta=${cuenta.num_cuenta }">Ver movim.</a></td>
 									
 									<!-- AGREGO BOTONES ELIMINAR Y MODIFICAR (REVOLLO) -->
 									<c:choose>
@@ -125,7 +139,8 @@
 											<td><a class="btn btn-warning"
 												href="modificacionCuenta.html?id=${cuenta.num_cuenta }">Modificar</a></td>
 											<td><a class="btn btn-danger"
-												href="eliminarCuenta.html?id=${cuenta.num_cuenta }">Eliminar</a></td>										</c:when>
+												href="eliminarCuenta.html?id=${cuenta.num_cuenta }">Eliminar</a></td>										
+										</c:when>
 										<c:otherwise>
 										</c:otherwise>
 									</c:choose>

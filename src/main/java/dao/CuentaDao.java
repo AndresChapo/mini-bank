@@ -49,7 +49,7 @@ public class CuentaDao implements CuentaDaoInterfaz{
 	public static List<Cuenta> getListaCuentasByCliente(int cliente_id) // Ejemplo de metodo para traer datos por HQL
 	{	   
 		Session session = ch.getConexion();
-		String hql = "FROM Cuenta WHERE id_cliente = :id_cliente";
+		String hql = "FROM Cuenta WHERE id_cliente = :id_cliente AND eliminado = 0";
 		Query q = session.createQuery(hql);
 		q.setParameter("id_cliente", cliente_id);
 		List<Cuenta> listaCuentas = q.list();    
@@ -76,7 +76,7 @@ public class CuentaDao implements CuentaDaoInterfaz{
     public List<Cuenta> getListaCuentasByTipoCuentaAndCliente(Tipo_cuenta tipo_cuenta, Cliente cliente_id, int current_num_cuenta) {
 		Session session = ch.getConexion();
     	// Trae todas las cuentas que sean del cliente que tengan el mismo tipo de cuenta, y exceptua la cuenta de la que se va a hacer la transferencia
-		String hql = "FROM Cuenta WHERE id_cliente = :cliente_id AND tipo_cuenta = :tipo_cuenta AND num_cuenta != :current_num_cuenta";
+		String hql = "FROM Cuenta WHERE id_cliente = :cliente_id AND tipo_cuenta = :tipo_cuenta AND num_cuenta != :current_num_cuenta AND eliminado = 0";
 		Query q = session.createQuery(hql);
 		q.setParameter("cliente_id", cliente_id);
 		q.setParameter("tipo_cuenta", tipo_cuenta);
@@ -99,7 +99,7 @@ public class CuentaDao implements CuentaDaoInterfaz{
 	public static boolean checkCuentaIsFromUsuarioLogueado(Usuario usuarioLogueado, int num_cuenta) // Ejemplo de metodo para traer datos por HQL
 	{	   
 		Session session = ch.getConexion();
-		String hql = " FROM Cuenta as cue INNER JOIN cue.cliente as cli INNER JOIN cli.usuario as usr WHERE cue.num_cuenta = :num_cuenta";
+		String hql = " FROM Cuenta as cue INNER JOIN cue.cliente as cli INNER JOIN cli.usuario as usr WHERE cue.num_cuenta = :num_cuenta AND cue.eliminado = 0";
 		Query q = session.createQuery(hql);
 		q.setParameter("num_cuenta", num_cuenta);
 		Object[] resultado = (Object[]) q.uniqueResult();
@@ -154,7 +154,7 @@ public class CuentaDao implements CuentaDaoInterfaz{
 		session = ch.getConexion();
 		session.beginTransaction();
     	
-		String hql = "UPDATE Cuenta SET eliminado = true WHERE num_cuenta = :num_cuenta";
+		String hql = "UPDATE Cuenta SET eliminado = true WHERE num_cuenta = :num_cuenta ";
 		
 		Query q = session.createQuery(hql);
 		q.setParameter("num_cuenta", num_cuenta);
