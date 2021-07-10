@@ -37,6 +37,11 @@ public class Movimiento implements Serializable{
 	private Cuenta cuenta;
 
 	
+	public Movimiento() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Movimiento(Cuenta cuenta, Date fecha, String detalle, float importe) {
 		super();
 		this.cuenta = cuenta;
@@ -65,16 +70,16 @@ public class Movimiento implements Serializable{
 		return fecha;
 	}
 
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
 	public Cuenta getCliente() {
 		return cuenta;
 	}
-
+	
 	public void setCliente(Cuenta cuenta) {
 		this.cuenta = cuenta;
-	}
-
-	public void Date(Date fecha) {
-		this.fecha = fecha;
 	}
 
 	public String getDetalle() {

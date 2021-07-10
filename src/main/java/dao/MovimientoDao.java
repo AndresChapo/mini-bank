@@ -11,7 +11,16 @@ import entidades.Movimiento;
 public class MovimientoDao {
 
 	private ConfigHibernate ch;
+	private Movimiento movimiento;
 	
+	public Movimiento getMovimiento() {
+		return movimiento;
+	}
+
+	public void setMovimiento(Movimiento movimiento) {
+		this.movimiento = movimiento;
+	}
+
 	public MovimientoDao() {
 		super();
 	}
@@ -32,9 +41,14 @@ public class MovimientoDao {
 		
 		Date hoy = Date.valueOf(LocalDate.now());
 
-		Movimiento _movimiento = new Movimiento(cuenta, hoy , detalle, importe);
+		movimiento.setCliente(cuenta);
+		movimiento.setDetalle(detalle);
+		movimiento.setImporte(importe);
+		movimiento.setFecha(hoy);
+		
+		//Movimiento _movimiento = new Movimiento(cuenta, hoy , detalle, importe);
 		session.beginTransaction();
-		session.save(_movimiento);
+		session.save(movimiento);
     	session.getTransaction().commit();
 
     	
