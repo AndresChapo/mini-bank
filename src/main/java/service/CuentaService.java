@@ -61,23 +61,37 @@ public class CuentaService {
 
 	
 	//INICIO MODIFICACION REVOLLO
-	//SIRVE PARA LLAMAR AL DAO Y PASARLE LOS DATOS DESDE EL CONTROLER
-    public boolean GuardarCuenta(Cuenta cuentaNueva)
-    {
+		//SIRVE PARA LLAMAR AL DAO Y PASARLE LOS DATOS DESDE EL CONTROLER
+	    public boolean GuardarCuenta(Cuenta cuentaNueva)
+	    {
 
-		cuentaDao.guardarNuevaCuenta(cuentaNueva);
-		return true;
-	}
-    
-    //SIRVE PARA TRAER EL ULTIMO CBU EN LA BASE
-    
-    public String ObtenerUltimoCBU()
-    {
+			cuentaDao.guardarNuevaCuenta(cuentaNueva);
+			return true;
+		}
+	    
+	    //SIRVE PARA TRAER EL ULTIMO CBU EN LA BASE
+	    
+	    public String ObtenerUltimoCBU()
+	    {
 
-		return  cuentaDao.obtenerUltimoCBU();
-	}
-    
-    //FIN MODIFICACION REVOLLO
+			return  cuentaDao.obtenerUltimoCBU();
+		}
+	    
+	    
+	    /////////////////////////////////////////////////
+	    
+	    //PARA ELIMINAR CUENTA
+	    
+	    public boolean eliminarCuenta(Cuenta cuentaEliminar) {
+
+			cuentaDao.eliminarCuenta(cuentaEliminar);
+			
+			return true;
+		}
+	    
+	    
+	    //FIN MODIFICACION REVOLLO
+		
 	
 	
 }

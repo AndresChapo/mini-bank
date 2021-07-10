@@ -281,166 +281,248 @@ public class MainController {
 	//MODIFICADO POR NAHUEL REVOLLO INICIO
 	
 	
-		//PARA IR A NUEVO USUARIO
-		
-		
-		@RequestMapping(value="NuevoClienteUsuario.html", method=RequestMethod.GET)
-		public ModelAndView pantallaNuevoClienteUsuario() { 
+			//PARA IR A NUEVO USUARIO
 			
-			mv.setViewName("clientesNuevoSesion"); 
 			
-					 
-			return mv;
-		}
-		
-		//PARA GUARDAR NUEVO USUARIO
-		
-		@RequestMapping(value="AltaUsuario.html", method=RequestMethod.POST)
-		public ModelAndView NuevoClienteUsuario(String TXTusuario,String TXTpass,String TXTrepetirpass) 
-		{ 
-			System.out.println(TXTusuario+", "+TXTpass+", "+TXTrepetirpass);
+			@RequestMapping(value="NuevoClienteUsuario.html", method=RequestMethod.GET)
+			public ModelAndView pantallaNuevoClienteUsuario() { 
+				
+				mv.setViewName("clientesNuevoSesion"); 
+				
+						 
+				return mv;
+			}
 			
-			if(TXTpass.equals(TXTrepetirpass) )
-			{
+			//PARA GUARDAR NUEVO USUARIO
+			
+			@RequestMapping(value="AltaUsuario.html", method=RequestMethod.POST)
+			public ModelAndView NuevoClienteUsuario(String TXTusuario,String TXTpass,String TXTrepetirpass) 
+			{ 
+				System.out.println(TXTusuario+", "+TXTpass+", "+TXTrepetirpass);
 				
-				Usuario usuarioNuevo = new Usuario();
-				
-				usuarioNuevo.setContrasenia(TXTrepetirpass);
-				usuarioNuevo.setNombre(TXTusuario);
-				usuarioNuevo.setEliminado(false);
-				usuarioNuevo.setEs_admin(false);
-				
-				System.out.println(usuarioNuevo.getNombre());
-				
-				
-				
-				Boolean guardo = usuarioService.GuardarUsuario(usuarioNuevo);
-				
-				if(guardo)
+				if(TXTpass.equals(TXTrepetirpass) )
 				{
-					System.out.println("aca llega bien");
 					
-					Usuario usuario = (Usuario) usuarioService.getUsuarioByNombreUsuario(TXTusuario);
+					Usuario usuarioNuevo = new Usuario();
 					
-					mv.addObject("NuevoUsuario", usuario);
+					usuarioNuevo.setContrasenia(TXTrepetirpass);
+					usuarioNuevo.setNombre(TXTusuario);
+					usuarioNuevo.setEliminado(false);
+					usuarioNuevo.setEs_admin(false);
 					
-					mv.setViewName("clientesNuevoDatosPersonales"); 
+					System.out.println(usuarioNuevo.getNombre());
+					
+					
+					
+					Boolean guardo = usuarioService.GuardarUsuario(usuarioNuevo);
+					
+					if(guardo)
+					{
+						System.out.println("aca llega bien");
+						
+						Usuario usuario = (Usuario) usuarioService.getUsuarioByNombreUsuario(TXTusuario);
+						
+						mv.addObject("NuevoUsuario", usuario);
+						
+						mv.setViewName("clientesNuevoDatosPersonales"); 
+						
+					}
+					
+				}
+				else 
+				{
+					System.out.println("aca llega directo al else");
+					mv.setViewName("clientesNuevoSesion"); 
 					
 				}
 				
-			}
-			else 
-			{
-				System.out.println("aca llega directo al else");
-				mv.setViewName("clientesNuevoSesion"); 
-				
+				return mv;
 			}
 			
-			return mv;
-		}
-		
-		
-		
-		
-		
-		//PARA GUARDAR NUEVO CLIENTE
-		
-		@RequestMapping(value="ClientesDatosPersonales.html", method=RequestMethod.POST)
-		public ModelAndView altaCliente(@RequestParam(required=false) 
-				String TXTnombre, String TXTapellido, String TXTdni,String TXTnacionalidad,
-				String TXTfecha, char TXTsexo, String TXTprovincia, String TXTlocalidad,
-				String TXTdomicilio, String TXTtelefono, String TXTcorreo,String TXTidUsuario)
-		
-		{ 
-			Cliente nuevoCliente = new Cliente();
 			
 			
-			nuevoCliente.setId(Integer. parseInt (  TXTidUsuario)); 
-			nuevoCliente.setNombre(TXTnombre);		
-			nuevoCliente.setApellido(TXTapellido);
-			nuevoCliente.setDni(TXTdni);
-			nuevoCliente.setNacionalidad(TXTnacionalidad);
-			nuevoCliente.setFecha_nacimiento(TXTfecha);
-			nuevoCliente.setSexo(TXTsexo);
-			nuevoCliente.setProvincia(TXTprovincia);
-			nuevoCliente.setLocalidad(TXTlocalidad);
-			nuevoCliente.setDireccion(TXTdomicilio);
-			nuevoCliente.setTelefono(TXTtelefono);
-			nuevoCliente.setEmail(TXTcorreo);
-			nuevoCliente.setEliminado(false);
 			
-			if(clienteService.GuardarCliente(nuevoCliente))
-			{
-				
-				mv.setViewName("clienteNuevoCorrectamente"); 
+			
+			//PARA GUARDAR NUEVO CLIENTE
+			
+			@RequestMapping(value="ClientesDatosPersonales.html", method=RequestMethod.POST)
+			public ModelAndView altaCliente(@RequestParam(required=false) 
+					String TXTnombre, String TXTapellido, String TXTdni,String TXTnacionalidad,
+					String TXTfecha, char TXTsexo, String TXTprovincia, String TXTlocalidad,
+					String TXTdomicilio, String TXTtelefono, String TXTcorreo,String TXTidUsuario)
+			
+			{ 
+				Cliente nuevoCliente = new Cliente();
 				
 				
-			}	
-			return mv;
-			
-			 
-		}
-		
-		
-		//PARA IR A NUEVA CUENTA
-		
-			
-		
-		@RequestMapping(value = "NuevoCuenta.html", method = RequestMethod.GET)
-		public ModelAndView pantallaNuevoCuenta(@RequestParam String id) {
-
-			Cliente cliente_cuenta = new Cliente();
-			cliente_cuenta = clienteService.getCliente(Integer.parseInt(id));
-			mv.addObject("cliente_cuenta", cliente_cuenta);
-		
-
-			mv.setViewName("cuentasnueva");
-			return mv;
-		}
-		
-		
-		//PARA ASIGNAR UNA NUEVA CUENTA A UN CLIENTE
-		
-	
-		
-		
-		@RequestMapping(value = "AltaCuenta.html", method = RequestMethod.POST)
-		public ModelAndView altaCuenta(@RequestParam(required = false) 
-		String TXTid, String TXTnombre,
-	    String TXTdni, String CuentasTipo) {
-
-			Cuenta cuentaNueva = new Cuenta();
-			Cliente _cliente = clienteService.getCliente(Integer.parseInt(TXTid));
-			Tipo_cuenta tipoCuenta = tipo_cuentaDao.getTipoCuenta(Integer.parseInt(CuentasTipo));
-			Date hoy = Date.valueOf(LocalDate.now());
-
-			cuentaNueva.setNombre(TXTnombre);
-			cuentaNueva.setCliente(_cliente);
-			cuentaNueva.setFecha_creacion(hoy);
-			cuentaNueva.setTipo_cuenta(tipoCuenta);;
-			cuentaNueva.setEliminado(false);
-			// POR DEFAULT TODAS EMPIEZAN CON ESE MONTO
-			cuentaNueva.setSaldo(10000); 
-			
-			//CREO VARIABLE INT PARA INCREMENTAR EL CBU
-			
-			//Integer cbu_incrementa = (Integer.parseInt(cuentaService.ObtenerUltimoCBU()));
-			System.out.println(cuentaService.ObtenerUltimoCBU());
-			BigInteger One = new BigInteger("1");
-			BigInteger cbu_incrementa=new BigInteger(cuentaService.ObtenerUltimoCBU());
-			cbu_incrementa = cbu_incrementa.add(One);
-			cuentaNueva.setCbu("00" + cbu_incrementa.toString());	
-			System.out.println(cbu_incrementa);
-			if(cuentaService.GuardarCuenta(cuentaNueva)){				
-				mv.setViewName("cuentaNuevaCorrentamente");
+				nuevoCliente.setId(Integer. parseInt (  TXTidUsuario)); 
+				nuevoCliente.setNombre(TXTnombre);		
+				nuevoCliente.setApellido(TXTapellido);
+				nuevoCliente.setDni(TXTdni);
+				nuevoCliente.setNacionalidad(TXTnacionalidad);
+				nuevoCliente.setFecha_nacimiento(TXTfecha);
+				nuevoCliente.setSexo(TXTsexo);
+				nuevoCliente.setProvincia(TXTprovincia);
+				nuevoCliente.setLocalidad(TXTlocalidad);
+				nuevoCliente.setDireccion(TXTdomicilio);
+				nuevoCliente.setTelefono(TXTtelefono);
+				nuevoCliente.setEmail(TXTcorreo);
+				nuevoCliente.setEliminado(false);
+				
+				if(clienteService.GuardarCliente(nuevoCliente))
+				{
+					
+					mv.setViewName("clienteNuevoCorrectamente"); 
+					
+					
+				}	
+				return mv;
+				
+				 
 			}
 			
+			
+			//PARA IR A NUEVA CUENTA
+			
+				
+			
+			@RequestMapping(value = "NuevoCuenta.html", method = RequestMethod.GET)
+			public ModelAndView pantallaNuevoCuenta(@RequestParam String id) {
 
-			return mv;
-		}
+				Cliente cliente_cuenta = new Cliente();
+				cliente_cuenta = clienteService.getCliente(Integer.parseInt(id));
+				mv.addObject("cliente_cuenta", cliente_cuenta);
+			
+
+				mv.setViewName("cuentasnueva");
+				return mv;
+			}
+			
+			
+			//PARA ASIGNAR UNA NUEVA CUENTA A UN CLIENTE
+			
 		
-		
-		//MODIFICADO POR NAHUEL REVOLLO FIN
+			
+			
+			@RequestMapping(value = "AltaCuenta.html", method = RequestMethod.POST)
+			public ModelAndView altaCuenta(@RequestParam(required = false) 
+			String TXTid, String TXTnombre,
+		    String TXTdni, String CuentasTipo) {
+
+				Cuenta cuentaNueva = new Cuenta();
+				Cliente _cliente = clienteService.getCliente(Integer.parseInt(TXTid));
+				Tipo_cuentaDao tipoCuentaDao = new Tipo_cuentaDao();
+				Tipo_cuenta tipoCuenta = tipoCuentaDao.getTipoCuenta(Integer.parseInt(CuentasTipo));
+				Date hoy = Date.valueOf(LocalDate.now());
+
+				cuentaNueva.setNombre(TXTnombre);
+				cuentaNueva.setCliente(_cliente);
+				cuentaNueva.setFecha_creacion(hoy);
+				cuentaNueva.setTipo_cuenta(tipoCuenta);;
+				cuentaNueva.setEliminado(false);
+				// POR DEFAULT TODAS EMPIEZAN CON ESE MONTO
+				cuentaNueva.setSaldo(10000); 
+				
+				//CREO VARIABLE INT PARA INCREMENTAR EL CBU
+				
+				//Integer cbu_incrementa = (Integer.parseInt(cuentaService.ObtenerUltimoCBU()));
+				
+				BigInteger One = new BigInteger("1");
+				BigInteger cbu_incrementa=new BigInteger(cuentaService.ObtenerUltimoCBU());
+				cbu_incrementa.add(One);
+				cuentaNueva.setCbu(cbu_incrementa.toString());	
+				
+				if(cuentaService.GuardarCuenta(cuentaNueva)){				
+					mv.setViewName("cuentaNuevaCorrentamente");
+				}
+				
+
+				return mv;
+			}
+			
+			////////////////////////////////////////////
+			
+			
+			//ELIMINAR CUENTA
+			
+			@RequestMapping(value = "eliminarCuenta.html", method = RequestMethod.GET)
+			public ModelAndView eliminarCuenta(@RequestParam String id) {
+
+				
+				Cuenta cuentaEliminar = new Cuenta();
+				
+				cuentaEliminar.setNum_cuenta(Integer.parseInt(id));
+				
+				
+				cuentaService.eliminarCuenta(cuentaEliminar);
+
+				mv.setViewName("cuentaEliminadaCorrectamente");
+				return mv;
+			}
+			
+			
+			
+			
+			//IR A MODIFICAR CUENTA
+			
+			@RequestMapping(value = "modificacionCuenta.html", method = RequestMethod.GET)
+			public ModelAndView pantallaModificarCuenta(@RequestParam String id) {
+
+	             
+				
+	             Cuenta cuentaModificar = cuentaService.getCuenta(Integer.parseInt(id));
+	 			mv.addObject("cuentaModificar", cuentaModificar);
+	 		
+	 		mv.setViewName("cuentasModificar");
+	 		
+	 	
+			
+	 		return mv;
+			
+			}
+			
+			//MODIFICAR CUENTA
+			
+			
+			@RequestMapping(value = "FormularioModificarCuenta.html", method = RequestMethod.POST)
+			public ModelAndView modificarCuenta(@RequestParam(required = false)
+			String CuentasTipo,Float TXTsaldo, String TXTid, String lblNombre ) {
+
+				
+				Cuenta cuentaModificar =  new Cuenta();
+				Tipo_cuenta tcuenta = new Tipo_cuenta();
+				
+				tcuenta.setId(Integer.parseInt(CuentasTipo));
+				
+				Cuenta cuentaOriginal = cuentaService.getCuenta(Integer.parseInt(TXTid));
+				
+				cuentaModificar.setNum_cuenta(Integer.parseInt(TXTid));
+				cuentaModificar.setNombre(lblNombre);
+				cuentaModificar.setFecha_creacion(cuentaOriginal.getFecha_creacion());
+				cuentaModificar.setEliminado(false);
+				cuentaModificar.setSaldo(TXTsaldo);
+				cuentaModificar.setTipo_cuenta(	tcuenta);
+				cuentaModificar.setCliente(cuentaOriginal.getCliente());
+				cuentaModificar.setCbu(cuentaOriginal.getCbu());
+				
+
+				if(cuentaService.modificarCuenta(cuentaModificar))
+				{
+					
+					mv.setViewName("cuentaModificadaCorrectamente");
+					
+				}
+
+				return mv;
+			}
+			
+			
+			
+			
+			
+			
+			//MODIFICADO POR NAHUEL REVOLLO FIN
+
 
 	
 	

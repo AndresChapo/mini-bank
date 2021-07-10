@@ -109,9 +109,19 @@
 									<td>${cuenta.saldo}</td>
 									<td><a class="btn btn-info"	href="irATransferencia.html?num_cuenta=${cuenta.num_cuenta}">Transferir</a></td>
 									<td><a class="btn btn-info"	href="irAMovimientos.html?num_cuenta=${cuenta.num_cuenta }">Ver movimientos</a></td>
+									
+									<!-- AGREGO BOTONES ELIMINAR Y MODIFICAR (REVOLLO) -->
+									
+									<td><a class="btn btn-warning"
+									href="modificacionCuenta.html?id=${cuenta.num_cuenta }">Modificar</a></td>
+
+								<td><a class="btn btn-danger"
+									href="eliminarCuenta.html?id=${cuenta.num_cuenta }">Eliminar</a></td>
+									
+									
 							    </tr>
 						  	</c:forEach>
-						</tbody>   
+						</tbody>
 					</table>
   
 				</form>

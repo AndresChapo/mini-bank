@@ -120,10 +120,11 @@ public class CuentaDao implements CuentaDaoInterfaz{
 
     
     
+
     //MODIFICACION REVOLLO INICIO
     
     //AGREGO FUNCION PARA CREAR UNA CUENTA NUEVA
-	@Override
+    
     public void guardarNuevaCuenta (Cuenta cuentaNueva)
     {
     	Session session = ch.getConexion();
@@ -142,13 +143,30 @@ public class CuentaDao implements CuentaDaoInterfaz{
 		String Cbu =  (String)q.uniqueResult();
 		return Cbu;
 	}
+    
+    //AGREGAR FUNCION PARA QUE ELIMINE UNA CUENTA
+    
+     public void eliminarCuenta(Cuenta cuentaEliminar) {
+		
+		
+		Integer num_cuenta = cuentaEliminar.getNum_cuenta();
+		
+		session = ch.getConexion();
+		session.beginTransaction();
+    	
+		String hql = "UPDATE Cuenta SET eliminado = true WHERE num_cuenta = :num_cuenta";
+		
+		Query q = session.createQuery(hql);
+		q.setParameter("num_cuenta", num_cuenta);
+	    q.executeUpdate();
+	    
+		session.getTransaction().commit();
+	}
+    
     //MODIFICACION REVOLLO FIN
 
-	@Override
-	public void eliminarCuenta(Cuenta cuenta) {
-		// TODO Auto-generated method stub
-		
-	}
+
+	
     
 
 }

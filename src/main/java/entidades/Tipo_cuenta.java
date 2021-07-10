@@ -25,6 +25,10 @@ public class Tipo_cuenta implements Serializable{
 		super();
 		this.descripcion = descripcion;
 	}
+	
+	public Tipo_cuenta() {
+		
+	}
 	public Integer getId() {
 		return id;
 	}

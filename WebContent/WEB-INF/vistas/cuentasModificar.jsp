@@ -85,7 +85,11 @@
 		<div class="row mt-2 d-flex justify-content-center"
 			style="position: relative; top: 50px">
 			<div class="col-md-6" style="">
-				<form>
+			
+			
+				<form action="FormularioModificarCuenta.html" method="post">
+				
+				
 					<div class="form-row">
 
 						<div class="row">
@@ -101,9 +105,9 @@
 
 
 							<div class="col">
-								<label >Cliente: </label>
-								 <label>Nombre cliente</label>
-								<label >Nombre apellido</label>
+								<label >Nombre Cuenta: </label>
+								 <label name= "lblNombre" >${cuentaModificar.getNombre()}</label>
+								
 							</div>
 						</div>
 
@@ -111,13 +115,13 @@
 
 							<div class="col-12" style="height: 30px">
 								<label >Tipo Cuenta Actual: </label> 
-								<label>Cuenta corriente en pesos </label>
+								<label name="lblTipoCuenta">${cuentaModificar.getTipo_cuenta().getDescripcion()} </label>
 							</div>
 
 
 							<div class="col-12" style="height: 30px">
 								<label for="Tipo de cuenta">Nuevo Tipo:</label> <select
-									class="form-control" id="cuentas" name=Cuentas>
+									class="form-control" id="cuentas" name=CuentasTipo>
 									<option value="1">Caja de ahorro pesos</option>								
 									<option value="2">Caja de ahorro USD</option>
 								</select>
@@ -131,9 +135,9 @@
 
 						<div class="col-12" style="margin-top: 50px;">
 							<label for="Tipo de cuenta">Nuevo Saldo:</label> <input
-								type="text" class="form-control" name="TXTsaldo" id="saldo"
-								aria-describedby="emailHelp" value="Ingresar saldo actual">
-
+								type="number" class="form-control" name="TXTsaldo" id="saldo"
+								aria-describedby="emailHelp" value="${cuentaModificar.getSaldo()}" required>
+                                
 						</div>
 
 					</div>
@@ -142,12 +146,20 @@
 					<div style="height: 30px"></div>
 
 					<input type="hidden" name="TXTid"
-						value="1" />
+						value="${cuentaModificar.num_cuenta}" />
 
 					<div class="row d-flex justify-content-center"
 						style="position: relative; top: 30px">
-						<input type="submit" name="BtnModificar" value="Modificar">
+						<input type="submit" class="btn btn-primary" name="BtnModificar" value= "Modificar">
 					</div>
+					
+					
+					 
+					 <div class="row d-flex justify-content-center"
+						style="position: relative; top: 30px">
+						<a href="listadoClientes.html" class="btn btn-warning">Volver al Listado</a>
+					</div>
+
 
 
 							</form>
